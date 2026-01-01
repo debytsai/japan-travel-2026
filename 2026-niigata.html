@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        /* 全面採用 Noto Sans TC (黑體) 系列 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
         
         :root {
             --winter-blue: #0c4a6e;
@@ -25,7 +26,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, .day-title { font-family: 'Noto Serif TC', serif; }
+        /* 標題改用超粗黑體取代明體 */
+        h1, h2, .day-title { 
+            font-weight: 900; 
+            letter-spacing: -0.025em;
+        }
 
         /* 雪花動畫 */
         .snowflake {
@@ -108,9 +113,9 @@
             <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover brightness-[0.4]" alt="日本雪景">
         </div>
         <div class="relative z-10 px-2">
-            <h1 class="text-2xl xs:text-3xl sm:text-4xl font-bold mb-3 tracking-widest whitespace-nowrap">2026・冬 新潟-東京</h1>
-            <p class="text-amber-200 text-[10px] sm:text-xs tracking-[0.4em] uppercase opacity-90">9 Days Snow Country Journey</p>
-            <div class="mt-4 inline-block px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] sm:text-xs border border-white/30">
+            <h1 class="text-2xl xs:text-3xl sm:text-4xl font-black mb-3 tracking-widest whitespace-nowrap">2026・冬 新潟-東京</h1>
+            <p class="text-amber-200 text-[10px] sm:text-xs tracking-[0.4em] uppercase opacity-90 font-bold">9 Days Snow Country Journey</p>
+            <div class="mt-4 inline-block px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] sm:text-xs border border-white/30 font-medium">
                 2026.01.05 — 2026.01.13
             </div>
         </div>
@@ -124,9 +129,9 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 05 (MON)</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 1. 啟程雪國</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 1. 啟程雪國</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">台北 ➔ 東京</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">台北 ➔ 東京</span>
                 </div>
             </div>
             <div class="p-6 space-y-6">
@@ -134,20 +139,20 @@
                     <div class="timeline-dot"></div>
                     <p class="text-[10px] font-bold text-blue-500 uppercase">Flight NH852</p>
                     <p class="font-bold text-lg">松山(T1) ➔ 羽田(T2)</p>
-                    <p class="text-sm text-gray-500">13:30 → 17:30</p>
+                    <p class="text-sm text-gray-500 font-medium">13:30 → 17:30</p>
                 </div>
 
                 <div class="bg-blue-600 text-white p-4 rounded-3xl flex items-center shadow-lg shadow-blue-200">
                     <div class="bg-white/20 p-3 rounded-2xl mr-4"><i class="fas fa-shuttle-van"></i></div>
                     <div class="text-sm">
                         <p class="font-bold">NearMe 接駁已訂</p>
-                        <p class="opacity-80">Toyota Alphard 直達飯店</p>
+                        <p class="opacity-80 font-medium">Toyota Alphard 直達飯店</p>
                     </div>
                     <div class="ml-auto"><span class="status-badge bg-white/20">已訂</span></div>
                 </div>
 
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                    <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
                         <i class="fas fa-utensils mr-2 text-orange-400"></i>晚餐建議 (銀座區)
                     </h3>
                     <a href="https://maps.app.goo.gl/sujForbsvufKYqWt5" target="_blank" class="option-link">
@@ -155,7 +160,7 @@
                             <span class="icon-box-simple text-orange-600"><i class="fas fa-bowl-food"></i></span>
                             <div>
                                 <p class="font-bold text-sm sm:text-base">TsuruTonTan 烏龍麵</p>
-                                <p class="text-[10px] text-gray-400 italic">東急購物中心 10F</p>
+                                <p class="text-[10px] text-gray-400 italic font-medium">東急購物中心 10F</p>
                             </div>
                         </span>
                         <i class="fas fa-chevron-right text-slate-300"></i>
@@ -170,7 +175,7 @@
                             <span class="status-badge badge-booked">官網已訂</span>
                         </div>
                         <p class="font-bold text-lg leading-tight">MIMARU SUITES 東京日本橋</p>
-                        <p class="text-xs text-blue-600 mt-2 font-mono">Total: ￥367,695</p>
+                        <p class="text-xs text-blue-600 mt-2 font-mono font-bold">Total: ￥367,695</p>
                     </div>
                 </div>
             </div>
@@ -182,13 +187,13 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 06 (TUE)</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 2. 前往新潟</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 2. 前往新潟</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">東京 ➔ 新潟</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">東京 ➔ 新潟</span>
                 </div>
             </div>
             <div class="p-6 space-y-6">
-                <div class="flex items-center text-sm font-medium text-slate-600 bg-white/50 p-3 rounded-2xl border border-white/80">
+                <div class="flex items-center text-sm font-bold text-slate-600 bg-white/50 p-3 rounded-2xl border border-white/80">
                     <i class="fas fa-clock mr-3 text-blue-500"></i>
                     09:00 Check out / 搭乘計程車前往車站
                 </div>
@@ -200,24 +205,24 @@
                     </div>
                     <div class="flex justify-between items-center text-center relative z-10">
                         <div>
-                            <p class="text-2xl font-bold">10:41</p>
-                            <p class="text-[10px] text-slate-400">東京發</p>
+                            <p class="text-2xl font-black">10:41</p>
+                            <p class="text-[10px] text-slate-400 font-bold">東京發</p>
                         </div>
                         <div class="flex-1 border-b border-dashed border-orange-200 mx-4 relative">
                             <i class="fas fa-snowflake absolute -top-2 left-1/2 -translate-x-1/2 text-orange-200"></i>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold">12:32</p>
-                            <p class="text-[10px] text-slate-400">新潟著</p>
+                            <p class="text-2xl font-black">12:32</p>
+                            <p class="text-[10px] text-slate-400 font-bold">新潟著</p>
                         </div>
                     </div>
-                    <div class="mt-4 bg-orange-50/50 p-2 rounded-xl text-[10px] font-mono text-center text-orange-800 italic relative z-10">
+                    <div class="mt-4 bg-orange-50/50 p-2 rounded-xl text-[10px] font-mono text-center text-orange-800 italic relative z-10 font-bold">
                         6号車 17/18番DE席 (已綁 Suica)
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                    <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
                         <i class="fas fa-utensils mr-2 text-green-400"></i>午餐：新潟站 CoCoLo
                     </h3>
                     <div class="space-y-2">
@@ -233,7 +238,7 @@
                 </div>
 
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                    <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
                         <i class="fas fa-moon mr-2 text-blue-400"></i>晚餐建議：新潟在地美味
                     </h3>
                     <div class="space-y-2">
@@ -260,7 +265,7 @@
                             <span class="status-badge badge-booked">樂天已訂</span>
                         </div>
                         <p class="font-bold text-lg leading-tight">JR東日本 HOTEL METS 新潟</p>
-                        <p class="text-[10px] text-slate-500 mt-1 italic leading-relaxed">飯店與車站共構，入住即在 CoCoLo 商場旁</p>
+                        <p class="text-[10px] text-slate-500 mt-1 italic leading-relaxed font-medium">飯店與車站共構，入住即在 CoCoLo 商場旁</p>
                     </div>
                 </div>
             </div>
@@ -272,14 +277,14 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 07 (WED)</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 3. 燕三条 · 雪中 SPA</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 3. 燕三条 · 雪中 SPA</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">工藝與放鬆</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">工藝與放鬆</span>
                 </div>
             </div>
             <div class="p-6 space-y-6">
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                    <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
                         <i class="fas fa-utensils mr-2 text-blue-400"></i>午餐建議：佐渡弁慶
                     </h3>
                     <div class="space-y-2">
@@ -297,7 +302,7 @@
                     <div class="bg-amber-500 text-white w-12 h-12 flex items-center justify-center rounded-2xl mr-4 shadow-lg"><i class="fas fa-key"></i></div>
                     <div>
                         <p class="font-bold text-sm">14:30 租車自駕 <span class="status-badge bg-amber-200 text-amber-800 ml-1">已訂</span></p>
-                        <p class="text-[10px] text-amber-700">Toyota Rent a Car ➔ 燕三条 (1hr)</p>
+                        <p class="text-[10px] text-amber-700 font-medium">Toyota Rent a Car ➔ 燕三条 (1hr)</p>
                     </div>
                 </div>
 
@@ -310,8 +315,8 @@
                             <span class="status-badge badge-paid">一休已付</span>
                         </div>
                         <p class="font-bold text-lg leading-tight">Snow Peak FIELD SUITE SPA</p>
-                        <p class="text-[10px] opacity-60 mt-1">隈研吾設計 · 一泊二食奢華體驗</p>
-                        <p class="text-xs text-amber-200 mt-2 font-mono">￥290,000</p>
+                        <p class="text-[10px] opacity-60 mt-1 font-medium">隈研吾設計 · 一泊二食奢華體驗</p>
+                        <p class="text-xs text-amber-200 mt-2 font-mono font-bold">￥290,000</p>
                     </div>
                 </div>
             </div>
@@ -323,14 +328,14 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 08 (THU)</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 4. 越後湯澤</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 4. 越後湯澤</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">燕三条 ➔ 湯澤</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">燕三条 ➔ 湯澤</span>
                 </div>
             </div>
             <div class="p-6 space-y-6">
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                    <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
                         <i class="fas fa-utensils mr-2 text-slate-400"></i>午餐建議 (燕三条)
                     </h3>
                     <div class="grid grid-cols-1 gap-2">
@@ -354,7 +359,7 @@
                 </div>
 
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                    <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
                         <i class="fas fa-train mr-2 text-orange-400"></i>預計移動班次
                     </h3>
                     
@@ -365,15 +370,15 @@
                         </div>
                         <div class="flex justify-between items-center text-center relative z-10">
                             <div>
-                                <p class="text-2xl font-bold">14:39</p>
-                                <p class="text-[10px] text-slate-400">燕三条發</p>
+                                <p class="text-2xl font-black">14:39</p>
+                                <p class="text-[10px] text-slate-400 font-bold">燕三条發</p>
                             </div>
                             <div class="flex-1 border-b border-dashed border-orange-200 mx-4 relative">
                                 <i class="fas fa-arrow-right absolute -top-2 left-1/2 -translate-x-1/2 text-orange-200"></i>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold">15:11</p>
-                                <p class="text-[10px] text-slate-400">越後湯澤著</p>
+                                <p class="text-2xl font-black">15:11</p>
+                                <p class="text-[10px] text-slate-400 font-bold">越後湯澤著</p>
                             </div>
                         </div>
                     </div>
@@ -387,7 +392,7 @@
                             <span class="status-badge badge-booked">樂天已訂</span>
                         </div>
                         <p class="font-bold text-lg leading-tight">湯けむりの宿 雪の花</p>
-                        <p class="text-xs text-blue-600 mt-2 font-mono">住宿:￥431,200 / 三食:￥88,440</p>
+                        <p class="text-xs text-blue-600 mt-2 font-mono font-bold">住宿:￥431,200 / 三食:￥88,440</p>
                     </div>
                 </div>
             </div>
@@ -399,14 +404,14 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 09 (FRI)</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 5. 魚沼探索</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 5. 魚沼探索</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">酒藏與雪街</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">酒藏與雪街</span>
                 </div>
             </div>
             <div class="p-6 space-y-6">
                 <div>
-                    <h3 class="section-title text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center"><i class="fas fa-coffee mr-2 text-green-500"></i>早餐與散策</h3>
+                    <h3 class="section-title text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center"><i class="fas fa-coffee mr-2 text-green-500"></i>早餐與散策</h3>
                     <div class="space-y-2">
                         <a href="https://maps.app.goo.gl/wvmXzZdfJqyMGTzf7" target="_blank" class="option-link">
                             <span class="flex items-center"><span class="icon-box-simple text-green-600"><i class="fas fa-mug-hot"></i></span>FARM FRONT SEKINOEN</span>
@@ -419,7 +424,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="section-title text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center"><i class="fas fa-mountain mr-2 text-blue-500"></i>魚沼之里 (魚沼の里)</h3>
+                    <h3 class="section-title text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center"><i class="fas fa-mountain mr-2 text-blue-500"></i>魚沼之里 (魚沼の里)</h3>
                     <div class="space-y-2">
                         <a href="https://maps.app.goo.gl/aHezAEtNfwva1wpa8" target="_blank" class="option-link">
                             <span class="flex items-center"><span class="icon-box-simple text-orange-700"><i class="fas fa-house-chimney"></i></span>欅苑 (需預約)</span>
@@ -440,16 +445,16 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 10 (SAT)</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 6. 重返東京</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 6. 重返東京</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">湯澤 ➔ 東京</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">湯澤 ➔ 東京</span>
                 </div>
             </div>
             <div class="p-6 space-y-6">
                 <div class="bg-indigo-50/80 p-5 rounded-3xl border border-indigo-100 relative overflow-hidden">
                     <i class="fas fa-snowflake absolute right-[-5%] top-[-10%] text-indigo-100 text-6xl"></i>
                     <p class="font-bold text-indigo-900 mb-2 text-sm">湯澤高空纜車與散策</p>
-                    <p class="text-[10px] text-indigo-700 leading-relaxed italic">
+                    <p class="text-[10px] text-indigo-700 leading-relaxed italic font-bold">
                         11:00 Check out 後移動至車站。
                     </p>
                 </div>
@@ -461,18 +466,18 @@
                     </div>
                     <div class="flex justify-between items-center text-center relative z-10">
                         <div>
-                            <p class="text-2xl font-bold">14:49</p>
-                            <p class="text-[10px] text-slate-400">越後湯澤發</p>
+                            <p class="text-2xl font-black">14:49</p>
+                            <p class="text-[10px] text-slate-400 font-bold">越後湯澤發</p>
                         </div>
                         <div class="flex-1 border-b border-dashed border-orange-200 mx-4 relative">
                             <i class="fas fa-train absolute -top-2 left-1/2 -translate-x-1/2 text-orange-200"></i>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold">16:00</p>
-                            <p class="text-[10px] text-slate-400">東京著</p>
+                            <p class="text-2xl font-black">16:00</p>
+                            <p class="text-[10px] text-slate-400 font-bold">東京著</p>
                         </div>
                     </div>
-                    <div class="mt-4 bg-orange-50/50 p-2 rounded-xl text-[10px] font-mono text-center text-orange-800 italic relative z-10">
+                    <div class="mt-4 bg-orange-50/50 p-2 rounded-xl text-[10px] font-mono text-center text-orange-800 italic relative z-10 font-bold">
                         3号車 2/3番DE席
                     </div>
                 </div>
@@ -481,7 +486,7 @@
                     <div class="bg-red-500 text-white p-3 rounded-2xl mr-4"><i class="fas fa-cut"></i></div>
                     <div>
                         <p class="text-sm font-bold text-red-900">17:30 預約剪髮</p>
-                        <p class="text-[10px] text-red-700">nanako (日本橋區)</p>
+                        <p class="text-[10px] text-red-700 font-bold">nanako (日本橋區)</p>
                     </div>
                 </div>
 
@@ -493,7 +498,7 @@
                             <span class="status-badge badge-booked">官網已訂</span>
                         </div>
                         <p class="font-bold text-lg leading-tight">MIMARU SUITES 東京日本橋</p>
-                        <p class="text-[10px] text-slate-500 mt-1 italic">延續 Day 1 預約之剩餘 3 晚行程</p>
+                        <p class="text-[10px] text-slate-500 mt-1 italic font-medium">延續 Day 1 預約之剩餘 3 晚行程</p>
                     </div>
                 </div>
             </div>
@@ -505,17 +510,17 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 11-12</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 7-8. 東京休日</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 7-8. 東京休日</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">購物與藝術</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">購物與藝術</span>
                 </div>
             </div>
             <div class="p-6 space-y-6">
-                <div class="bg-white/50 p-4 rounded-2xl border border-white text-xs text-slate-600 leading-relaxed">
+                <div class="bg-white/50 p-4 rounded-2xl border border-white text-xs text-slate-600 leading-relaxed font-bold">
                     <i class="fas fa-shopping-bag mr-2 text-blue-500"></i> 海渡/多慶屋採購、虎之門之丘散策、享用東京咖啡。
                 </div>
                 <div>
-                    <h3 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                    <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
                         <i class="fas fa-utensils mr-2 text-red-400"></i>1/12 晚餐預訂
                     </h3>
                     <a href="https://maps.app.goo.gl/saGapj24KpXZq8RP9" target="_blank" class="option-link">
@@ -523,7 +528,7 @@
                             <span class="icon-box-simple text-red-600"><i class="fas fa-fish-fins"></i></span>
                             <div>
                                 <p class="font-bold">銀座おのでら 本店</p>
-                                <p class="text-[10px] text-gray-400">精選名店 (建議提前排隊)</p>
+                                <p class="text-[10px] text-gray-400 font-medium">精選名店 (建議提前排隊)</p>
                             </div>
                         </span>
                         <i class="fas fa-chevron-right text-slate-300"></i>
@@ -538,9 +543,9 @@
                 <div class="flex justify-between items-end">
                     <div class="min-w-0 flex-1">
                         <p class="text-[10px] opacity-70 font-bold mb-1">JAN 13 (TUE)</p>
-                        <h2 class="text-xl sm:text-2xl font-bold whitespace-nowrap">DAY 9. 歸途</h2>
+                        <h2 class="text-xl sm:text-2xl font-black whitespace-nowrap">DAY 9. 歸途</h2>
                     </div>
-                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0">東京 ➔ 台北</span>
+                    <span class="text-[10px] sm:text-xs border-l border-white/30 pl-3 shrink-0 font-bold">東京 ➔ 台北</span>
                 </div>
             </div>
             <div class="p-6 space-y-4">
@@ -552,7 +557,7 @@
                     <div class="timeline-dot bg-slate-800"></div>
                     <p class="text-[10px] font-bold text-slate-400 uppercase">Flight NH853</p>
                     <p class="font-bold text-lg">羽田(T2) ➔ 松山(T1)</p>
-                    <p class="text-sm text-gray-400">12:40 → 15:50</p>
+                    <p class="text-sm text-gray-400 font-bold">12:40 → 15:50</p>
                 </div>
             </div>
         </section>
@@ -563,17 +568,17 @@
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-sm glass-card rounded-full py-4 flex justify-around items-center px-6 shadow-2xl z-50 border border-white/50">
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center text-blue-600">
             <i class="fas fa-snowflake text-lg"></i>
-            <span class="text-[9px] mt-1 font-bold">TOP</span>
+            <span class="text-[9px] mt-1 font-black">TOP</span>
         </button>
         <div class="h-6 w-[1px] bg-slate-200"></div>
         <a href="https://www.google.com/maps" target="_blank" class="flex flex-col items-center text-slate-400">
             <i class="fas fa-map-marked-alt text-lg"></i>
-            <span class="text-[9px] mt-1 font-bold">MAPS</span>
+            <span class="text-[9px] mt-1 font-black">MAPS</span>
         </a>
         <div class="h-6 w-[1px] bg-slate-200"></div>
         <button onclick="alert('訂單速查：\n1. 東京: MIMARU (官網)\n2. 新潟: Hotel Mets (樂天)\n3. 燕三条: Snow Peak (一休)\n4. 湯澤: 雪之花 (樂天)')" class="flex flex-col items-center text-slate-400">
             <i class="fas fa-ticket-alt text-lg"></i>
-            <span class="text-[9px] mt-1 font-bold">INFO</span>
+            <span class="text-[9px] mt-1 font-black">INFO</span>
         </button>
     </nav>
 
