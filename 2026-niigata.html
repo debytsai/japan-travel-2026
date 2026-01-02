@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 Winter Niigata-Tokyo</title>
     
-    <!-- PWA / Mobile Home Screen Icons -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="新潟冬旅">
-    
-    <!-- 優化版圖標：確保 apple-touch-icon 在最前端並簡化 SVG 結構 -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjQkFFNkY3Ii8+PHBhdGggZD0iTTQ1IDE0MEw4MCA5MExxMTUgMTQwSDQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC41Ii8+PHBhdGggZD0iTTcwIDE0MEwxMTAgODBMMTUwIDE0MEg3MFoiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNDAiIHI9IjMiIGZpbGw9IiMxZDRlZDgiLz48cGF0aCBkPSJNOTAgMzB2MjVNOTAgNDJIMTAwTTgzIDM2bDExIDEyTTkzIDM2bDExIDEyIiBzdHJva2U9IiMxZDRlZDgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iOTAiIHk9IjE2MCIgZmlsbD0iIzBmMTcyYSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUlHQVRBIDIwMjY8L3RleHQ+PC9zdmc+">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#BAE6F7">
+
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0JBRTZGNyIvPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiNCQUU2RjciLz48cGF0aCBkPSJNOTAgMzB2MjVNOTAgNDJIMTAwTTgzIDM2bDExIDEyTTkzIDM2bDExIDEyIiBzdHJva2U9IiMxZDRlZDgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTQ1IDE0MEw4MCA5MExxMTUgMTQwSDQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC41Ii8+PHBhdGggZD0iTTcwIDE0MEwxMTAgODBMMTUwIDE0MEg3MFoiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNDAiIHI9IjMiIGZpbGw9IiMxZDRlZDgiLz48dGV4dCB4PSI5MCIgeT0iMTYwIiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5JSUdBVEEgMjAyNjwvdGV4dD48L3N2Zz4=">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjQkFFNkY3Ii8+PHBhdGggZD0iTTQ1IDE0MEw4MCA5MExxMTUgMTQwSDQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC41Ii8+PHBhdGggZD0iTTcwIDE0MEwxMTAgODBMMTUwIDE0MEg3MFoiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNDAiIHI9IjMiIGZpbGw9IiMxZDRlZDgiLz48cGF0aCBkPSJNOTAgMzB2MjVNOTAgNDJIMTAwTTgzIDM2bDExIDEyTTkzIDM2bDExIDEyIiBzdHJva2U9IiMxZDRlZDgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iOTAiIHk9IjE2MCIgZmlsbD0iIzBmMTcyYSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUlHQVRBIDIwMjY8L3RleHQ+PC9zdmc+">
 
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
         
@@ -80,7 +81,7 @@
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
         );
 
-        // 連結與數據
+        // 連結數據
         const HOTEL_MIMARU_LINK = "https://maps.app.goo.gl/kYyzMbf7Ama9faWR7";
         const TSURUTONTAN_LINK = "https://maps.app.goo.gl/gRSUrQsp7Yc923MN8";
         const NIIGATA_ART_MUSEUM_LINK = "https://maps.app.goo.gl/uj5GWwVyK8Day1Ln6";
