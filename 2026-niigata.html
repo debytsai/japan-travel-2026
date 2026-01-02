@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 Winter Niigata-Tokyo</title>
     
     <!-- PWA / Mobile 核心設定 -->
@@ -12,11 +12,16 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#BAE6F7">
 
-    <!-- iOS 專用圖標修復 (使用更標準的 SVG Base64 並移除不相容屬性) -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0JBRTZGNyIvPjxwYXRoIGQ9Ik0zNSAxNDVMODAgODVMMTI1IDE0NUgzNVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNiIvPjxwYXRoIGQ9Ik02NSAxNDVMMTEwIDcwTDE1NSAxNDVINjVaIiBmaWxsPSJ3aGl0ZSIvPjxnIHN0cm9rZT0iIzFkNGVkOCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik05MCAzMHYyNU05MCA0MmgxME04MyAzNmwxMSAxMk05MyAzNmwxMSAxMiIvPjwvZz48dGV4dCB4PSI5MCIgeT0iMTY1IiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiwgQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUlHQVRBIDIwMjY8L3RleHQ+PC9zdmc+">
+    <!-- iOS 專用圖標：增加多種尺寸定義，提高 Safari 識別率 -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0JBRTZGNyIvPjxwYXRoIGQ9Ik0zNSAxNDVMODAgODVMMTI1IDE0NUgzNVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNiIvPjxwYXRoIGQ9Ik02NSAxNDVMMTEwIDcwTDE1NSAxNDVINjVaIiBmaWxsPSJ3aGl0ZSIvPjxnIHN0cm9rZT0iIzFkNGVkOCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik05MCAzMHYyNU05MCA0MmgxME04MyAzNmwxMSAxMk05MyAzNmwxMSAxMiIvPjwvZz48dGV4dCB4PSI5MCIgeT0iMTY1IiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5JSUdBVEEgMjAyNjwvdGV4dD48L3N2Zz4=">
+    <link rel="apple-touch-icon" sizes="152x152" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0JBRTZGNyIvPjxwYXRoIGQ9Ik0zNSAxNDVMODAgODVMMTI1IDE0NUgzNVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNiIvPjxwYXRoIGQ9Ik02NSAxNDVMMTEwIDcwTDE1NSAxNDVINjVaIiBmaWxsPSJ3aGl0ZSIvPjxnIHN0cm9rZT0iIzFkNGVkOCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik05MCAzMHYyNU05MCA0MmgxME04MyAzNmwxMSAxMk05MyAzNmwxMSAxMiIvPjwvZz48dGV4dCB4PSI5MCIgeT0iMTY1IiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5JSUdBVEEgMjAyNjwvdGV4dD48L3N2Zz4=">
+    <link rel="apple-touch-icon" sizes="167x167" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0JBRTZGNyIvPjxwYXRoIGQ9Ik0zNSAxNDVMODAgODVMMTI1IDE0NUgzNVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNiIvPjxwYXRoIGQ9Ik02NSAxNDVMMTEwIDcwTDE1NSAxNDVINjVaIiBmaWxsPSJ3aGl0ZSIvPjxnIHN0cm9rZT0iIzFkNGVkOCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik05MCAzMHYyNU05MCA0MmgxME04MyAzNmwxMSAxMk05MyAzNmwxMSAxMiIvPjwvZz48dGV4dCB4PSI5MCIgeT0iMTY1IiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5JSUdBVEEgMjAyNjwvdGV4dD48L3N2Zz4=">
     
+    <!-- 關鍵修正：透過 Web Manifest 提供圖示，Android 與現代 iOS 更有保障 -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJpbnN0YWxsYWJpbGl0eSI6ICJhbnkiLAogICJuYW1lIjogIjIwMjYgTmlpZ2F0YS1Ub2t5byIsCiAgInNob3J0X25hbWUiOiAi5paw5r2f5Yis5peFIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNCQUU2RjciLAogICJ0aGVtZV9jb2xvciI6ICIjQkFFNkY3IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSDEyZnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhRチャ0aU1Rnd0lpQm5iVzF1Y3pwaWRIUndPaTh2ZDNkM0xqZ3VjM0puTHpJeU1EQXZjM1puSWo0OFptbHNiRDBpI1JBRTZGN0lpLz48cGF0aCBkPSJNMzUgMTQ1TDgwIDg1TDEyNSAxNDVIMzVaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjYiLz48cGF0aCBkPSJNNjUgMTQ1TDExMCA3MEwxNTUgMTQ1SDY1WiIgZmlsbD0id2hpdGUiLz48ZyBzdHJva2U9IiMxZDRlZDgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNOTAgMzB2MjVNOTAgNDJoMTBNODMgMzZsMTEgMTJNOTMgMzZsMTEgMTIiLz48L2c+PHRleHQgeD0iOTAiIHk9IjE2NSIgZmlsbD0iIzBmMTcyYSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUlHQVRBIDIwMjY8L3RleHQ+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfQogIF0KfQ==">
+
     <!-- 通用 Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjQkFFNkY3Ii8+PHBhdGggZD0iTTcwIDE0MEwxMTAgODBMMTUwIDE0MEg3MFoiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iOTAiIHk9IjE2MCIgZmlsbD0iIzBmMTcyYSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYsIEFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TklJR0FUQTwvdGV4dD48L3N2Zz4=">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjQkFFNkY3Ii8+PHBhdGggZD0iTTcwIDE0MEwxMTAgODBMMTUwIDE0MEg3MFoiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iOTAiIHk9IjE2MCIgZmlsbD0iIzBmMTcyYSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUlHQVRBPC90ZXh0Pjwvc3ZnPg==">
 
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -31,7 +36,8 @@
             background-color: #f8fafc;
             color: #1e293b;
             -webkit-tap-highlight-color: transparent;
-            padding-top: env(safe-area-inset-top);
+            /* 防止 iOS 橡皮筋回彈效果干擾 PWA 體驗 */
+            overflow-x: hidden;
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -83,7 +89,7 @@
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
         );
 
-        // 連結數據 (同原始版本)
+        // 連結數據 (同原程式碼)
         const HOTEL_MIMARU_LINK = "https://maps.app.goo.gl/kYyzMbf7Ama9faWR7";
         const TSURUTONTAN_LINK = "https://maps.app.goo.gl/gRSUrQsp7Yc923MN8";
         const NIIGATA_ART_MUSEUM_LINK = "https://maps.app.goo.gl/uj5GWwVyK8Day1Ln6";
