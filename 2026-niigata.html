@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 Winter Niigata-Tokyo</title>
+    
+    <!-- PWA / Mobile Home Screen Icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="新潟冬旅">
+    
+    <!-- 淺藍色晨曦雪地圖標 SVG (Base64) -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9InVybCgjZ3JhZF9pY29uKSIvPgo8cGF0aCBkPSJNNTAgMTQwTDkwIDgwTDEzMCAxNDBINTBaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTMwIDE0MEw4MCAxMDBMMTM4IDE0MEgzMFoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSIxNDAiIGN5PSI0MCIgcj0iMyIgZmlsbD0iIzFkNGVkOCIvPgo8Y2lyY2xlIGN4PSIxNjAiIGN5PSI3MCIgcj0iMiIgZmlsbD0iIzFkNGVkOCIvPgo8Y2lyY2xlIGN4PSIxMjAiIGN5PSI4MCIgcj0iNCIgZmlsbD0iIzFkNGVkOCIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPHBhdGggZD0iTTkwIDQwVjYwTTgwIDUwSDEwME05MCA0NUw5NyA1N005MCA0NUw4MyA1N005NyA0M0w5MCA1ME04MyA0M0w5MCA1MCIgc3Ryb2tlPSIjMWQ0ZWQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8dGV4dCB4PSI5MCIgeT0iMTYwIiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0ibGV0dGVyLXNwYWNpbmc6IDAuMWVtOyI+TklJR0FUQSAyMDI2PC90ZXh0Pgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkX2ljb24iIHgxPSIwIiB5MT0iMCIgeDI9IjE4MCIgeTI9IjE4MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjZTBmMmZlIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2JhZTZmNyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPg==">
+
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -15,6 +24,7 @@
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             background-color: #f8fafc;
             color: #1e293b;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .no-scrollbar::-webkit-scrollbar {
@@ -162,8 +172,8 @@
                 day: 3,
                 date: "2026.1.7 (Wed)",
                 title: "Snow Peak 露營體驗",
-                location: "新潟 ➔ 燕三条",
-                city: "三条市",
+                location: "新潟 ➔ 燕三條",
+                city: "三條市",
                 weather: { temp: "0°C / 4°C", desc: "積雪路面注意", snow: "60%" },
                 events: [
                     { type: "food", title: "にぎり米", detail: "早餐", link: "https://maps.app.goo.gl/eybm6mmmYYrL2VPV7", icon: "🍙" },
@@ -172,15 +182,15 @@
                         { name: "迴轉壽司 佐渡弁慶 萬代シテイ店", link: "https://maps.app.goo.gl/gsUvBn4cYNqQAmAj9" },
                         { name: "弁慶の泣き處", link: "https://maps.app.goo.gl/zhjNJXP1a5CeghgJ9" }
                     ], icon: "🍣" },
-                    { type: "transport", time: "14:30", title: "租車自駕 (取車)", detail: "トヨタレンタカー 新潟站南口店", subtext: "已訂車・前往燕三条 (約1hr)", link: TOYOTA_RENT_NIIGATA_LINK, icon: "🚗" },
+                    { type: "transport", time: "14:30", title: "租車自駕 (取車)", detail: "トヨタレンタカー 新潟站南口店", subtext: "已訂車・前往燕三條 (約1hr)", link: TOYOTA_RENT_NIIGATA_LINK, icon: "🚗" },
                     { type: "hotel", title: "Snow Peak FIELD SUITE SPA", detail: "一泊二食 ￥290,000 (已付款)", subtext: "HEADQUARTERS", link: "https://maps.app.goo.gl/KAoLUdYvE4RyoWnz8", icon: "🔥" }
                 ]
             },
             {
                 day: 4,
                 date: "2026.1.8 (Thu)",
-                title: "燕三条工藝與溫泉",
-                location: "燕三条 ➔ 越後湯澤",
+                title: "燕三條工藝與溫泉",
+                location: "燕三條 ➔ 越後湯澤",
                 city: "越後湯澤",
                 weather: { temp: "-2°C / 3°C", desc: "豪雪地帶", snow: "85%" },
                 events: [
@@ -189,16 +199,16 @@
                         { name: "ツバメコーヒー", link: "https://maps.app.goo.gl/LibitFDEdpYcK3L28" }
                     ], icon: "☕️" },
                     { type: "food", title: "午餐選項", isGroup: true, options: [
-                        { name: "Tsubamesanjo Bit 燕三条本店", link: "https://maps.app.goo.gl/JLXzuQ77LoMxQCRb8" },
-                        { name: "小嶋屋總本店 燕三条店", link: "https://maps.app.goo.gl/mvxkRzKmmZe4nbWA8" },
+                        { name: "Tsubamesanjo Bit 燕三條本店", link: "https://maps.app.goo.gl/JLXzuQ77LoMxQCRb8" },
+                        { name: "小嶋屋總本店 燕三條店", link: "https://maps.app.goo.gl/mvxkRzKmmZe4nbWA8" },
                         { name: "キママニ食堂", link: "https://maps.app.goo.gl/eACuJr9jjZ7eSkTBA" },
-                        { name: "遊亀楼 魚兵", link: "https://maps.app.goo.gl/6xRbqbZo1KpCBesh7" }
+                        { name: "遊龜樓 魚兵", link: "https://maps.app.goo.gl/6xRbqbZo1KpCBesh7" }
                     ], icon: "🍱" },
                     { type: "transport", title: "租車自駕 (還車)", detail: "トヨタレンタカー 三條店", subtext: "午餐後前往還車", link: TOYOTA_RENT_SANJO_LINK, icon: "🚗" },
                     { 
                         type: "train", 
                         title: "新幹線安排 (待定)", 
-                        detail: "燕三条 ➔ 越後湯澤", 
+                        detail: "燕三條 ➔ 越後湯澤", 
                         icon: "🚄",
                         isMulti: true,
                         options: [
@@ -286,11 +296,12 @@
             }
         ];
 
+        // UI 元件
         const Header = () => (
             <div className="relative h-48 w-full overflow-hidden">
                 <img 
                     src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&q=80&w=1500" 
-                    alt="[雪山小徑]" 
+                    alt="Snow" 
                     className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/10 to-transparent"></div>
