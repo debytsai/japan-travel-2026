@@ -12,22 +12,16 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#BAE6F7">
 
-    <!-- 圖示 SVG 內容定義 -->
-    <!-- 背景: #BAE6F7, 雪山: white, 幾何雪花: #1e293b (不同透明度) -->
+    <!-- 外部圖片圖示 -->
+    <!-- 1. Apple Touch Icon (用於 iOS 主螢幕) -->
+    <link rel="apple-touch-icon" href="https://duk.tw/vOK1hV.png">
     
-    <!-- 1. Apple Touch Icon (iOS 主螢幕) -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3%3Crect width='512' height='512' rx='100' fill='%23BAE6F7'/%3%3Ccircle cx='120' cy='120' r='15' fill='%231e293b' opacity='0.3'/%3%3Ccircle cx='400' cy='180' r='10' fill='%231e293b' opacity='0.2'/%3%3Crect x='320' y='80' width='12' height='12' transform='rotate(45 326 86)' fill='%231e293b' opacity='0.2'/%3%3Cpath d='M80 400l120-220 60 110 90-150 82 260H80z' fill='white'/%3%3Ccircle cx='250' cy='350' r='8' fill='%231e293b' opacity='0.15'/%3%3C/svg%3E">
-    
-    <!-- 2. Favicon (瀏覽器標籤頁) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3%3Crect width='512' height='512' rx='100' fill='%23BAE6F7'/%3%3Ccircle cx='120' cy='120' r='15' fill='%231e293b' opacity='0.3'/%3%3Ccircle cx='400' cy='180' r='10' fill='%231e293b' opacity='0.2'/%3%3Crect x='320' y='80' width='12' height='12' transform='rotate(45 326 86)' fill='%231e293b' opacity='0.2'/%3%3Cpath d='M80 400l120-220 60 110 90-150 82 260H80z' fill='white'/%3%3Ccircle cx='250' cy='350' r='8' fill='%231e293b' opacity='0.15'/%3%3C/svg%3E">
-    
-    <!-- 3. Shortcut Icon (備用相容性) -->
-    <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3%3Crect width='512' height='512' rx='100' fill='%23BAE6F7'/%3%3Ccircle cx='120' cy='120' r='15' fill='%231e293b' opacity='0.3'/%3%3Ccircle cx='400' cy='180' r='10' fill='%231e293b' opacity='0.2'/%3%3Crect x='320' y='80' width='12' height='12' transform='rotate(45 326 86)' fill='%231e293b' opacity='0.2'/%3%3Cpath d='M80 400l120-220 60 110 90-150 82 260H80z' fill='white'/%3%3Ccircle cx='250' cy='350' r='8' fill='%231e293b' opacity='0.15'/%3%3C/svg%3E">
+    <!-- 2. Favicon (用於瀏覽器分頁) -->
+    <link rel="icon" type="image/png" href="https://duk.tw/vOK1hV.png">
 
-    <!-- Web Manifest (Android/Desktop Chrome) -->
-    <link rel="manifest" href='data:application/json,{"name":"2026 Niigata-Tokyo","short_name":"新潟冬旅","start_url":".","display":"standalone","background_color":"#BAE6F7","theme_color":"#BAE6F7","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3%3Crect width='512' height='512' rx='100' fill='%23BAE6F7'/%3%3Ccircle cx='120' cy='120' r='15' fill='%231e293b' opacity='0.3'/%3%3Ccircle cx='400' cy='180' r='10' fill='%231e293b' opacity='0.2'/%3%3Crect x='320' y='80' width='12' height='12' transform='rotate(45 326 86)' fill='%231e293b' opacity='0.2'/%3%3Cpath d='M80 400l120-220 60 110 90-150 82 260H80z' fill='white'/%3%3Ccircle cx='250' cy='350' r='8' fill='%231e293b' opacity='0.15'/%3%3C/svg%3E","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}]}'>
+    <!-- Web Manifest (用於 Android 及 PWA 模式) -->
+    <link rel="manifest" href='data:application/json,{"name":"2026 Niigata-Tokyo","short_name":"新潟冬旅","start_url":".","display":"standalone","background_color":"#BAE6F7","theme_color":"#BAE6F7","icons":[{"src":"https://duk.tw/vOK1hV.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}'>
 
-    <!-- 外部腳本與樣式維持不變... -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,7 +71,7 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // 圖示組件與資料邏輯維持原樣...
+        // UI 圖示組件
         const MapPin = ({ size = 20 }) => (
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         );
@@ -276,7 +270,7 @@
                     <div className="fade-in pt-4" key={idx}>
                         <div className="px-5 mb-4 flex justify-between items-end">
                             <div>
-                                <span className="text-blue-500 font-black text-[10px] tracking-widest uppercase block mb-1">Current Itinerary</span>
+                                <span className="text-blue-500 font-black text-[10px] tracking-widest uppercase block mb-1">目前行程</span>
                                 <h2 className="text-2xl font-black text-slate-800">{day.location}</h2>
                             </div>
                             <div className="text-right">
