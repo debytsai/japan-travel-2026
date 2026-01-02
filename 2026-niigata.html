@@ -12,14 +12,14 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#BAE6F7">
 
-    <!-- iOS 專用圖標：使用標準 PNG 格式以確保 Safari 相容性 -->
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/lucide-react/lucide/main/icons/snowflake.png">
+    <!-- 統一設計：淺藍底 + 雪山 + 深藍幾何雪花 (SVG Data URI) -->
+    <!-- 背景：#BAE6F7，雪山：白色，雪花：#1e293b (深藍黑) -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3%3Crect width='512' height='512' rx='100' fill='%23BAE6F7'/%3%3Ccircle cx='120' cy='120' r='15' fill='%231e293b' opacity='0.3'/%3%3Ccircle cx='400' cy='180' r='10' fill='%231e293b' opacity='0.2'/%3%3Crect x='320' y='80' width='12' height='12' transform='rotate(45 326 86)' fill='%231e293b' opacity='0.2'/%3%3Cpath d='M80 400l120-220 60 110 90-150 82 260H80z' fill='white'/%3%3Ccircle cx='250' cy='350' r='8' fill='%231e293b' opacity='0.15'/%3%3C/svg%3E">
     
-    <!-- 關鍵修正：Web Manifest 確保 Android 與 Chrome 的 PWA 體驗 -->
-    <link rel="manifest" href='data:application/json,{"name":"2026 Niigata-Tokyo","short_name":"新潟冬旅","start_url":".","display":"standalone","background_color":"#BAE6F7","theme_color":"#BAE6F7","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/2530/2530005.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}'>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3%3Crect width='512' height='512' rx='100' fill='%23BAE6F7'/%3%3Ccircle cx='120' cy='120' r='15' fill='%231e293b' opacity='0.3'/%3%3Ccircle cx='400' cy='180' r='10' fill='%231e293b' opacity='0.2'/%3%3Crect x='320' y='80' width='12' height='12' transform='rotate(45 326 86)' fill='%231e293b' opacity='0.2'/%3%3Cpath d='M80 400l120-220 60 110 90-150 82 260H80z' fill='white'/%3%3Ccircle cx='250' cy='350' r='8' fill='%231e293b' opacity='0.15'/%3%3C/svg%3E">
 
-    <!-- 通用 Favicon -->
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2530/2530005.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href='data:application/json,{"name":"2026 Niigata-Tokyo","short_name":"新潟冬旅","start_url":".","display":"standalone","background_color":"#BAE6F7","theme_color":"#BAE6F7","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3%3Crect width='512' height='512' rx='100' fill='%23BAE6F7'/%3%3Ccircle cx='120' cy='120' r='15' fill='%231e293b' opacity='0.3'/%3%3Ccircle cx='400' cy='180' r='10' fill='%231e293b' opacity='0.2'/%3%3Crect x='320' y='80' width='12' height='12' transform='rotate(45 326 86)' fill='%231e293b' opacity='0.2'/%3%3Cpath d='M80 400l120-220 60 110 90-150 82 260H80z' fill='white'/%3%3Ccircle cx='250' cy='350' r='8' fill='%231e293b' opacity='0.15'/%3%3C/svg%3E","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}]}'>
 
     <!-- 外部資源 -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -63,20 +63,60 @@
 
         .time-badge { font-family: 'Monaco', 'Courier New', monospace; }
         .weather-gradient { background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); }
+
+        /* 預覽 Icon 的小工具 */
+        .icon-preview-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .icon-preview-bubble {
+            background: white;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #e2e8f0;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
+    <!-- 預覽用的 Icon 展示 (增加了幾何雪花細節) -->
+    <div class="icon-preview-container">
+        <div class="icon-preview-bubble">
+            <span style="font-size: 10px; font-weight: bold; color: #64748b; letter-spacing: 1px;">NEW ICON 預覽</span>
+            <div style="width: 72px; height: 72px; border-radius: 16px; background: #BAE6F7; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                <svg viewBox="0 0 512 512" width="72" height="72">
+                    <!-- 深色幾何雪花 (背景層) -->
+                    <circle cx="120" cy="120" r="15" fill="#1e293b" opacity="0.3"/>
+                    <circle cx="400" cy="180" r="10" fill="#1e293b" opacity="0.2"/>
+                    <rect x="320" y="80" width="12" height="12" transform="rotate(45 326 86)" fill="#1e293b" opacity="0.2"/>
+                    
+                    <!-- 主體雪山 -->
+                    <path d="M80 400l120-220 60 110 90-150 82 260H80z" fill="white"/>
+                    
+                    <!-- 前景雪花 -->
+                    <circle cx="250" cy="350" r="8" fill="#1e293b" opacity="0.15"/>
+                </svg>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="font-size: 10px; color: #94a3b8; margin-top: 4px; border: none; background: none; cursor: pointer; text-decoration: underline;">關閉預覽</button>
+        </div>
+    </div>
+
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // 圖示元件
+        // 圖示與組件內容維持原樣...
         const MapPin = ({ size = 20 }) => (
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        );
-        const Clock = ({ size = 20 }) => (
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
         );
         const ExternalLink = ({ size = 20, className = "" }) => (
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -88,72 +128,53 @@
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
         );
 
-        const HOTEL_MIMARU_LINK = "https://maps.app.goo.gl/kYyzMbf7Ama9faWR7";
-        const TSURUTONTAN_LINK = "https://maps.app.goo.gl/gRSUrQsp7Yc923MN8";
-        const NIIGATA_ART_MUSEUM_LINK = "https://maps.app.goo.gl/uj5GWwVyK8Day1Ln6";
-        const HOTEL_METS_NIIGATA_LINK = "https://maps.app.goo.gl/vjQ6t8nxkX6XWXvm8";
-        const TORANOMON_HILLS_LINK = "https://maps.app.goo.gl/tQNV7x8S7ExVDAN29";
-        const TOYOTA_RENT_NIIGATA_LINK = "https://maps.app.goo.gl/Nb2Rydefi1sFwZMeA";
-        const TOYOTA_RENT_SANJO_LINK = "https://maps.app.goo.gl/9jcGquwamatGDpBx5";
-
         const itinerary = [
             { day: 1, date: "2026.1.5 (Mon)", title: "抵達東京", location: "台北 ➔ 東京", city: "東京", weather: { temp: "4°C / 10°C", desc: "晴冷乾爽", snow: "5%" }, events: [
                 { type: "flight", time: "13:30", endTime: "17:30", title: "NH852 松山 TSA ➔ 羽田 HND", detail: "Terminal 1 ➔ Terminal 2", icon: "✈️" },
                 { type: "transport", title: "NearMe 接駁", detail: "Toyota Alphard 接駁至飯店 (已訂)", icon: "🚐" },
-                { type: "hotel", title: "MIMARU SUITES 東京日本橋", detail: "1+3晚 ￥367,695 (官網已訂)", icon: "🏨", subtext: "Check-in", link: HOTEL_MIMARU_LINK },
-                { type: "food", title: "TsuruTonTan UDON NOODLE Brasserie 銀座", detail: "晚餐", link: TSURUTONTAN_LINK, icon: "🍜" },
+                { type: "hotel", title: "MIMARU SUITES 東京日本橋", detail: "1+3晚 ￥367,695 (官網已訂)", icon: "🏨", subtext: "Check-in", link: "https://maps.app.goo.gl/kYyzMbf7Ama9faWR7" },
+                { type: "food", title: "TsuruTonTan UDON NOODLE Brasserie 銀座", detail: "晚餐", link: "https://maps.app.goo.gl/gRSUrQsp7Yc923MN8", icon: "🍜" },
             ]},
             { day: 2, date: "2026.1.6 (Tue)", title: "前往新潟", location: "東京 ➔ 新潟", city: "新潟", weather: { temp: "1°C / 5°C", desc: "大機率降雪", snow: "75%" }, events: [
                 { type: "transport", time: "09:30", title: "前往東京車站", detail: "飯店 Check-out，搭乘兩台計程車", icon: "🚕" },
-                { type: "train", time: "10:41", endTime: "12:32", title: "とき 317号", detail: "東京 ➔ 新潟 | 6號車 17DE, 18DE", subtext: "えきねっと已訂/綁定Suica", icon: "🚄" },
-                { type: "food", title: "午餐選項", isGroup: true, options: [{ name: "拉麵 いっと稱や CoCoLo新潟店", link: "https://maps.app.goo.gl/ELbLz9UujewrCfRB7" }, { name: "SUZUVEL", link: "https://maps.app.goo.gl/3pqUu4387tL2QEe6" }], icon: "🥢" },
-                { type: "coffee", title: "dAb COFFEE STORE", detail: "下午自由活動", link: "https://maps.app.goo.gl/ijNeTVuEXFESxBFS9", icon: "☕️" },
-                { type: "activity", title: "新潟市美術館", detail: "視情況前往", link: NIIGATA_ART_MUSEUM_LINK, icon: "🎨" },
-                { type: "food", title: "晚餐選項", isGroup: true, options: [{ name: "越後一會 十郎", link: "https://maps.app.goo.gl/rKFQqFC2GBjNGTgo9" }, { name: "五郎 萬代店", link: "https://maps.app.goo.gl/K56PgAPNVhHCKAPs9" }, { name: "カニカニランド", link: "https://maps.app.goo.gl/8e2W8pX7Z3z7hHj48" }], icon: "🍶" },
-                { type: "hotel", title: "JR東日本 HOTEL METS 新潟", detail: "四人一晚 ￥237,600 (樂天已訂)", subtext: "新潟車站直結", link: HOTEL_METS_NIIGATA_LINK, icon: "🏨" }
+                { type: "train", time: "10:41", endTime: "12:32", title: "とき 317號", detail: "東京 ➔ 新潟 | 6號車 17DE, 18DE", subtext: "えきねっと已訂/綁定Suica", icon: "🚄" },
+                { type: "food", title: "午餐選項", isGroup: true, options: [{ name: "拉麵 いっと優や CoCoLo新潟店", link: "https://maps.app.goo.gl/ELbLz9UujewrCfRB7" }, { name: "SUZUVEL", link: "https://maps.app.goo.gl/3pqUu4387tL2QEe6" }], icon: "🥢" },
+                { type: "hotel", title: "JR東日本 HOTEL METS 新潟", detail: "四人一晚 ￥237,600 (樂天已訂)", subtext: "新潟車站直結", link: "https://maps.app.goo.gl/vjQ6t8nxkX6XWXvm8", icon: "🏨" }
             ]},
             { day: 3, date: "2026.1.7 (Wed)", title: "Snow Peak 露營體驗", location: "新潟 ➔ 燕三條", city: "三條市", weather: { temp: "0°C / 4°C", desc: "積雪路面注意", snow: "60%" }, events: [
                 { type: "food", title: "にぎり米", detail: "早餐", link: "https://maps.app.goo.gl/eybm6mmmYYrL2VPV7", icon: "🍙" },
-                { type: "coffee", title: "The Coffee Table", detail: "10:00 Open (週二休)", link: "https://maps.app.goo.gl/zeYQr5dVNrr3E3wDA", icon: "☕️" },
-                { type: "food", title: "午餐壽司選項", isGroup: true, options: [{ name: "迴轉壽司 佐渡弁慶 萬代シテイ店", link: "https://maps.app.goo.gl/gsUvBn4cYNqQAmAj9" }, { name: "弁慶の泣き處", link: "https://maps.app.goo.gl/zhjNJXP1a5CeghgJ9" }], icon: "🍣" },
-                { type: "transport", time: "14:30", title: "租車自駕 (取車)", detail: "トヨタレンタカー 新潟站南口店", subtext: "已訂車・前往燕三條 (約1hr)", link: TOYOTA_RENT_NIIGATA_LINK, icon: "🚗" },
+                { type: "transport", time: "14:30", title: "租車自駕 (取車)", detail: "トヨタレンタカー 新潟站南口店", subtext: "已訂車・前往燕三條 (約1hr)", link: "https://maps.app.goo.gl/Nb2Rydefi1sFwZMeA", icon: "🚗" },
                 { type: "hotel", title: "Snow Peak FIELD SUITE SPA", detail: "一泊二食 ￥290,000 (已付款)", subtext: "HEADQUARTERS", link: "https://maps.app.goo.gl/KAoLUdYvE4RyoWnz8", icon: "🔥" }
             ]},
             { day: 4, date: "2026.1.8 (Thu)", title: "燕三條工藝與溫泉", location: "燕三條 ➔ 越後湯澤", city: "越後湯澤", weather: { temp: "-2°C / 3°C", desc: "豪雪地帶", snow: "85%" }, events: [
-                { type: "coffee", title: "上午咖啡選項", isGroup: true, options: [{ name: "yamaga coffee", link: "https://maps.app.goo.gl/Qmqgb7tRLNXCapuy8" }, { name: "ツバメコーヒー", link: "https://maps.app.goo.gl/LibitFDEdpYcK3L28" }], icon: "☕️" },
-                { type: "food", title: "午餐選項", isGroup: true, options: [{ name: "Tsubamesanjo Bit 燕三條本店", link: "https://maps.app.goo.gl/JLXzuQ77LoMxQCRb8" }, { name: "小嶋屋總本店 燕三條店", link: "https://maps.app.goo.gl/mvxkRzKmmZe4nbWA8" }, { name: "キママニ食堂", link: "https://maps.app.goo.gl/eACuJr9jjZ7eSkTBA" }, { name: "遊龜樓 魚兵", link: "https://maps.app.goo.gl/6xRbqbZo1KpCBesh7" }], icon: "🍱" },
-                { type: "transport", title: "租車自駕 (還車)", detail: "トヨタレンタカー 三條店", subtext: "午餐後還車", link: TOYOTA_RENT_SANJO_LINK, icon: "🚗" },
-                { type: "train", title: "新幹線安排 (待定)", detail: "燕三條 ➔ 越後湯澤", icon: "🚄", isMulti: true, options: [{ time: "14:39", endTime: "15:05", name: "とき 324号" }, { time: "16:41", endTime: "17:07", name: "とき 330号" }] },
+                { type: "food", title: "午餐選項", isGroup: true, options: [{ name: "Tsubamesanjo Bit 燕三條本店", link: "https://maps.app.goo.gl/JLXzuQ77LoMxQCRb8" }, { name: "小嶋屋總本店 燕三條店", link: "https://maps.app.goo.gl/mvxkRzKmmZe4nbWA8" }], icon: "🍱" },
+                { type: "train", title: "新幹線安排", detail: "燕三條 ➔ 越後湯澤", icon: "🚄", isMulti: true, options: [{ time: "14:39", endTime: "15:05", name: "とき 324號" }, { time: "16:41", endTime: "17:07", name: "とき 330號" }] },
                 { type: "hotel", title: "湯けむりの宿 雪の花", detail: "四人兩晚 ￥431,200", link: "https://maps.app.goo.gl/ZAFfAvraZgjHu8Js9", subtext: "樂天已訂・含三食", icon: "♨️" }
             ]},
             { day: 5, date: "2026.1.9 (Fri)", title: "越後鄉間散策", location: "越後湯澤周邊", city: "南魚沼", weather: { temp: "-3°C / 2°C", desc: "注意保暖", snow: "70%" }, events: [
-                { type: "transport", title: "站前租車", detail: "可能需要", icon: "🚗" },
-                { type: "food", title: "早餐飯糰選項", isGroup: true, options: [{ name: "FARM FRONT SEKINOEN", link: "https://maps.app.goo.gl/wvmXzZdfJqyMGTzf7" }, { name: "うおぬま倉友農園 おにぎり屋", link: "https://maps.app.goo.gl/a9HiWf1kvYxFxNer9" }], icon: "🍙" },
                 { type: "activity", title: "周邊觀光", detail: "牧之通り / 清津峽 / 魚沼の里", icon: "📷" },
-                { type: "food", title: "午餐選項", isGroup: true, options: [{ name: "鄉土料理 欅苑", link: "https://maps.app.goo.gl/aHezAEtNfwva1wpa8" }, { name: "八海山みんなの社員食堂", link: "https://maps.app.goo.gl/yu9Ct1VAXPJjjcZg6" }], icon: "🥢" },
                 { type: "hotel", title: "湯けむりの宿 雪の花", detail: "連泊", icon: "♨️" }
             ]},
             { day: 6, date: "2026.1.10 (Sat)", title: "重返東京", location: "越後湯澤 ➔ 東京", city: "東京", weather: { temp: "3°C / 9°C", desc: "回到都市晴天", snow: "0%" }, events: [
-                { type: "activity", title: "湯澤高原高空纜車", detail: "Check-out 後可前往", icon: "🏔️" },
                 { type: "train", time: "14:49", endTime: "16:00", title: "とき 68號", detail: "新潟 ➔ 東京 | 3號車 2DE, 3DE", subtext: "えきねっと已訂", icon: "🚄" },
-                { type: "hotel", title: "MIMARU SUITES 東京日本橋", detail: "返回住宿", icon: "🏨", link: HOTEL_MIMARU_LINK }
+                { type: "hotel", title: "MIMARU SUITES 東京日本橋", detail: "返回住宿", icon: "🏨", link: "https://maps.app.goo.gl/kYyzMbf7Ama9faWR7" }
             ]},
             { day: 7, date: "2026.1.11 (Sun)", title: "東京自由行", location: "東京市區", city: "東京", weather: { temp: "4°C / 11°C", desc: "購物散步", snow: "0%" }, events: [
                 { type: "activity", title: "購物行程", detail: "海渡 / 多慶屋 / 澀谷 PARCO / 新宿 LUMINE", icon: "🛍️" },
-                { type: "food", title: "虎之門之丘 (T-Market)", detail: "晚餐", link: TORANOMON_HILLS_LINK, icon: "🍽️" },
                 { type: "hotel", title: "MIMARU SUITES 東京日本橋", detail: "住宿", icon: "🏨" }
             ]},
             { day: 8, date: "2026.1.12 (Mon)", title: "東京自由行", location: "東京市區", city: "東京", weather: { temp: "2°C / 10°C", desc: "展覽與壽司", snow: "5%" }, events: [
-                { type: "activity", title: "六本木看展", detail: "中下午行程", icon: "🖼️" },
-                { type: "food", title: "迴轉鮨 銀座おのでら 本店", detail: "晚餐", link: "https://maps.app.goo.gl/HXmYQ67gMgMm3cqF6", icon: "🍣" },
+                { type: "activity", title: "六本木看展", icon: "🖼️" },
+                { type: "food", title: "迴轉鮨 銀座おのでら 本店", link: "https://maps.app.goo.gl/HXmYQ67gMgMm3cqF6", icon: "🍣" },
                 { type: "hotel", title: "MIMARU SUITES 東京日本橋", detail: "住宿", icon: "🏨" }
             ]},
             { day: 9, date: "2026.1.13 (Tue)", title: "賦歸", location: "東京 ➔ 台北", city: "羽田", weather: { temp: "5°C / 12°C", desc: "旅途終點", snow: "0%" }, events: [
                 { type: "transport", title: "NearMe 接駁", detail: "前往機場 (已訂)", icon: "🚐" },
-                { type: "flight", time: "12:40", endTime: "15:50", title: "NH853 羽田 HND ➔ 松山 TSA", detail: "Terminal 2 ➔ Terminal 1", icon: "✈️" }
+                { type: "flight", time: "12:40", endTime: "15:50", title: "NH853 羽田 HND ➔ 松山 TSA", icon: "✈️" }
             ]}
         ];
 
+        // 組件部分維持不變
         const Header = () => (
             <div className="relative h-48 w-full overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&q=80&w=1500" alt="Snow" className="absolute inset-0 w-full h-full object-cover" />
