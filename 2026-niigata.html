@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 Winter Niigata-Tokyo</title>
     
-    <!-- PWA / Mobile Home Screen Icons 強化版 -->
+    <!-- PWA / Mobile Home Screen Icons -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="新潟冬旅">
     
-    <!-- 使用 Web App Manifest 數據連結，這能更有效率地強制手機讀取圖標 -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIjIwMjYgTmlpZ2F0YSBUb2t5byIsCiAgInNob3J0X25hbWUiIjogIuaWsOatnyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhRチャTU0Z2RWbWxsYnpCdmVEMGlNQ0F3TVRnd01UZ3dJaUJtYVd4c1BTTnVidyIrIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
-
-    <!-- 淺藍色晨曦雪地圖標 SVG (Base64) - 重新調整背景色塊以符合 iOS 規範 -->
-    <!-- 這裡的 SVG 增加了明確的 background 填充，防止系統因透明度問題顯示錯誤 -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9InVybCgjZ3JhZF9pY29uKSIvPgo8cGF0aCBkPSJNNTAgMTQwTDkwIDgwTDEzMCAxNDBINTBaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjciLz4KPHBhdGggZD0iTTMwIDE0MEw4MCAxMDBMMTM4IDE0MEgzMFoiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjQwIiByPSIzIiBmaWxsPSIjMWQ0ZWQ4Ii8+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjcwIiByPSIyIiBmaWxsPSIjMWQ0ZWQ4Ii8+CjxwYXRoIGQ9Ik05MCA0MFY2ME04MCA1MEgxMDBNOTAgNDVMMTk3IDU3TTkwIDQ1TDgzIDU3TTk3IDQzTDkwIDUwTTgzIDQzTDkwIDUwIiBzdHJva2U9IiMxZD00ZWQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8dGV4dCB4PSI5MCIgeT0iMTYwIiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0ibGV0dGVyLXNwYWNpbmc6IDAuMWVtOyI+TklJR0FUQSAyMDI2PC90ZXh0Pgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkX2ljb24iIHgxPSIwIiB5MT0iMCIgeDI9IjE4MCIgeTI9IjE4MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjZTBmMmZlIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2JhZTZmNyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPg==">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9InVybCgjZ3JhZF9pY29uKSIvPgo8cGF0aCBkPSJNNTAgMTQwTDkwIDgwTDEzMCAxNDBINTBaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjciLz4KPHBhdGggZD0iTTMwIDE0MEw4MCAxMDBMMTM4IDE0MEgzMFoiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjQwIiByPSIzIiBmaWxsPSIjMWQ0ZWQ4Ii8+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjcwIiByPSIyIiBmaWxsPSIjMWQ0ZWQ4Ii8+CjxwYXRoIGQ9Ik05MCA0MFY2ME04MCA1MEgxMDBNOTAgNDVMMTk3IDU3TTkwIDQ1TDgzIDU3TTk3IDQzTDkwIDUwTTgzIDQzTDkwIDUwIiBzdHJva2U9IiMxZD00ZWQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8dGV4dCB4PSI5MCIgeT0iMTYwIiBmaWxsPSIjMGYxNzJhIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0ibGV0dGVyLXNwYWNpbmc6IDAuMWVtOyI+TklJR0FUQSAyMDI2PC90ZXh0Pgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkX2ljb24iIHgxPSIwIiB5MT0iMCIgeDI9IjE4MCIgeTI9IjE4MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjZTBmMmZlIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2JhZTZmNyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPg==">
+    <!-- 優化版圖標：確保 apple-touch-icon 在最前端並簡化 SVG 結構 -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjQkFFNkY3Ii8+PHBhdGggZD0iTTQ1IDE0MEw4MCA5MExxMTUgMTQwSDQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC41Ii8+PHBhdGggZD0iTTcwIDE0MEwxMTAgODBMMTUwIDE0MEg3MFoiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNDAiIHI9IjMiIGZpbGw9IiMxZDRlZDgiLz48cGF0aCBkPSJNOTAgMzB2MjVNOTAgNDJIMTAwTTgzIDM2bDExIDEyTTkzIDM2bDExIDEyIiBzdHJva2U9IiMxZDRlZDgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iOTAiIHk9IjE2MCIgZmlsbD0iIzBmMTcyYSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUlHQVRBIDIwMjY8L3RleHQ+PC9zdmc+">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjQkFFNkY3Ii8+PHBhdGggZD0iTTQ1IDE0MEw4MCA5MExxMTUgMTQwSDQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC41Ii8+PHBhdGggZD0iTTcwIDE0MEwxMTAgODBMMTUwIDE0MEg3MFoiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNDAiIHI9IjMiIGZpbGw9IiMxZDRlZDgiLz48cGF0aCBkPSJNOTAgMzB2MjVNOTAgNDJIMTAwTTgzIDM2bDExIDEyTTkzIDM2bDExIDEyIiBzdHJva2U9IiMxZDRlZDgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iOTAiIHk9IjE2MCIgZmlsbD0iIzBmMTcyYSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUlHQVRBIDIwMjY8L3RleHQ+PC9zdmc+">
 
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -151,7 +147,6 @@
             ]}
         ];
 
-        // UI 組件
         const Header = () => (
             <div className="relative h-48 w-full overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&q=80&w=1500" alt="Snow" className="absolute inset-0 w-full h-full object-cover" />
