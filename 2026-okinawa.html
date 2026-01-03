@@ -40,7 +40,12 @@
             const headerImageUrl = "https://image.urlaubspiraten.de/1280/image/upload/v1628090550/mediavault_images/AdobeStock_195151713_t6vob3.jpg";
             const profileIconUrl = "https://duk.tw/0EdPW2.png";
 
-            const openMap = (url) => { if (url) window.open(url, '_blank'); };
+            // 修正點：使用 location.href 代替 window.open 以避免產生 about:blank
+            const openMap = (url) => { 
+                if (url) {
+                    window.location.href = url;
+                } 
+            };
 
             const getTagStyle = (tag) => {
                 const styles = {
@@ -84,7 +89,7 @@
                             { label: "本部區域", items: [{ name: "海邦丸", url: "https://www.google.com/maps/search/?api=1&query=Kaibonmaru" }] },
                             { label: "名護區域", items: [
                                 { name: "やんばるダイニング 松の古民家", url: "https://www.google.com/maps/search/?api=1&query=Matsu+no+Kominka" },
-                                { name: "鉄板焼 朝日", url: "https://www.google.com/maps/search/?api=1&query=Teppanyaki+Asahi+Nago" },
+                                { name: "鉄板燒 朝日", url: "https://www.google.com/maps/search/?api=1&query=Teppanyaki+Asahi+Nago" },
                                 { name: "食堂ペリカノ", url: "https://www.google.com/maps/search/?api=1&query=Shokudo+Pelicano" },
                                 { name: "餐廳 ふりっぱー", url: "https://www.google.com/maps/search/?api=1&query=Flipper+Restaurant+Nago" },
                                 { name: "島豬七輪燒肉 滿味", url: "https://www.google.com/maps/search/?api=1&query=Manmi+Nago" }
@@ -190,7 +195,6 @@
 
             return (
                 <div className="min-h-screen pb-8 text-left bg-slate-50">
-                    {/* Header: Reduced height from 280px to 180px */}
                     <div className="relative h-[180px] w-full overflow-hidden">
                         <img src={headerImageUrl} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
@@ -205,7 +209,6 @@
                         </div>
                     </div>
 
-                    {/* Nav: Reduced padding and height */}
                     <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50">
                         <div className="max-w-md mx-auto overflow-x-auto no-scrollbar py-3 px-4 flex gap-2.5">
                             {schedule.map((day, index) => (
@@ -218,7 +221,6 @@
                     </div>
 
                     <main className="max-w-md mx-auto px-5 mt-6">
-                        {/* Day Info: Reduced margin */}
                         <div className="mb-6 animate-fade-in">
                             <div className="flex items-center gap-2 mb-1">
                                 <div className="h-0.5 w-6 bg-teal-500 rounded-full" />
@@ -228,7 +230,6 @@
                             <p className="text-slate-500 font-bold text-xs mt-0.5">{currentDayData.dateLabel}</p>
                         </div>
 
-                        {/* Weather: Reduced padding and rounded corners */}
                         <div className="mb-6 animate-fade-in">
                             <div className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-4 shadow-sm">
                                 <div className="flex items-center justify-between">
@@ -250,7 +251,6 @@
                             </div>
                         </div>
 
-                        {/* Events: Adjusted spacing and card padding */}
                         <div className="space-y-4 relative">
                             <div className="absolute top-8 bottom-0 left-[21px] w-[1.5px] bg-slate-200" />
                             {currentDayData.events.map((event, idx) => {
