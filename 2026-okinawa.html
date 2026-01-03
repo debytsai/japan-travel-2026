@@ -36,11 +36,11 @@
                     window.lucide.createIcons();
                 }
             }, [name]);
-            return <i data-lucide={name} style={{ width: size, height: size }} className={className} stroke-width={strokeWidth} fill={fill}></i>;
+            return <i data-lucide={name} style={{ width: size, height: size }} className={className} strokeWidth={strokeWidth} fill={fill}></i>;
         };
 
         const TripApp = () => {
-            const [activeDay, setActiveDay] = useState(4); // 預設切換到 D5 預覽
+            const [activeDay, setActiveDay] = useState(0); 
             const headerImageUrl = "https://image.urlaubspiraten.de/1280/image/upload/v1628090550/mediavault_images/AdobeStock_195151713_t6vob3.jpg";
             const profileIconUrl = "https://duk.tw/0EdPW2.png";
 
@@ -66,7 +66,7 @@
 
             const schedule = [
                 {
-                    day: 1, date: "2026.2.11 Wed", navDate: "2.11", title: "出發與北上", location: "本島北部",
+                    day: 1, dateLabel: "2026.2.11 Wed", navDate: "2.11", title: "出發與北上", location: "本島北部",
                     weather: { high: "20°C", low: "15°C", desc: "多雲時晴", rain: "10%" },
                     events: [
                         { type: "flight", time: "13:15", title: "JX302 星宇航空", flightInfo: { from: "RMQ 台中", to: "OKA 那霸", depTime: "13:15", arrTime: "15:45", terminal: "Terminal 2" }, emoji: "✈️" },
@@ -76,7 +76,7 @@
                     ]
                 },
                 {
-                    day: 2, date: "2026.2.12 Thu", navDate: "2.12", title: "古宇利島與水族館", location: "本部町/古宇利島",
+                    day: 2, dateLabel: "2026.2.12 Thu", navDate: "2.12", title: "古宇利島與水族館", location: "本部町/古宇利島",
                     weather: { high: "21°C", low: "16°C", desc: "晴朗", rain: "0%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
@@ -102,7 +102,7 @@
                     ]
                 },
                 {
-                    day: 3, date: "2026.2.13 Fri", navDate: "2.13", title: "往中部移動", location: "讀谷/北谷",
+                    day: 3, dateLabel: "2026.2.13 Fri", navDate: "2.13", title: "往中部移動", location: "讀谷/北谷",
                     weather: { high: "19°C", low: "15°C", desc: "局部多雲", rain: "20%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
@@ -121,7 +121,7 @@
                     ]
                 },
                 {
-                    day: 4, date: "2026.2.14 Sat", navDate: "2.14", title: "中部漫遊與表演", location: "讀谷/北谷",
+                    day: 4, dateLabel: "2026.2.14 Sat", navDate: "2.14", title: "中部漫遊與表演", location: "讀谷/北谷",
                     weather: { high: "22°C", low: "17°C", desc: "晴時多雲", rain: "10%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
@@ -134,12 +134,12 @@
                         { type: "food", tag: "Dessert", title: "CAFUNÉ", location: "https://maps.app.goo.gl/KjGkjyG1wz1XBd2H8", emoji: "🍦" },
                         { type: "shopping", tag: "Shopping", title: "D&DEPARTMENT OKINAWA", desc: "by PLAZA 3 選物店", location: "https://maps.app.goo.gl/wSpeieQ93jZzewfy6", emoji: "🛍️" },
                         { type: "shopping", tag: "Shopping", title: "AEON MALL Okinawa Rycom", location: "https://maps.app.goo.gl/Qc6VTfQEQvvLeNwn9", emoji: "🛍️" },
-                        { type: "activity", tag: "Live", title: "YOGEE NEW WAVES <HAKKA TOUR 2026>", desc: "我和小蔡看表演，看完回AEON MALL會和。", location: "https://maps.app.goo.gl/RjL6dPhNpCFtBTyb6", emoji: "🎸" },
+                        { type: "activity", tag: "Live", title: "YOGEE NEW WAVES <HAKKA TOUR 2026>", desc: "我和小蔡看表演，看完回 AEON MALL 會合。", location: "https://maps.app.goo.gl/RjL6dPhNpCFtBTyb6", emoji: "🎸" },
                         { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE HOTEL ＆ RESORT OKINAWA YOMITAN", desc: "續住第二晚", location: "https://maps.app.goo.gl/u9xVyVhkCZMSZoAv6", emoji: "🏨" }
                     ]
                 },
                 {
-                    day: 5, date: "2026.2.15 Sun", navDate: "2.15", title: "小年夜：返回那霸", location: "浦添/那霸",
+                    day: 5, dateLabel: "2026.2.15 Sun", navDate: "2.15", title: "小年夜：返回那霸", location: "浦添/那霸",
                     weather: { high: "20°C", low: "16°C", desc: "短暫陣雨", rain: "40%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
@@ -159,7 +159,7 @@
                     ]
                 },
                 {
-                    day: 6, date: "2026.2.16 Mon", navDate: "2.16", title: "除夕：那霸市區", location: "那霸市",
+                    day: 6, dateLabel: "2026.2.16 Mon", navDate: "2.16", title: "除夕：那霸市區", location: "那霸市",
                     weather: { high: "18°C", low: "14°C", desc: "陰天", rain: "20%" },
                     events: [
                         { type: "food", tag: "Lunch", title: "INDIGO 烏龍麵", location: "https://maps.app.goo.gl/zKtSxYkgnSbFsqSJ8", emoji: "🍜" },
@@ -174,11 +174,12 @@
                             { name: "器皿 陶・よかりよ", url: "https://maps.app.goo.gl/2r5xxjDSmwjCtutL6" },
                             { name: "雜貨 松尾芭商", url: "https://maps.app.goo.gl/g5CJpELNT2XTp6mJ7" }
                         ], emoji: "🏺" },
-                        { type: "food", tag: "Dinner", title: "SHIKAKU", desc: "阿古豬涮涮鍋圍爐過年。", location: "https://maps.app.goo.gl/nmPZJq6APHg5QPft7", emoji: "🍲" }
+                        { type: "food", tag: "Dinner", title: "SHIKAKU", desc: "阿古豬涮涮鍋圍爐過年。", location: "https://maps.app.goo.gl/nmPZJq6APHg5QPft7", emoji: "🍲" },
+                        { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", desc: "續住第二晚", location: "https://maps.app.goo.gl/bJLMxDUia8nZ6yix8", emoji: "🏨" }
                     ]
                 },
                 {
-                    day: 7, date: "2026.2.17 Tue", navDate: "2.17", title: "初一：市區自由活動", location: "那霸/機場",
+                    day: 7, dateLabel: "2026.2.17 Tue", navDate: "2.17", title: "初一：市區自由活動", location: "那霸/機場",
                     weather: { high: "21°C", low: "15°C", desc: "多雲時晴", rain: "10%" },
                     events: [
                         { type: "food", tag: "Lunch", title: "LITOR 早午餐", location: "https://maps.app.goo.gl/uxcJNWAyLuXmaQtJA", emoji: "🍔" },
@@ -192,18 +193,16 @@
             const currentDayData = schedule[activeDay];
 
             return (
-                <div className="min-h-screen pb-12 text-left">
+                <div className="min-h-screen pb-12 text-left bg-slate-50">
                     <div className="relative h-[280px] w-full overflow-hidden">
                         <img src={headerImageUrl} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-                        <div className="absolute inset-x-0 bottom-0 p-8 text-left">
-                            <div className="max-w-md mx-auto">
-                                <div className="flex items-center gap-4 mb-2">
-                                    <img src={profileIconUrl} className="w-12 h-12 rounded-2xl border-2 border-white/30 shadow-xl" />
-                                    <div>
-                                        <h1 className="text-4xl font-black text-white tracking-tighter">沖繩家族旅行</h1>
-                                        <p className="text-slate-300 text-[10px] font-medium opacity-80 pl-1 uppercase tracking-[0.2em]">Okinawa 2026</p>
-                                    </div>
+                        <div className="absolute inset-x-0 bottom-0 p-8">
+                            <div className="max-w-md mx-auto flex items-center gap-4">
+                                <img src={profileIconUrl} className="w-12 h-12 rounded-2xl border-2 border-white/30 shadow-xl" />
+                                <div>
+                                    <h1 className="text-4xl font-black text-white tracking-tighter">沖繩家族旅行</h1>
+                                    <p className="text-slate-300 text-[10px] font-medium opacity-80 pl-1 uppercase tracking-[0.2em]">Okinawa 2026</p>
                                 </div>
                             </div>
                         </div>
@@ -221,15 +220,16 @@
                     </div>
 
                     <main className="max-w-md mx-auto px-6 mt-10">
-                        <div className="mb-8 animate-fade-in text-left">
+                        <div className="mb-8 animate-fade-in">
                             <div className="flex items-center gap-2 mb-2">
                                 <div className="h-1 w-8 bg-teal-500 rounded-full" />
                                 <span className="text-teal-600 font-black text-xs uppercase tracking-widest">{currentDayData.location}</span>
                             </div>
-                            <h2 className="text-3xl font-black text-slate-900 mb-3 tracking-tight">{currentDayData.title}</h2>
+                            <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">{currentDayData.title}</h2>
+                            <p className="text-slate-500 font-bold text-sm mt-1">{currentDayData.dateLabel}</p>
                         </div>
 
-                        <div className="mb-10 animate-fade-in text-left">
+                        <div className="mb-10 animate-fade-in">
                             <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[32px] p-5 shadow-sm">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
@@ -241,7 +241,6 @@
                                     </div>
                                     <div className="text-right">
                                         <div className="flex items-baseline gap-1">
-                                            {/* 修改配色：使用深珊瑚色與湖水藍，更貼合 App 整體選物店/質感的風格 */}
                                             <span className="text-2xl font-black text-orange-400 tracking-tighter">{currentDayData.weather.high}</span>
                                             <span className="text-slate-300 font-black mx-1">/</span>
                                             <span className="text-lg font-bold text-cyan-600 tracking-tighter">{currentDayData.weather.low}</span>
@@ -251,25 +250,25 @@
                             </div>
                         </div>
 
-                        <div className="space-y-8 relative text-left">
+                        <div className="space-y-8 relative">
                             <div className="absolute top-10 bottom-0 left-[26px] w-[2px] bg-slate-200" />
                             {currentDayData.events.map((event, idx) => {
                                 const style = getTagStyle(event.tag);
                                 return (
-                                    <div key={idx} className="relative pl-16 animate-slide-up" style={{ animationDelay: `${idx * 80}ms` }}>
+                                    <div key={`${activeDay}-${idx}`} className="relative pl-16 animate-slide-up" style={{ animationDelay: `${idx * 80}ms` }}>
                                         <div className="absolute left-0 top-0 flex flex-col items-center">
                                             <div className="w-14 h-14 rounded-[22px] bg-white border-2 border-slate-100 shadow-sm flex items-center justify-center text-3xl z-10">{event.emoji}</div>
                                             {event.time && <div className="mt-2 px-2 py-0.5 bg-slate-900 rounded-lg text-white font-black text-[9px]">{event.time}</div>}
                                         </div>
                                         <div className={`bg-white rounded-[32px] p-6 shadow-sm border ${style.border}`}>
                                             {event.tag && <div className={`inline-flex items-center gap-1.5 mb-2.5 px-2 py-0.5 rounded-full ${style.bg} ${style.text}`}><Icon name={style.icon} size={12} strokeWidth={3} /><span className="text-[10px] font-black uppercase tracking-widest">{event.tag}</span></div>}
-                                            <div className="flex justify-between items-start gap-3 text-left">
+                                            <div className="flex justify-between items-start gap-3">
                                                 <h3 className="font-black text-slate-800 text-lg leading-tight flex-1">{event.title}</h3>
                                                 {event.location && <button onClick={() => openMap(event.location)} className={`w-10 h-10 rounded-2xl flex items-center justify-center ${style.btn}`}><Icon name="navigation" size={18} fill="currentColor" /></button>}
                                             </div>
 
                                             {event.isCategory ? (
-                                                <div className="mt-4 space-y-4 text-left">
+                                                <div className="mt-4 space-y-4">
                                                     {event.categories.map((cat, cIdx) => (
                                                         <div key={cIdx}>
                                                             <p className="text-[10px] font-black text-slate-400 mb-2 uppercase tracking-[0.1em]">{cat.label}</p>
@@ -285,17 +284,17 @@
                                                     ))}
                                                 </div>
                                             ) : event.flightInfo ? (
-                                                <div className="mt-4 bg-slate-50 rounded-2xl p-4 border border-slate-100 text-left">
+                                                <div className="mt-4 bg-slate-50 rounded-2xl p-4 border border-slate-100">
                                                     <div className="flex items-center justify-between mb-2">
                                                         <div className="text-center flex-1"><p className="text-xl font-black">{event.flightInfo.depTime}</p><p className="text-[11px] font-bold text-slate-500">{event.flightInfo.from}</p></div>
                                                         <div className="flex-1 px-2 relative h-px bg-slate-200"><Icon name="plane" size={12} className="absolute left-1/2 -translate-x-1/2 -top-1.5 text-teal-500" /></div>
                                                         <div className="text-center flex-1"><p className="text-xl font-black">{event.flightInfo.arrTime}</p><p className="text-[11px] font-bold text-slate-500">{event.flightInfo.to}</p></div>
                                                     </div>
                                                 </div>
-                                            ) : (event.desc && <p className="text-[13px] text-slate-500 font-medium leading-relaxed mt-2 text-left">{event.desc}</p>)}
+                                            ) : (event.desc && <p className="text-[13px] text-slate-500 font-medium leading-relaxed mt-2">{event.desc}</p>)}
                                             
                                             {event.isList && (
-                                                <div className="grid gap-2 mt-4 text-left">
+                                                <div className="grid gap-2 mt-4">
                                                     {event.options.map((opt, oIdx) => (
                                                         <button key={oIdx} onClick={() => opt.url && openMap(opt.url)} className="flex items-center justify-between bg-slate-50 px-4 py-3 rounded-2xl border border-slate-100 transition-all hover:bg-slate-100 active:scale-[0.98]">
                                                             <span className="text-xs font-black text-slate-700">{opt.name}</span>
