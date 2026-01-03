@@ -141,7 +141,7 @@
                 { type: "activity", title: "湯沢高原高空纜車", detail: "搭乘纜車欣賞壯闊雪景", icon: "🚠", link: "https://maps.app.goo.gl/z6W1RbeXW8r8qU5Z7" },
                 { type: "activity", title: "越後湯澤車站散策", detail: "CoCoLo 湯澤買土產、ぽんしゅ館品嚐日本酒", icon: "🍶", link: "https://maps.app.goo.gl/u5K5iL8eN1U3W7mH8" },
                 { type: "train", time: "14:49", endTime: "16:00", title: "とき 68號", detail: "越後湯澤 ➔ 東京 | 3號車 2DE, 3DE", subtext: "えきねっと已訂", icon: "🚄" },
-                { type: "activity", time: "17:30", title: "代官山 ROUN 剪髮", detail: "代官山美髮沙龍預約行程", link: "https://maps.app.goo.gl/mxs4xpWofeNME7TH7", icon: "💇‍♂️" },
+                { type: "activity", time: "17:30", title: "代官山 ROUN 剪髮", detail: "代官山美髮沙龍預約行程", link: "https://maps.app.goo.gl/mxs4wpWofeNME7TH7", icon: "💇‍♂️" },
                 { type: "food", title: "晚餐：未定", detail: "東京第一晚自由選擇", icon: "🍽️" },
                 { type: "hotel", title: "MIMARU SUITES 東京日本橋", detail: "返回住宿", icon: "🏨", link: "https://maps.app.goo.gl/kYyzMbf7Ama9faWR7" }
             ]},
@@ -182,15 +182,20 @@
             <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200 overflow-x-auto no-scrollbar py-3 px-4 shadow-sm">
                 <div className="flex space-x-3 pr-4 w-max">
                     {days.map((day, idx) => {
-                        const dateParts = day.date.split(' ');
-                        const shortDate = dateParts[1]; // MM.DD
-                        const weekday = dateParts[2]; // Mon, Tue...
+                        // 正確處理日期顯示：從 "2026.1.5 Mon" 中提取 "1.5"
+                        const dateParts = day.date.split(' '); // [ "2026.1.5", "Mon" ]
+                        const fullDate = dateParts[0]; // "2026.1.5"
+                        const mmdd = fullDate.split('.').slice(1).join('.'); // "1.5"
+                        
                         const isSelected = selected === idx;
                         return (
-                            <button key={idx} onClick={() => onSelect(idx)} className={`flex flex-col items-center justify-center min-w-[3.8rem] h-16 rounded-xl transition-all duration-300 ${isSelected ? 'bg-blue-600 text-white shadow-md scale-105' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'}`}>
-                                <span className={`text-[9px] font-black uppercase mb-0.5 ${isSelected ? 'text-blue-200' : 'text-slate-400'}`}>D{day.day}</span>
-                                <span className="text-sm font-bold tracking-tighter leading-none">{shortDate}</span>
-                                <span className={`text-[10px] font-medium mt-0.5 ${isSelected ? 'text-white/80' : 'text-slate-400'}`}>{weekday}</span>
+                            <button 
+                                key={idx} 
+                                onClick={() => onSelect(idx)} 
+                                className={`flex flex-col items-center justify-center min-w-[3.8rem] h-16 rounded-2xl transition-all duration-300 border ${isSelected ? 'bg-blue-600 text-white border-blue-600 shadow-lg scale-105' : 'bg-white text-slate-400 border-slate-100 hover:bg-slate-50'}`}
+                            >
+                                <span className={`text-[10px] font-black uppercase tracking-tighter mb-0.5 ${isSelected ? 'text-blue-200' : 'text-slate-400'}`}>D{day.day}</span>
+                                <span className="text-[15px] font-bold tracking-tight">{mmdd}</span>
                             </button>
                         );
                     })}
