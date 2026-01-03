@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>沖繩家族旅行 2026</title>
     
-    <!-- 主畫面圖示設定 -->
-    <link rel="apple-touch-icon" href="https://duk.tw/0EdPW2.png">
-    <link rel="icon" type="image/png" href="https://duk.tw/0EdPW2.png">
+    <!-- 更新後的主畫面圖示設定 (J425Sv.png) -->
+    <link rel="apple-touch-icon" href="https://duk.tw/J425Sv.png">
+    <link rel="icon" type="image/png" href="https://duk.tw/J425Sv.png">
     
-    <!-- Web App Manifest (讓 Android 識別圖示與名稱) -->
-    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22%E6%B2%96%E7%B9%AC%E6%97%8F%22,%22short_name%22:%22%E6%B2%96%E7%B9%AC2026%22,%22icons%22:[{%22src%22:%22https://duk.tw/0EdPW2.png%22,%22sizes%22:%22192x192%22,%22type%22:%22image/png%22},{%22src%22:%22https://duk.tw/0EdPW2.png%22,%22sizes%22:%22512x512%22,%22type%22:%22image/png%22}],%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22theme_color%22:%22%230d9488%22}">
+    <!-- Web App Manifest (Android 識別圖示與名稱) -->
+    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22%E6%B2%96%E7%B9%AC%E6%97%8F%22,%22short_name%22:%22%E6%B2%96%E7%B9%AC2026%22,%22icons%22:[{%22src%22:%22https://duk.tw/J425Sv.png%22,%22sizes%22:%22192x192%22,%22type%22:%22image/png%22},{%22src%22:%22https://duk.tw/J425Sv.png%22,%22sizes%22:%22512x512%22,%22type%22:%22image/png%22}],%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22theme_color%22:%22%230d9488%22}">
 
     <!-- 行動裝置優化 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,7 +50,6 @@
         const TripApp = () => {
             const [activeDay, setActiveDay] = useState(0); 
             const headerImageUrl = "https://image.urlaubspiraten.de/1280/image/upload/v1628090550/mediavault_images/AdobeStock_195151713_t6vob3.jpg";
-            const profileIconUrl = "https://duk.tw/0EdPW2.png";
 
             const openMap = (url) => { 
                 if (url) {
@@ -210,12 +209,9 @@
                         <img src={headerImageUrl} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
                         <div className="absolute inset-x-0 bottom-0 p-5">
-                            <div className="max-w-md mx-auto flex items-center gap-3">
-                                <img src={profileIconUrl} className="w-10 h-10 rounded-xl border-2 border-white/30 shadow-xl" />
-                                <div>
-                                    <h1 className="text-2xl font-black text-white tracking-tighter">沖繩家族旅行</h1>
-                                    <p className="text-slate-300 text-[9px] font-medium opacity-80 pl-0.5 uppercase tracking-[0.2em]">Okinawa 2026</p>
-                                </div>
+                            <div className="max-w-md mx-auto">
+                                <h1 className="text-2xl font-black text-white tracking-tighter">沖繩家族旅行</h1>
+                                <p className="text-slate-300 text-[9px] font-medium opacity-80 pl-0.5 uppercase tracking-[0.2em]">Okinawa 2026</p>
                             </div>
                         </div>
                     </div>
