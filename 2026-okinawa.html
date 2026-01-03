@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>沖繩家族旅行 2026</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://duk.tw/0EdPW2.png">
-    <!-- 引入 React 與 Babel -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Lucide 圖示 -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -40,7 +36,6 @@
         };
 
         const TripApp = () => {
-            // 修正預設天數為 D1 (index 0)
             const [activeDay, setActiveDay] = useState(0); 
             const headerImageUrl = "https://image.urlaubspiraten.de/1280/image/upload/v1628090550/mediavault_images/AdobeStock_195151713_t6vob3.jpg";
             const profileIconUrl = "https://duk.tw/0EdPW2.png";
@@ -71,9 +66,9 @@
                     weather: { high: "20°C", low: "15°C", desc: "多雲時晴", rain: "10%" },
                     events: [
                         { type: "flight", time: "13:15", title: "JX302 星宇航空", flightInfo: { from: "RMQ 台中", to: "OKA 那霸", depTime: "13:15", arrTime: "15:45", terminal: "Terminal 2" }, emoji: "✈️" },
-                        { type: "transport", tag: "Transport", time: "16:30", title: "租車自駕前往北部", desc: "車程約 90 分鐘。途中停靠名護大型超市採買。", isList: true, options: [{ name: "MaxValu Nago", url: "https://maps.app.goo.gl/Q9YRqoaTqJ4RHQP17" }, { name: "AEON 名護店", url: "https://maps.app.goo.gl/3jQnuMW6A5W65HPr5" }], emoji: "🚗" },
-                        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "本島北部小離島海岸 Villa。", location: "https://maps.app.goo.gl/tCDd1UTfRy5gvie69", emoji: "🏡" },
-                        { type: "food", tag: "Dinner", title: "あぐー豚と sushi", desc: "島居酒屋 まーさっさー。", location: "https://maps.app.goo.gl/BTnUfot7qyzg5UMA8", emoji: "🍣" }
+                        { type: "transport", tag: "Transport", time: "16:30", title: "租車自駕前往北部", desc: "車程約 90 分鐘。途中停靠名護大型超市採買。", isList: true, options: [{ name: "MaxValu Nago", url: "https://www.google.com/maps/search/?api=1&query=MaxValu+Nago" }, { name: "AEON 名護店", url: "https://www.google.com/maps/search/?api=1&query=AEON+Nago" }], emoji: "🚗" },
+                        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "本島北部小離島海岸 Villa。", location: "https://www.google.com/maps/search/?api=1&query=YAWN+YARD+Okinawa", emoji: "🏡" },
+                        { type: "food", tag: "Dinner", title: "あぐー豚と sushi", desc: "島居酒屋 まーさっさー。", location: "https://www.google.com/maps/search/?api=1&query=島居酒屋+まーさっさー", emoji: "🍣" }
                     ]
                 },
                 {
@@ -81,25 +76,25 @@
                     weather: { high: "21°C", low: "16°C", desc: "晴朗", rain: "0%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-                        { type: "sightseeing", tag: "Sightseeing", title: "古宇利島", desc: "心形岩、古宇利大橋開車散策。", location: "https://maps.app.goo.gl/ExgJYh4iPcAQxW266", emoji: "🌊" },
-                        { type: "food", tag: "Lunch", title: "KOURI SHRIMP", desc: "經典古宇利蝦蝦飯。", location: "https://maps.app.goo.gl/ExgJYh4iPcAQxW266", emoji: "🍤" },
-                        { type: "sightseeing", tag: "Sightseeing", title: "沖縄美ら海水族館", location: "https://maps.app.goo.gl/BA8Uh2tWDVVML8R27", emoji: "🐬" },
-                        { type: "sightseeing", tag: "Sightseeing", title: "備瀨福木林道", desc: "水族館旁寧靜的林道散策，可租借自行車。", location: "https://maps.app.goo.gl/Uyd5tvJQGkqLXEZU8", emoji: "🌳" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "古宇利島", desc: "心形岩、古宇利大橋開車散策。", location: "https://www.google.com/maps/search/?api=1&query=Kouri+Island", emoji: "🌊" },
+                        { type: "food", tag: "Lunch", title: "KOURI SHRIMP", desc: "經典古宇利蝦蝦飯。", location: "https://www.google.com/maps/search/?api=1&query=KOURI+SHRIMP", emoji: "🍤" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "沖縄美ら海水族館", location: "https://www.google.com/maps/search/?api=1&query=Okinawa+Churaumi+Aquarium", emoji: "🐬" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "備瀨福木林道", desc: "水族館旁寧靜的林道散策，可租借自行車。", location: "https://www.google.com/maps/search/?api=1&query=Bise+Fukugi+Tree+Road", emoji: "🌳" },
                         { type: "dinner-options", tag: "Dinner", title: "晚餐餐廳建議", isCategory: true, categories: [
-                            { label: "本部區域", items: [{ name: "海邦丸", url: "https://maps.app.goo.gl/6Fq37RVxEFrBNJ546" }] },
+                            { label: "本部區域", items: [{ name: "海邦丸", url: "https://www.google.com/maps/search/?api=1&query=Kaibonmaru" }] },
                             { label: "名護區域", items: [
-                                { name: "やんばるダイニング 松の古民家", url: "https://maps.app.goo.gl/D8oD6caef5Pw69THA" },
-                                { name: "鉄板焼 朝日", url: "https://maps.app.goo.gl/GFqAY89LsFz32gPDA" },
-                                { name: "食堂ペリカノ", url: "https://maps.app.goo.gl/HYxQ28dupnbGpnii9" },
-                                { name: "餐廳 ふりっぱー", url: "https://maps.app.goo.gl/4mZsKMys8kJTnLhS8" },
-                                { name: "島豬七輪燒肉 滿味", url: "https://maps.app.goo.gl/3AzTgHdWz14jL3d69" }
+                                { name: "やんばるダイニング 松の古民家", url: "https://www.google.com/maps/search/?api=1&query=Matsu+no+Kominka" },
+                                { name: "鉄板焼 朝日", url: "https://www.google.com/maps/search/?api=1&query=Teppanyaki+Asahi+Nago" },
+                                { name: "食堂ペリカノ", url: "https://www.google.com/maps/search/?api=1&query=Shokudo+Pelicano" },
+                                { name: "餐廳 ふりっぱー", url: "https://www.google.com/maps/search/?api=1&query=Flipper+Restaurant+Nago" },
+                                { name: "島豬七輪燒肉 滿味", url: "https://www.google.com/maps/search/?api=1&query=Manmi+Nago" }
                             ]},
                             { label: "古宇利島", items: [
-                                { name: "Mediterranean grill OCTO", url: "https://maps.app.goo.gl/Fc6Y5hHdhTiz4Nid9" },
-                                { name: "Restaurant L LOTA", url: "https://maps.app.goo.gl/3kzmdmdQ82ZMG2eU7" }
+                                { name: "Mediterranean grill OCTO", url: "https://www.google.com/maps/search/?api=1&query=OCTO+Kouri" },
+                                { name: "Restaurant L LOTA", url: "https://www.google.com/maps/search/?api=1&query=L+LOTA" }
                             ]}
                         ], emoji: "🍲" },
-                        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "續住第二晚", location: "https://maps.app.goo.gl/tCDd1UTfRy5gvie69", emoji: "🏡" }
+                        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "續住第二晚", location: "https://www.google.com/maps/search/?api=1&query=YAWN+YARD+Okinawa", emoji: "🏡" }
                     ]
                 },
                 {
@@ -107,17 +102,17 @@
                     weather: { high: "19°C", low: "15°C", desc: "局部多雲", rain: "20%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-                        { type: "food", tag: "Coffee", title: "PĀRAMITĀ·波羅蜜", location: "https://maps.app.goo.gl/sR3DJCHmpYRsMJF26", emoji: "☕" },
-                        { type: "food", tag: "Lunch", title: "岸本食堂", location: "https://maps.app.goo.gl/Upi6cPkuKmmzr74t8", emoji: "🍜" },
-                        { type: "food", tag: "Dessert", title: "Hawaiian Pancakes House Paanilani", desc: "人氣夏威夷鬆餅店。", location: "https://maps.app.goo.gl/FB6aZiTYGrM3KexKA", emoji: "🥞" },
-                        { type: "activity", tag: "Activity", title: "RYUKYU GLASS WORKS 海風", desc: "琉球玻璃製作體驗。", location: "https://maps.app.goo.gl/3cWpKtu12Xa2SUMa9", emoji: "🏺" },
-                        { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE HOTEL ＆ RESORT OKINAWA YOMITAN", location: "https://maps.app.goo.gl/u9xVyVhkCZMSZoAv6", emoji: "🏨" },
-                        { type: "sightseeing", tag: "Sightseeing", title: "美國村 Depot Island", location: "https://maps.app.goo.gl/dZEbdSrYPqLs93La9", emoji: "🎡" },
+                        { type: "food", tag: "Coffee", title: "PĀRAMITĀ·波羅蜜", location: "https://www.google.com/maps/search/?api=1&query=PARAMITA+Okinawa", emoji: "☕" },
+                        { type: "food", tag: "Lunch", title: "岸本食堂", location: "https://www.google.com/maps/search/?api=1&query=Kishimoto+Shokudo", emoji: "🍜" },
+                        { type: "food", tag: "Dessert", title: "Hawaiian Pancakes House Paanilani", desc: "人氣夏威夷鬆餅店。", location: "https://www.google.com/maps/search/?api=1&query=Paanilani", emoji: "🥞" },
+                        { type: "activity", tag: "Activity", title: "RYUKYU GLASS WORKS 海風", desc: "琉球玻璃製作體驗。", location: "https://www.google.com/maps/search/?api=1&query=Ryukyu+Glass+Works+Umikaze", emoji: "🏺" },
+                        { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE HOTEL ＆ RESORT OKINAWA YOMITAN", location: "https://www.google.com/maps/search/?api=1&query=GLAMDAY+STYLE+HOTEL+YOMITAN", emoji: "🏨" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "美國村 Depot Island", location: "https://www.google.com/maps/search/?api=1&query=Depot+Island+American+Village", emoji: "🎡" },
                         { type: "dinner-options", tag: "Dinner", title: "晚餐選項", isList: true, options: [
-                            { name: "chimanois", url: "https://maps.app.goo.gl/T6VmonNAsbtRsti49" },
-                            { name: "宮平料理店", url: "https://maps.app.goo.gl/E2cQ2X63UMorS7XB9" },
-                            { name: "oru.", url: "https://maps.app.goo.gl/7GS2Bobr4MUJwNMw9" },
-                            { name: "PUB LOUNGE EMERALD", url: "https://maps.app.goo.gl/h9eba9jzCN3TzKT99" }
+                            { name: "chimanois", url: "https://www.google.com/maps/search/?api=1&query=chimanois" },
+                            { name: "宮平料理店", url: "https://www.google.com/maps/search/?api=1&query=Miyahira+Ryousinten" },
+                            { name: "oru.", url: "https://www.google.com/maps/search/?api=1&query=oru.+okinawa" },
+                            { name: "PUB LOUNGE EMERALD", url: "https://www.google.com/maps/search/?api=1&query=PUB+LOUNGE+EMERALD" }
                         ], emoji: "🍲" }
                     ]
                 },
@@ -126,17 +121,17 @@
                     weather: { high: "22°C", low: "17°C", desc: "晴時多雲", rain: "10%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-                        { type: "food", tag: "Coffee", title: "BANTA CAFE", location: "https://maps.app.goo.gl/rJhCiDWeXoKAvpjV6", emoji: "☕" },
+                        { type: "food", tag: "Coffee", title: "BANTA CAFE", location: "https://www.google.com/maps/search/?api=1&query=Hoshino+Resorts+BANTA+CAFE", emoji: "☕" },
                         { type: "food", tag: "Lunch", title: "午餐選項", isList: true, options: [
-                            { name: "King Tacos", url: "https://maps.app.goo.gl/GgGPo53wmeNRPicn7" },
-                            { name: "Mexico", url: "https://maps.app.goo.gl/P75ehnohHMfEo5Rk8" }
+                            { name: "King Tacos", url: "https://www.google.com/maps/search/?api=1&query=King+Tacos" },
+                            { name: "Mexico", url: "https://www.google.com/maps/search/?api=1&query=Tacos+Mexico+Okinawa" }
                         ], emoji: "🌮" },
-                        { type: "food", tag: "Coffee", title: "豆ポレポレ", location: "https://maps.app.goo.gl/jCwDZ35g6WSVGogP9", emoji: "☕" },
-                        { type: "food", tag: "Dessert", title: "CAFUNÉ", location: "https://maps.app.goo.gl/KjGkjyG1wz1XBd2H8", emoji: "🍦" },
-                        { type: "shopping", tag: "Shopping", title: "D&DEPARTMENT OKINAWA", desc: "by PLAZA 3 選物店", location: "https://maps.app.goo.gl/wSpeieQ93jZzewfy6", emoji: "🛍️" },
-                        { type: "shopping", tag: "Shopping", title: "AEON MALL Okinawa Rycom", location: "https://maps.app.goo.gl/Qc6VTfQEQvvLeNwn9", emoji: "🛍️" },
-                        { type: "activity", tag: "Live", title: "YOGEE NEW WAVES <HAKKA TOUR 2026>", desc: "我和小蔡看表演，看完回 AEON MALL 會合。", location: "https://maps.app.goo.gl/RjL6dPhNpCFtBTyb6", emoji: "🎸" },
-                        { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE HOTEL ＆ RESORT OKINAWA YOMITAN", desc: "續住第二晚", location: "https://maps.app.goo.gl/u9xVyVhkCZMSZoAv6", emoji: "🏨" }
+                        { type: "food", tag: "Coffee", title: "豆ポレポレ", location: "https://www.google.com/maps/search/?api=1&query=Mame+Porepore", emoji: "☕" },
+                        { type: "food", tag: "Dessert", title: "CAFUNÉ", location: "https://www.google.com/maps/search/?api=1&query=CAFUNE+Okinawa", emoji: "🍦" },
+                        { type: "shopping", tag: "Shopping", title: "D&DEPARTMENT OKINAWA", desc: "by PLAZA 3 選物店", location: "https://www.google.com/maps/search/?api=1&query=D%26DEPARTMENT+OKINAWA", emoji: "🛍️" },
+                        { type: "shopping", tag: "Shopping", title: "AEON MALL Okinawa Rycom", location: "https://www.google.com/maps/search/?api=1&query=AEON+MALL+Okinawa+Rycom", emoji: "🛍️" },
+                        { type: "activity", tag: "Live", title: "YOGEE NEW WAVES <HAKKA TOUR 2026>", desc: "我和小蔡看表演，看完回 AEON MALL 會合。", location: "https://www.google.com/maps/search/?api=1&query=Music+Town+Otoichiba", emoji: "🎸" },
+                        { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE HOTEL ＆ RESORT OKINAWA YOMITAN", desc: "續住第二晚", location: "https://www.google.com/maps/search/?api=1&query=GLAMDAY+STYLE+HOTEL+YOMITAN", emoji: "🏨" }
                     ]
                 },
                 {
@@ -144,47 +139,47 @@
                     weather: { high: "20°C", low: "16°C", desc: "短暫陣雨", rain: "40%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-                        { type: "food", tag: "Lunch", title: "雞そば屋いしぐふー", location: "https://maps.app.goo.gl/gMHnW5mAHc8J9Wzg7", emoji: "🍜" },
+                        { type: "food", tag: "Lunch", title: "雞そば屋いしぐふー", location: "https://www.google.com/maps/search/?api=1&query=Torisobaya+Ishigufu", emoji: "🍜" },
                         { type: "sightseeing", tag: "Sightseeing", title: "港川外人住宅區", isList: true, options: [
-                            { name: "宗像堂", url: "https://maps.app.goo.gl/TYnGjwyf2ivE4PzW7" }
+                            { name: "宗像堂", url: "https://www.google.com/maps/search/?api=1&query=Munakatado" }
                         ], emoji: "🏘️" },
                         { type: "food", tag: "Coffee", title: "港川精品咖啡", isList: true, options: [
-                            { name: "COFFEE SENTI", url: "https://maps.app.goo.gl/BJiVHQuZCaBkLojc6" },
-                            { name: "COFFEE STAND Ecke", url: "https://maps.app.goo.gl/U5taDUaUw661AHV78" }
+                            { name: "COFFEE SENTI", url: "https://www.google.com/maps/search/?api=1&query=COFFEE+SENTI" },
+                            { name: "COFFEE STAND Ecke", url: "https://www.google.com/maps/search/?api=1&query=COFFEE+STAND+Ecke" }
                         ], emoji: "☕" },
-                        { type: "shopping", tag: "Shopping", title: "Parco City", location: "https://maps.app.goo.gl/bbKiG4isbkUkEQ9P6", emoji: "🏬" },
-                        { type: "shopping", tag: "Shopping", title: "COSTCO 好市多 沖繩店", location: "https://maps.app.goo.gl/nJRwrJztzjqJAXKB8", emoji: "🛒" },
+                        { type: "shopping", tag: "Shopping", title: "Parco City", location: "https://www.google.com/maps/search/?api=1&query=SAN-A+URASOE+WEST+COAST+PARCO+CITY", emoji: "🏬" },
+                        { type: "shopping", tag: "Shopping", title: "COSTCO 好市多 沖繩店", location: "https://www.google.com/maps/search/?api=1&query=Costco+Wholesale+Nanjo", emoji: "🛒" },
                         { type: "transport", tag: "Transport", title: "還車自駕結束", desc: "返回那霸市區前將車輛歸還。", emoji: "🔑" },
-                        { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", location: "https://maps.app.goo.gl/bJLMxDUia8nZ6yix8", emoji: "🏨" },
-                        { type: "food", tag: "Dinner", title: "PASTAIONE OKINAWA", location: "https://maps.app.goo.gl/EN9PhfMoc7bWxbaX9", emoji: "🍝" }
+                        { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", location: "https://www.google.com/maps/search/?api=1&query=The+Royal+Park+Hotel+Iconic+Naha", emoji: "🏨" },
+                        { type: "food", tag: "Dinner", title: "PASTAIONE OKINAWA", location: "https://www.google.com/maps/search/?api=1&query=PASTAIONE+OKINAWA", emoji: "🍝" }
                     ]
                 },
                 {
                     day: 6, dateLabel: "2026.2.16 Mon", navDate: "2.16", title: "除夕：那霸市區", location: "那霸市",
                     weather: { high: "18°C", low: "14°C", desc: "陰天", rain: "20%" },
                     events: [
-                        { type: "food", tag: "Lunch", title: "INDIGO 烏龍麵", location: "https://maps.app.goo.gl/zKtSxYkgnSbFsqSJ8", emoji: "🍜" },
-                        { type: "shopping", tag: "Shopping", title: "San-A 那霸 Main Place", desc: "爸媽行程推薦。可坐計程車或單軌前往おもろまち駅。", location: "https://maps.app.goo.gl/vkCos72Cp8viXVJx8", emoji: "🏬" },
-                        { type: "food", tag: "Coffee", title: "YOGOL COFFEE ROASTERS", location: "https://maps.app.goo.gl/Piy3iannmyurwUuC8", emoji: "☕" },
+                        { type: "food", tag: "Lunch", title: "INDIGO 烏龍麵", location: "https://www.google.com/maps/search/?api=1&query=Indigo+Udon+Naha", emoji: "🍜" },
+                        { type: "shopping", tag: "Shopping", title: "San-A 那霸 Main Place", desc: "爸媽行程推薦。可坐計程車或單軌前往おもろまち駅。", location: "https://www.google.com/maps/search/?api=1&query=San-A+Naha+Main+Place", emoji: "🏬" },
+                        { type: "food", tag: "Coffee", title: "YOGOL COFFEE ROASTERS", location: "https://www.google.com/maps/search/?api=1&query=YOGOL+COFFEE+ROASTERS", emoji: "☕" },
                         { type: "shopping", tag: "Shopping", title: "我的私房逛街景點", isList: true, options: [
-                            { name: "酒 LIQUID THE STORE", url: "https://maps.app.goo.gl/jF8PSBdtQWCuUM3e7" },
-                            { name: "選物 nan*ne", url: "https://maps.app.goo.gl/AAj69uRNVntg1FwG6" },
-                            { name: "書店 Bunko no Bunko", url: "https://maps.app.goo.gl/wWvRT9LU8FQ8hSKg6" },
-                            { name: "器皿 GARB DOMINGO", url: "https://maps.app.goo.gl/t9gQcobiSH6uPy1S6" },
-                            { name: "器皿 miyagiya", url: "https://maps.app.goo.gl/fxdE3SZyYcwtsR5T6" },
-                            { name: "器皿 陶・よかりよ", url: "https://maps.app.goo.gl/2r5xxjDSmwjCtutL6" },
-                            { name: "雜貨 松尾芭商", url: "https://maps.app.goo.gl/g5CJpELNT2XTp6mJ7" }
+                            { name: "酒 LIQUID THE STORE", url: "https://www.google.com/maps/search/?api=1&query=LIQUID+THE+STORE" },
+                            { name: "選物 nan*ne", url: "https://www.google.com/maps/search/?api=1&query=nan*ne+Okinawa" },
+                            { name: "書店 Bunko no Bunko", url: "https://www.google.com/maps/search/?api=1&query=Bunko+no+Bunko" },
+                            { name: "器皿 GARB DOMINGO", url: "https://www.google.com/maps/search/?api=1&query=GARB+DOMINGO" },
+                            { name: "器皿 miyagiya", url: "https://www.google.com/maps/search/?api=1&query=miyagiya+naha" },
+                            { name: "器皿 陶・よかりよ", url: "https://www.google.com/maps/search/?api=1&query=Yokariyo" },
+                            { name: "雜貨 松尾芭商", url: "https://www.google.com/maps/search/?api=1&query=Matsuo+Basho+Naha" }
                         ], emoji: "🏺" },
-                        { type: "food", tag: "Dinner", title: "SHIKAKU", desc: "阿古豬涮涮鍋圍爐過年。", location: "https://maps.app.goo.gl/nmPZJq6APHg5QPft7", emoji: "🍲" },
-                        { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", desc: "續住第二晚", location: "https://maps.app.goo.gl/bJLMxDUia8nZ6yix8", emoji: "🏨" }
+                        { type: "food", tag: "Dinner", title: "SHIKAKU", desc: "阿古豬涮涮鍋圍爐過年。", location: "https://www.google.com/maps/search/?api=1&query=SHIKAKU+Naha", emoji: "🍲" },
+                        { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", desc: "續住第二晚", location: "https://www.google.com/maps/search/?api=1&query=The+Royal+Park+Hotel+Iconic+Naha", emoji: "🏨" }
                     ]
                 },
                 {
                     day: 7, dateLabel: "2026.2.17 Tue", navDate: "2.17", title: "初一：市區自由活動", location: "那霸/機場",
                     weather: { high: "21°C", low: "15°C", desc: "多雲時晴", rain: "10%" },
                     events: [
-                        { type: "food", tag: "Lunch", title: "LITOR 早午餐", location: "https://maps.app.goo.gl/uxcJNWAyLuXmaQtJA", emoji: "🍔" },
-                        { type: "shopping", tag: "Shopping", title: "RYUBO 百貨", location: "https://maps.app.goo.gl/23JXksTyaWHbxXcz6", emoji: "🛍️" },
+                        { type: "food", tag: "Lunch", title: "LITOR 早午餐", location: "https://www.google.com/maps/search/?api=1&query=LITOR+Naha", emoji: "🍔" },
+                        { type: "shopping", tag: "Shopping", title: "RYUBO 百貨", location: "https://www.google.com/maps/search/?api=1&query=RYUBO+Department+Store", emoji: "🛍️" },
                         { type: "transport", tag: "Transport", time: "18:00", title: "計程車前往機場", desc: "預計車程約 20 分鐘。準備進行預辦登機。", emoji: "🚕" },
                         { type: "flight", time: "20:30", title: "JX313 星宇航空", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:30", arrTime: "21:15", terminal: "Terminal 1" }, emoji: "✈️" }
                     ]
