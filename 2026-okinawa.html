@@ -1,399 +1,235 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  MapPin, 
-  ExternalLink,
-  ChevronRight,
-  Navigation,
-  Clock,
-  ArrowRight,
-  PlaneTakeoff,
-  PlaneLanding,
-  CloudSun,
-  CloudRain,
-  Thermometer,
-  Wind,
-  Coffee,
-  Sparkles,
-  Utensils,
-  Camera,
-  Home,
-  ShoppingBag,
-  Car,
-  IceCream,
-  Users,
-  Music,
-  BookOpen,
-  Wine,
-  Store,
-  Navigation2
-} from 'lucide-react';
-
-const TripApp = () => {
-  const [activeDay, setActiveDay] = useState(6); // 預設顯示 D7
-  const customIconUrl = "https://duk.tw/t901oh.png";
-  const headerImageUrl = "https://duk.tw/S2PEwV.png";
-
-  useEffect(() => {
-    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-    link.type = 'image/png';
-    link.rel = 'shortcut icon';
-    link.href = customIconUrl;
-    document.getElementsByTagName('head')[0].appendChild(link);
-    document.title = "沖繩家族旅行 2026";
-  }, []);
-
-  const openMap = (url) => {
-    if (!url) return;
-    window.open(url, '_blank');
-  };
-
-  // 定義類型對應的樣式與圖示
-  const getTagStyle = (tag) => {
-    const styles = {
-      'Accommodation': { bg: 'bg-indigo-50', text: 'text-indigo-600', border: 'border-indigo-100', dot: 'bg-indigo-500', btn: 'bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white', icon: <Home size={12} /> },
-      'Coffee': { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-100', dot: 'bg-amber-600', btn: 'bg-amber-50 text-amber-700 hover:bg-amber-700 hover:text-white', icon: <Coffee size={12} /> },
-      'Activity': { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100', dot: 'bg-purple-500', btn: 'bg-purple-50 text-purple-600 hover:bg-purple-600 hover:text-white', icon: <Sparkles size={12} /> },
-      'Lunch': { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-100', dot: 'bg-emerald-500', btn: 'bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white', icon: <Utensils size={12} /> },
-      'Dinner': { bg: 'bg-rose-50', text: 'text-rose-600', border: 'border-rose-100', dot: 'bg-rose-500', btn: 'bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white', icon: <Utensils size={12} /> },
-      'Sightseeing': { bg: 'bg-sky-50', text: 'text-sky-600', border: 'border-sky-100', dot: 'bg-sky-500', btn: 'bg-sky-50 text-sky-600 hover:bg-sky-600 hover:text-white', icon: <Camera size={12} /> },
-      'Shopping': { bg: 'bg-pink-50', text: 'text-pink-600', border: 'border-pink-100', dot: 'bg-pink-500', btn: 'bg-pink-50 text-pink-600 hover:bg-pink-600 hover:text-white', icon: <ShoppingBag size={12} /> },
-      'Transport': { bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-200', dot: 'bg-slate-500', btn: 'bg-slate-100 text-slate-600 hover:bg-slate-600 hover:text-white', icon: <Car size={12} /> },
-      'Dessert': { bg: 'bg-cyan-50', text: 'text-cyan-600', border: 'border-cyan-100', dot: 'bg-cyan-500', btn: 'bg-cyan-50 text-cyan-600 hover:bg-cyan-600 hover:text-white', icon: <IceCream size={12} /> },
-      'Live': { bg: 'bg-orange-50', text: 'text-orange-600', border: 'border-orange-100', dot: 'bg-orange-500', btn: 'bg-orange-50 text-orange-600 hover:bg-orange-600 hover:text-white', icon: <Music size={12} /> },
-      'Default': { bg: 'bg-teal-50', text: 'text-teal-600', border: 'border-teal-100', dot: 'bg-teal-500', btn: 'bg-teal-50 text-teal-600 hover:bg-teal-600 hover:text-white', icon: <MapPin size={12} /> }
-    };
-    return styles[tag] || styles['Default'];
-  };
-
-  const schedule = [
-    {
-      day: 1,
-      date: "2026.2.11 Wed",
-      navDate: "2.11",
-      title: "出發與北上",
-      location: "本島北部",
-      weather: { temp: "15°C - 20°C", desc: "多雲時晴", rain: "10%" },
-      events: [
-        { type: "flight", time: "13:15", title: "JX302 星宇航空", flightInfo: { from: "RMQ 台中", to: "OKA 那霸", depTime: "13:15", arrTime: "15:45", terminal: "Terminal 2" }, emoji: "✈️" },
-        { type: "transport", tag: "Transport", time: "16:30", title: "租車自駕前往北部", desc: "車程約 90 分鐘。途中停靠名護大型超市採買。", isList: true, options: [{ name: "MaxValu Nago", url: "https://maps.app.goo.gl/Q9YRqoaTqJ4RHQP17" }, { name: "AEON 名護店", url: "https://maps.app.goo.gl/3jQnuMW6A5W65HPr5" }, { name: "BIG Express Nago", url: "https://maps.app.goo.gl/cNye5wNq98zPdd758" }, { name: "MEGA 唐吉訶德 名護店", url: "https://maps.app.goo.gl/6kk5yg851ssjntxh9" }], emoji: "🚗" },
-        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "本島北部小離島海岸 Villa。兩晚四人房已付清 (¥256,000 含早)。", location: "https://maps.app.goo.gl/tCDd1UTfRy5gvie69", emoji: "🏡" },
-        { type: "food", tag: "Dinner", title: "あぐー豚と sushi", desc: "島居酒屋 まーさっさー。移動日較累，走路可到就好。", location: "https://maps.app.goo.gl/BTnUfot7qyzg5UMA8", emoji: "🍣" }
-      ]
-    },
-    {
-      day: 2,
-      date: "2026.2.12 Thu",
-      navDate: "2.12",
-      title: "古宇利島與水族館",
-      location: "本部町/古宇利島",
-      weather: { temp: "16°C - 21°C", desc: "晴朗", rain: "0%" },
-      events: [
-        { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-        { type: "sightseeing", tag: "Sightseeing", title: "古宇利島", desc: "心形岩、古宇利大橋開車散策。", location: "https://maps.app.goo.gl/ExgJYh4iPcAQxW266", emoji: "🌊" },
-        { type: "food", tag: "Lunch", title: "KOURI SHRIMP", desc: "經典古宇利蝦蝦飯。", location: "https://maps.app.goo.gl/ExgJYh4iPcAQxW266", emoji: "🍤" },
-        { type: "sightseeing", tag: "Sightseeing", title: "沖縄美ら海水族館", desc: "觀賞黑潮之海大水槽。", location: "https://maps.app.goo.gl/BA8Uh2tWDVVML8R27", emoji: "🐬" },
-        { type: "sightseeing", tag: "Sightseeing", title: "備瀨福木林道", desc: "悠閒散步，享受綠意隧道。", location: "https://maps.app.goo.gl/Uyd5tvJQGkqLXEZU8", emoji: "🌲" },
-        { type: "food", tag: "Dinner", title: "晚餐推薦", isCategoryList: true, categories: [{ name: "本部區域", items: [{ name: "海邦丸", url: "https://maps.app.goo.gl/6p6Z8Vv6L5v6v6v6v" }] }, { name: "名護區域", items: [{ name: "松の古民家", url: "" }, { name: "鉄板燒 朝日", url: "" }, { name: "食堂ペリカノ", url: "" }, { name: "餐廳 ふりっぱー", url: "" }, { name: "島豬七輪燒肉 滿味", url: "" }] }, { name: "古宇利島", items: [{ name: "OCTO Grill", url: "" }, { name: "L LOTA", url: "" }] }], emoji: "🍱" },
-        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "續住第二晚", location: "https://maps.app.goo.gl/tCDd1UTfRy5gvie69", emoji: "🏡" }
-      ]
-    },
-    {
-      day: 3,
-      date: "2026.2.13 Fri",
-      navDate: "2.13",
-      title: "往中部移動",
-      location: "讀谷/北谷",
-      weather: { temp: "15°C - 19°C", desc: "局部多雲", rain: "20%" },
-      events: [
-        { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-        { type: "food", tag: "Coffee", title: "PĀRAMITĀ·波羅蜜", location: "https://maps.app.goo.gl/sR3DJCHmpYRsMJF26", emoji: "☕" },
-        { type: "food", tag: "Lunch", title: "岸本食堂", desc: "經典沖繩麵。", location: "https://maps.app.goo.gl/Upi6cPkuKmmzr74t8", emoji: "🍜" },
-        { type: "food", tag: "Dessert", title: "Hawaiian Pancakes House Paanilani", desc: "必吃人氣鬆餅店。", location: "https://maps.app.goo.gl/FB6aZiTYGrM3KexKA", emoji: "🥞" },
-        { type: "activity", tag: "Activity", title: "琉球玻璃製作體驗：海風", desc: "製作獨一無二的琉球玻璃杯。", location: "https://maps.app.goo.gl/3cWpKtu12Xa2SUMa9", emoji: "🏺" },
-        { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE HOTEL ＆ RESORT OKINAWA YOMITAN", desc: "讀谷村。兩房兩晚 (¥201,057 含早)。", location: "https://maps.app.goo.gl/u9xVyVhkCZMSZoAv6", emoji: "🏨" },
-        { type: "sightseeing", tag: "Sightseeing", title: "美國村 Depot Island", desc: "漫步美式風情與海濱日落。", location: "https://maps.app.goo.gl/dZEbdSrYPqLs93La9", emoji: "🎡" },
-        { type: "food", tag: "Dinner", title: "晚餐選項", isList: true, options: [{ name: "chimanois", url: "" }, { name: "宮平料理店", url: "" }, { name: "oru.", url: "" }, { name: "PUB LOUNOME EMERALD", url: "" }], emoji: "🍽️" }
-      ]
-    },
-    {
-      day: 4,
-      date: "2026.2.14 Sat",
-      navDate: "2.14",
-      title: "中部漫遊與表演",
-      location: "讀谷/北谷",
-      weather: { temp: "17°C - 22°C", desc: "晴時多雲", rain: "10%" },
-      events: [
-        { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-        { type: "food", tag: "Coffee", title: "BANTA CAFE", desc: "星野集團經營，極致海景咖啡廳。", location: "https://maps.app.goo.gl/rJhCiDWeXoKAvpjV6", emoji: "☕" },
-        { type: "food", tag: "Lunch", title: "午餐：塔可飯選項", isList: true, options: [{ name: "King Tacos", url: "https://maps.app.goo.gl/GgGPo53wmeNRPicn7" }, { name: "Mexico", url: "https://maps.app.goo.gl/P75ehnohHMfEo5Rk8" }], emoji: "🌮" },
-        { type: "food", tag: "Coffee", title: "外帶咖啡：豆ポレポレ", desc: "世界烘豆大賽亞軍店。", location: "https://maps.app.goo.gl/jCwDZ35g6WSVGogP9", emoji: "☕" },
-        { type: "food", tag: "Dessert", title: "CAFUNÉ", desc: "特色手工冰淇淋。", location: "https://maps.app.goo.gl/KjGkjyG1wz1XBd2H8", emoji: "🍨" },
-        { type: "shopping", tag: "Shopping", title: "逛街時光", isList: true, options: [{ name: "D&DEPARTMENT OKINAWA", url: "https://maps.app.goo.gl/wSpeieQ93jZzewfy6" }, { name: "AEON MALL Rycom", url: "https://maps.app.goo.gl/Qc6VTfQEQvvLeNwn9" }], emoji: "🛍️" },
-        { type: "activity", tag: "Live", time: "18:00", title: "YOGEE NEW WAVES <HAKKA TOUR 2026>", desc: "我和小蔡看表演，看完回 AEON MALL 會合", location: "https://maps.app.goo.gl/RjL6dPhNpCFtBTyb6", emoji: "🎸" },
-        { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE YOMITAN", desc: "續住第二晚", location: "https://maps.app.goo.gl/u9xVyVhkCZMSZoAv6", emoji: "🏨" }
-      ]
-    },
-    {
-      day: 5,
-      date: "2026.2.15 Sun",
-      navDate: "2.15",
-      title: "小年夜：返回那霸",
-      location: "浦添/那霸",
-      weather: { temp: "16°C - 20°C", desc: "短暫陣雨", rain: "40%" },
-      events: [
-        { type: "food", tag: "Lunch", title: "雞そば屋いしぐふー", desc: "招牌雞湯拉麵與烤雞肉。", location: "https://maps.app.goo.gl/gMHnW5mAHc8J9Wzg7", emoji: "🍜" },
-        { type: "sightseeing", tag: "Sightseeing", title: "港川外人住宅區", desc: "繽紛小屋選物與聚落散策。", isList: true, options: [
-          { name: "宗像堂", url: "https://maps.app.goo.gl/TYnGjwyf2ivE4PzW7" }
-        ], emoji: "🏘️" },
-        { type: "food", tag: "Coffee", title: "港川咖啡時光", desc: "在美式小屋氛圍中享受精品咖啡。", isList: true, options: [
-          { name: "COFFEE SENTI", url: "https://maps.app.goo.gl/BJiVHQuZCaBkLojc6" },
-          { name: "COFFEE STAND Ecke", url: "https://maps.app.goo.gl/U5taDUaUw661AHV78" }
-        ], emoji: "☕" },
-        { type: "shopping", tag: "Shopping", title: "Parco City", desc: "浦添大型海邊購物商城。", location: "https://maps.app.goo.gl/bbKiG4isbkUkEQ9P6", emoji: "🏬" },
-        { type: "shopping", tag: "Shopping", title: "COSTCO 好市多 沖繩店", desc: "南城市全新開幕旗艦店。", location: "https://maps.app.goo.gl/nJRwrJztzjqJAXKB8", emoji: "🛒" },
-        { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic Okinawa Ryukyu", desc: "那霸國際通中心位置，兩晚預訂成功。", location: "https://maps.app.goo.gl/bJLMxDUia8nZ6yix8", emoji: "🏨" },
-        { type: "food", tag: "Dinner", title: "PASTAIONE OKINAWA", desc: "小年夜精緻義大利料理。", location: "https://maps.app.goo.gl/EN9PhfMoc7bWxbaX9", emoji: "🍝" }
-      ]
-    },
-    {
-      day: 6,
-      date: "2026.2.16 Mon",
-      navDate: "2.16",
-      title: "除夕：那霸市區",
-      location: "那霸市",
-      weather: { temp: "14°C - 18°C", desc: "陰天", rain: "20%" },
-      events: [
-        { type: "food", tag: "Lunch", title: "INDIGO 烏龍麵", desc: "那霸市區人氣自家製麵烏龍麵。", location: "https://maps.app.goo.gl/zKtSxYkgnSbFsqSJ8", emoji: "🍜" },
-        { type: "shopping", tag: "Shopping", title: "爸媽推薦行程：San-A 那霸 Main Place", desc: "坐計程車或單軌前往おもろまち駅。", location: "https://maps.app.goo.gl/vkCos72Cp8viXVJx8", emoji: "🏢" },
-        { type: "food", tag: "Coffee", title: "YOGOL COFFEE ROASTERS", desc: "那霸市區精緻自家烘焙咖啡。", location: "https://maps.app.goo.gl/Piy3iannmyurwUuC8", emoji: "☕" },
-        { type: "shopping", tag: "Shopping", title: "我的私房逛街清單", isList: true, options: [
-          { name: "酒 LIQUID THE STORE", url: "https://maps.app.goo.gl/jF8PSBdtQWCuUM3e7" },
-          { name: "選物 nan*ne", url: "https://maps.app.goo.gl/AAj69uRNVntg1FwG6" },
-          { name: "書店 Bunko no Bunko", url: "https://maps.app.goo.gl/wWvRT9LU8FQ8hSKg6" },
-          { name: "器皿 GARB DOMINGO", url: "https://maps.app.goo.gl/t9gQcobiSH6uPy1S6" },
-          { name: "器皿 miyagiya", url: "https://maps.app.goo.gl/fxdE3SZyYcwtsR5T6" },
-          { name: "器皿 陶・よかりよ", url: "https://maps.app.goo.gl/2r5xxjDSmwjCtutL6" },
-          { name: "雜貨 松尾芭商", url: "https://maps.app.goo.gl/g5CJpELNT2XTp6mJ7" }
-        ], emoji: "🎁" },
-        { type: "food", tag: "Dinner", title: "SHIKAKU", desc: "阿古豬涮涮鍋圍爐過年。", location: "https://maps.app.goo.gl/nmPZJq6APHg5QPft7", emoji: "🍲" }
-      ]
-    },
-    {
-      day: 7,
-      date: "2026.2.17 Tue",
-      navDate: "2.17",
-      title: "初一：市區自由活動",
-      location: "那霸/機場",
-      weather: { temp: "15°C - 21°C", desc: "多雲時晴", rain: "10%" },
-      events: [
-        { type: "food", tag: "Lunch", title: "LITOR", desc: "結合在地食材的精緻早午餐。", location: "https://maps.app.goo.gl/uxcJNWAyLuXmaQtJA", emoji: "🍔" },
-        { type: "food", tag: "Coffee", title: "HUU'S COFFEE", desc: "隱身巷弄的精品咖啡店。", location: "https://maps.app.goo.gl/YNzxWoNTkXteuHM38", emoji: "☕" },
-        { type: "sightseeing", tag: "Sightseeing", title: "第一牧志公設市場", desc: "那霸的廚房，感受在地市場氛圍。", location: "https://maps.app.goo.gl/w85EsLSHAu42eA2x8", emoji: "🐟" },
-        { type: "shopping", tag: "Shopping", title: "RYUBO 百貨", desc: "沖繩唯一百貨公司，最後補貨與採買伴手禮。", location: "https://maps.app.goo.gl/23JXksTyaWHbxXcz6", emoji: "🛍️" },
-        { type: "transport", tag: "Transport", time: "18:00", title: "計程車前往機場", desc: "預計車程約 20 分鐘。準備進行預辦登機。", emoji: "🚕" },
-        { type: "flight", time: "20:30", title: "JX313 星宇航空", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:30", arrTime: "21:15", terminal: "Terminal 1" }, emoji: "✈️" }
-      ]
-    }
-  ];
-
-  const currentDayData = schedule[activeDay];
-
-  return (
-    <div className="min-h-screen font-sans bg-slate-50 pb-12 text-left">
-      {/* --- 頂部 Header --- */}
-      <div className="relative h-[280px] w-full overflow-hidden">
-        <img src={headerImageUrl} alt="沖繩背景" className="w-full h-full object-cover" loading="eager" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-8">
-          <div className="max-w-md mx-auto">
-            <div className="inline-block px-3 py-1 bg-teal-500/20 backdrop-blur-md border border-teal-400/30 rounded-full mb-3">
-              <span className="text-teal-200 text-[10px] font-black tracking-widest uppercase">2026 February</span>
-            </div>
-            <h1 className="text-4xl font-black text-white tracking-tighter mb-1">沖繩家族旅行</h1>
-            <p className="text-slate-300 text-xs font-medium opacity-80 pl-1">Family Adventure in Okinawa</p>
-          </div>
-        </div>
-      </div>
-
-      {/* --- 日期導航器 --- */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50">
-        <div className="max-w-md mx-auto overflow-x-auto no-scrollbar py-4 px-5">
-          <div className="flex gap-3 min-w-max">
-            {schedule.map((day, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveDay(index)}
-                className={`flex flex-col items-center justify-center min-w-[64px] h-16 rounded-2xl transition-all duration-300 ${
-                  activeDay === index ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/20 scale-105' : 'bg-white text-slate-400 border border-slate-100 hover:border-slate-300'
-                }`}
-              >
-                <span className="text-[11px] font-black uppercase mb-0.5 opacity-70">D{day.day}</span>
-                <span className="text-sm font-black tracking-tighter">{day.navDate}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* --- 主要行程內容 --- */}
-      <main className="max-w-md mx-auto px-6 mt-10">
-        <div className="mb-8 animate-fade-in">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="h-1 w-8 bg-teal-500 rounded-full" />
-            <span className="text-teal-600 font-black text-xs tracking-widest uppercase">{currentDayData.location}</span>
-          </div>
-          <h2 className="text-3xl font-black text-slate-900 mb-3 leading-none tracking-tight">{currentDayData.title}</h2>
-          <div className="flex items-center gap-4 text-slate-400">
-             <div className="flex items-center gap-1.5 bg-slate-100 px-2 py-1 rounded-lg">
-                <Clock size={12} className="text-slate-500" />
-                <span className="text-[11px] font-black text-slate-600 uppercase">{currentDayData.date}</span>
-             </div>
-             <div className="flex items-center gap-1.5 pl-1">
-                <MapPin size={12} className="opacity-60" />
-                <span className="text-[11px] font-bold">{currentDayData.events.length} STOPS</span>
-             </div>
-          </div>
-        </div>
-
-        {/* 天氣區塊 */}
-        <div className="mb-10 animate-fade-in delay-100">
-           <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[32px] p-5 shadow-sm overflow-hidden">
-              <div className="flex items-center justify-between">
-                 <div className="flex items-center gap-3">
-                    <div className="p-2 bg-teal-500 rounded-2xl text-white shadow-md shadow-teal-500/20"><CloudSun size={20} /></div>
-                    <div>
-                       <h4 className="text-[13px] font-black text-slate-800">今日天氣預測</h4>
-                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{currentDayData.weather.desc}</p>
-                    </div>
-                 </div>
-                 <div className="text-right">
-                    <span className="text-2xl font-black text-slate-800 tracking-tighter">{currentDayData.weather.temp.split(' - ')[1]}</span>
-                    <span className="text-[10px] font-bold text-slate-400 block -mt-1 uppercase">Max Temp</span>
-                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3 mt-4">
-                 <div className="bg-white/60 p-3 rounded-2xl flex items-center gap-2 border border-slate-100/50">
-                    <Thermometer size={14} className="text-orange-400" />
-                    <span className="text-xs font-bold text-slate-600">{currentDayData.weather.temp}</span>
-                 </div>
-                 <div className="bg-white/60 p-3 rounded-2xl flex items-center gap-2 border border-slate-100/50">
-                    <CloudRain size={14} className="text-blue-400" />
-                    <span className="text-xs font-bold text-slate-600">降雨率 {currentDayData.weather.rain}</span>
-                 </div>
-              </div>
-           </div>
-        </div>
-
-        {/* 時間軸卡片 */}
-        <div className="space-y-8 relative pb-10">
-          <div className="absolute top-10 bottom-0 left-[26px] w-[2px] bg-gradient-to-b from-teal-500/20 via-slate-200 to-transparent" />
-          
-          {currentDayData.events.map((event, idx) => {
-            const style = getTagStyle(event.tag);
-            return (
-              <div key={idx} className="relative pl-16 group animate-slide-up" style={{ animationDelay: `${idx * 80}ms` }}>
-                <div className="absolute left-0 top-0 flex flex-col items-center">
-                  <div className={`w-14 h-14 rounded-[22px] bg-white border-2 ${style.border} shadow-sm flex items-center justify-center text-3xl z-10 group-hover:scale-110 transition-transform duration-300`}>
-                    {event.emoji}
-                  </div>
-                  {event.time && (
-                    <div className="mt-3 py-0.5 px-2 bg-slate-900 rounded-lg shadow-sm">
-                      <span className="text-white font-black text-[9px] whitespace-nowrap uppercase">{event.time}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className={`bg-white rounded-[32px] p-6 shadow-sm border ${style.border} hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300`}>
-                  {event.tag && (
-                    <div className={`inline-flex items-center gap-1.5 mb-2.5 px-2 py-0.5 rounded-full ${style.bg} ${style.text}`}>
-                      {style.icon}
-                      <span className="text-[10px] font-black tracking-widest uppercase">{event.tag}</span>
-                    </div>
-                  )}
-
-                  <div className="flex justify-between items-start gap-3 mb-3">
-                    <div className="flex-1">
-                      <h3 className="font-black text-slate-800 text-lg leading-tight mb-1">{event.title}</h3>
-                      {event.type === 'flight' && <span className="text-[10px] font-black text-teal-600 bg-teal-50 px-2 py-0.5 rounded-md uppercase">Flight Info</span>}
-                    </div>
-                    {event.location && (
-                      <button onClick={() => openMap(event.location)} className={`flex-shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center transition-all shadow-sm active:scale-90 ${style.btn}`}>
-                        <Navigation size={18} fill="currentColor" strokeWidth={0} />
-                      </button>
-                    )}
-                  </div>
-
-                  {event.flightInfo ? (
-                    <div className="mt-4 bg-slate-50 rounded-2xl p-4 border border-slate-100">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="text-center flex-1">
-                          <p className="text-[10px] font-bold text-slate-400 mb-1 tracking-wider uppercase">DEPART</p>
-                          <p className="text-xl font-black text-slate-800">{event.flightInfo.depTime}</p>
-                          <p className="text-[11px] font-bold text-slate-600">{event.flightInfo.from}</p>
-                        </div>
-                        <div className="flex flex-col items-center px-4 relative flex-1">
-                          <div className="w-full h-[1px] bg-slate-200 absolute top-1/2 -translate-y-1/2 border-dashed border-b border-slate-300" />
-                          <PlaneTakeoff size={16} className="text-teal-500 bg-slate-50 z-10 p-0.5" />
-                        </div>
-                        <div className="text-center flex-1">
-                          <p className="text-[10px] font-bold text-slate-400 mb-1 tracking-wider uppercase">ARRIVE</p>
-                          <p className="text-xl font-black text-slate-800">{event.flightInfo.arrTime}</p>
-                          <p className="text-[11px] font-bold text-slate-600">{event.flightInfo.to}</p>
-                        </div>
-                      </div>
-                      <div className="text-center pt-3 border-t border-slate-200/60 font-black text-[10px] text-slate-400 tracking-widest">{event.flightInfo.terminal}</div>
-                    </div>
-                  ) : (
-                    event.desc && <p className="text-[13px] text-slate-500 font-medium leading-relaxed mb-2">{event.desc}</p>
-                  )}
-
-                  {event.isList && (
-                    <div className="grid grid-cols-1 gap-2 mt-4">
-                      {event.options.map((opt, oIdx) => (
-                        <button key={oIdx} onClick={() => opt.url && openMap(opt.url)} className={`group/btn flex items-center justify-between bg-slate-50 px-4 py-3 rounded-2xl border border-slate-100 transition-all ${opt.url ? 'hover:bg-teal-50 hover:border-teal-200' : ''}`}>
-                          <span className="text-xs font-black text-slate-700">{opt.name}</span>
-                          {opt.url && <ArrowRight size={12} className="text-slate-300 group-hover/btn:text-teal-500 group-hover/btn:translate-x-1 transition-all" />}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-
-                  {event.isCategoryList && (
-                    <div className="space-y-4 mt-4">
-                      {event.categories.map((cat, cIdx) => (
-                        <div key={cIdx}>
-                          <h4 className="text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest ml-1">{cat.name}</h4>
-                          <div className="grid grid-cols-1 gap-1.5">
-                            {cat.items.map((item, iIdx) => (
-                              <button key={iIdx} onClick={() => item.url && openMap(item.url)} className={`group/btn flex items-center justify-between bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 transition-all ${item.url ? 'hover:bg-teal-50 hover:border-teal-200' : ''}`}>
-                                <span className="text-[11px] font-bold text-slate-700">{item.name}</span>
-                                {item.url && <ArrowRight size={10} className="text-slate-300 group-hover/btn:text-teal-500 group-hover/btn:translate-x-1 transition-all" />}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-          <div className="pt-10 text-center animate-bounce"><span className="text-4xl filter grayscale opacity-20">🏝️</span></div>
-        </div>
-      </main>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沖繩家族旅行 2026</title>
+    <!-- 引入 React 與 Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide 圖示 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
         body { font-family: 'Noto Sans TC', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slide-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .animate-slide-up { animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-      `}} />
-    </div>
-  );
-};
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
 
-export default TripApp;
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // 封裝 Lucide Icon 組件
+        const Icon = ({ name, size = 18, className = "", fill = "none", strokeWidth = 2 }) => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, [name]);
+            return <i data-lucide={name} style={{ width: size, height: size }} className={className} stroke-width={strokeWidth} fill={fill}></i>;
+        };
+
+        const TripApp = () => {
+            const [activeDay, setActiveDay] = useState(6); 
+            const headerImageUrl = "https://duk.tw/S2PEwV.png";
+
+            const openMap = (url) => { if (url) window.open(url, '_blank'); };
+
+            const getTagStyle = (tag) => {
+                const styles = {
+                    'Accommodation': { bg: 'bg-indigo-50', text: 'text-indigo-600', border: 'border-indigo-100', dot: 'bg-indigo-500', btn: 'bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white', icon: 'home' },
+                    'Coffee': { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-100', dot: 'bg-amber-600', btn: 'bg-amber-50 text-amber-700 hover:bg-amber-700 hover:text-white', icon: 'coffee' },
+                    'Activity': { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100', dot: 'bg-purple-500', btn: 'bg-purple-50 text-purple-600 hover:bg-purple-600 hover:text-white', icon: 'sparkles' },
+                    'Lunch': { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-100', dot: 'bg-emerald-500', btn: 'bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white', icon: 'utensils' },
+                    'Dinner': { bg: 'bg-rose-50', text: 'text-rose-600', border: 'border-rose-100', dot: 'bg-rose-500', btn: 'bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white', icon: 'utensils' },
+                    'Sightseeing': { bg: 'bg-sky-50', text: 'text-sky-600', border: 'border-sky-100', dot: 'bg-sky-500', btn: 'bg-sky-50 text-sky-600 hover:bg-sky-600 hover:text-white', icon: 'camera' },
+                    'Shopping': { bg: 'bg-pink-50', text: 'text-pink-600', border: 'border-pink-100', dot: 'bg-pink-500', btn: 'bg-pink-50 text-pink-600 hover:bg-pink-600 hover:text-white', icon: 'shopping-bag' },
+                    'Transport': { bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-200', dot: 'bg-slate-500', btn: 'bg-slate-100 text-slate-600 hover:bg-slate-600 hover:text-white', icon: 'car' },
+                    'Dessert': { bg: 'bg-cyan-50', text: 'text-cyan-600', border: 'border-cyan-100', dot: 'bg-cyan-500', btn: 'bg-cyan-50 text-cyan-600 hover:bg-cyan-600 hover:text-white', icon: 'ice-cream' },
+                    'Live': { bg: 'bg-orange-50', text: 'text-orange-600', border: 'border-orange-100', dot: 'bg-orange-500', btn: 'bg-orange-50 text-orange-600 hover:bg-orange-600 hover:text-white', icon: 'music' },
+                    'Default': { bg: 'bg-teal-50', text: 'text-teal-600', border: 'border-teal-100', dot: 'bg-teal-500', btn: 'bg-teal-50 text-teal-600 hover:bg-teal-600 hover:text-white', icon: 'map-pin' }
+                };
+                return styles[tag] || styles['Default'];
+            };
+
+            const schedule = [
+                {
+                    day: 1, date: "2026.2.11 Wed", navDate: "2.11", title: "出發與北上", location: "本島北部",
+                    weather: { temp: "15°C - 20°C", desc: "多雲時晴", rain: "10%" },
+                    events: [
+                        { type: "flight", time: "13:15", title: "JX302 星宇航空", flightInfo: { from: "RMQ 台中", to: "OKA 那霸", depTime: "13:15", arrTime: "15:45", terminal: "Terminal 2" }, emoji: "✈️" },
+                        { type: "transport", tag: "Transport", time: "16:30", title: "租車自駕前往北部", desc: "車程約 90 分鐘。途中停靠名護大型超市採買。", isList: true, options: [{ name: "MaxValu Nago", url: "https://maps.app.goo.gl/Q9YRqoaTqJ4RHQP17" }, { name: "AEON 名護店", url: "https://maps.app.goo.gl/3jQnuMW6A5W65HPr5" }], emoji: "🚗" },
+                        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "本島北部小離島海岸 Villa。", location: "https://maps.app.goo.gl/tCDd1UTfRy5gvie69", emoji: "🏡" },
+                        { type: "food", tag: "Dinner", title: "あぐー豚と sushi", desc: "島居酒屋 まーさっさー。", location: "https://maps.app.goo.gl/BTnUfot7qyzg5UMA8", emoji: "🍣" }
+                    ]
+                },
+                {
+                    day: 2, date: "2026.2.12 Thu", navDate: "2.12", title: "古宇利島與水族館", location: "本部町/古宇利島",
+                    weather: { temp: "16°C - 21°C", desc: "晴朗", rain: "0%" },
+                    events: [
+                        { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "古宇利島", desc: "心形岩、古宇利大橋開車散策。", location: "https://maps.app.goo.gl/ExgJYh4iPcAQxW266", emoji: "🌊" },
+                        { type: "food", tag: "Lunch", title: "KOURI SHRIMP", desc: "經典古宇利蝦蝦飯。", location: "https://maps.app.goo.gl/ExgJYh4iPcAQxW266", emoji: "🍤" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "沖縄美ら海水族館", location: "https://maps.app.goo.gl/BA8Uh2tWDVVML8R27", emoji: "🐬" },
+                        { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "續住第二晚", location: "https://maps.app.goo.gl/tCDd1UTfRy5gvie69", emoji: "🏡" }
+                    ]
+                },
+                {
+                    day: 3, date: "2026.2.13 Fri", navDate: "2.13", title: "往中部移動", location: "讀谷/北谷",
+                    weather: { temp: "15°C - 19°C", desc: "局部多雲", rain: "20%" },
+                    events: [
+                        { type: "food", tag: "Lunch", title: "岸本食堂", location: "https://maps.app.goo.gl/Upi6cPkuKmmzr74t8", emoji: "🍜" },
+                        { type: "activity", tag: "Activity", title: "琉球玻璃製作體驗：海風", location: "https://maps.app.goo.gl/3cWpKtu12Xa2SUMa9", emoji: "🏺" },
+                        { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE YOMITAN", location: "https://maps.app.goo.gl/u9xVyVhkCZMSZoAv6", emoji: "🏨" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "美國村 Depot Island", location: "https://maps.app.goo.gl/dZEbdSrYPqLs93La9", emoji: "🎡" }
+                    ]
+                },
+                {
+                    day: 4, date: "2026.2.14 Sat", navDate: "2.14", title: "中部漫遊與表演", location: "讀谷/北谷",
+                    weather: { temp: "17°C - 22°C", desc: "晴時多雲", rain: "10%" },
+                    events: [
+                        { type: "food", tag: "Coffee", title: "BANTA CAFE", location: "https://maps.app.goo.gl/rJhCiDWeXoKAvpjV6", emoji: "☕" },
+                        { type: "shopping", tag: "Shopping", title: "AEON MALL Rycom", location: "https://maps.app.goo.gl/Qc6VTfQEQvvLeNwn9", emoji: "🛍️" },
+                        { type: "activity", tag: "Live", time: "18:00", title: "YOGEE NEW WAVES 表演", emoji: "🎸" }
+                    ]
+                },
+                {
+                    day: 5, date: "2026.2.15 Sun", navDate: "2.15", title: "小年夜：返回那霸", location: "浦添/那霸",
+                    weather: { temp: "16°C - 20°C", desc: "短暫陣雨", rain: "40%" },
+                    events: [
+                        { type: "food", tag: "Lunch", title: "雞そば屋いしぐふー", location: "https://maps.app.goo.gl/gMHnW5mAHc8J9Wzg7", emoji: "🍜" },
+                        { type: "shopping", tag: "Shopping", title: "Parco City", location: "https://maps.app.goo.gl/bbKiG4isbkUkEQ9P6", emoji: "🏬" },
+                        { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", location: "https://maps.app.goo.gl/bJLMxDUia8nZ6yix8", emoji: "🏨" }
+                    ]
+                },
+                {
+                    day: 6, date: "2026.2.16 Mon", navDate: "2.16", title: "除夕：那霸市區", location: "那霸市",
+                    weather: { temp: "14°C - 18°C", desc: "陰天", rain: "20%" },
+                    events: [
+                        { type: "food", tag: "Lunch", title: "INDIGO 烏龍麵", location: "https://maps.app.goo.gl/zKtSxYkgnSbFsqSJ8", emoji: "🍜" },
+                        { type: "food", tag: "Dinner", title: "SHIKAKU 阿古豬圍爐", location: "https://maps.app.goo.gl/nmPZJq6APHg5QPft7", emoji: "🍲" }
+                    ]
+                },
+                {
+                    day: 7, date: "2026.2.17 Tue", navDate: "2.17", title: "初一：市區自由活動", location: "那霸/機場",
+                    weather: { temp: "15°C - 21°C", desc: "多雲時晴", rain: "10%" },
+                    events: [
+                        { type: "food", tag: "Lunch", title: "LITOR 早午餐", location: "https://maps.app.goo.gl/uxcJNWAyLuXmaQtJA", emoji: "🍔" },
+                        { type: "shopping", tag: "Shopping", title: "RYUBO 百貨", location: "https://maps.app.goo.gl/23JXksTyaWHbxXcz6", emoji: "🛍️" },
+                        { type: "transport", tag: "Transport", time: "18:00", title: "計程車前往機場", desc: "預計車程約 20 分鐘。準備進行預辦登機。", emoji: "🚕" },
+                        { type: "flight", time: "20:30", title: "JX313 星宇航空", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:30", arrTime: "21:15", terminal: "Terminal 1" }, emoji: "✈️" }
+                    ]
+                }
+            ];
+
+            const currentDayData = schedule[activeDay];
+
+            return (
+                <div className="min-h-screen pb-12">
+                    {/* Header */}
+                    <div className="relative h-[280px] w-full overflow-hidden">
+                        <img src={headerImageUrl} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                        <div className="absolute inset-x-0 bottom-0 p-8">
+                            <div className="max-w-md mx-auto">
+                                <h1 className="text-4xl font-black text-white tracking-tighter mb-1">沖繩家族旅行</h1>
+                                <p className="text-slate-300 text-xs font-medium opacity-80 pl-1 uppercase tracking-widest">Okinawa 2026</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Nav */}
+                    <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50">
+                        <div className="max-w-md mx-auto overflow-x-auto no-scrollbar py-4 px-5 flex gap-3">
+                            {schedule.map((day, index) => (
+                                <button key={index} onClick={() => setActiveDay(index)} className={`flex flex-col items-center justify-center min-w-[64px] h-16 rounded-2xl transition-all ${activeDay === index ? 'bg-teal-600 text-white shadow-lg' : 'bg-white text-slate-400 border border-slate-100'}`}>
+                                    <span className="text-[11px] font-black uppercase">D{day.day}</span>
+                                    <span className="text-sm font-black">{day.navDate}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Content */}
+                    <main className="max-w-md mx-auto px-6 mt-10">
+                        <div className="mb-8 animate-fade-in text-left">
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="h-1 w-8 bg-teal-500 rounded-full" />
+                                <span className="text-teal-600 font-black text-xs uppercase tracking-widest">{currentDayData.location}</span>
+                            </div>
+                            <h2 className="text-3xl font-black text-slate-900 mb-3 tracking-tight">{currentDayData.title}</h2>
+                        </div>
+
+                        {/* Weather */}
+                        <div className="mb-10 animate-fade-in">
+                            <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[32px] p-5 shadow-sm">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-teal-500 rounded-2xl text-white shadow-md"><Icon name="cloud-sun" size={20} /></div>
+                                        <h4 className="text-[13px] font-black text-slate-800 uppercase tracking-widest">{currentDayData.weather.desc}</h4>
+                                    </div>
+                                    <div className="text-right">
+                                        <span className="text-2xl font-black text-slate-800 tracking-tighter">{currentDayData.weather.temp.split(' - ')[1]}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Timeline */}
+                        <div className="space-y-8 relative text-left">
+                            <div className="absolute top-10 bottom-0 left-[26px] w-[2px] bg-slate-200" />
+                            {currentDayData.events.map((event, idx) => {
+                                const style = getTagStyle(event.tag);
+                                return (
+                                    <div key={idx} className="relative pl-16 animate-slide-up" style={{ animationDelay: `${idx * 80}ms` }}>
+                                        <div className="absolute left-0 top-0 flex flex-col items-center">
+                                            <div className="w-14 h-14 rounded-[22px] bg-white border-2 border-slate-100 shadow-sm flex items-center justify-center text-3xl z-10">{event.emoji}</div>
+                                            {event.time && <div className="mt-2 px-2 py-0.5 bg-slate-900 rounded-lg text-white font-black text-[9px]">{event.time}</div>}
+                                        </div>
+                                        <div className={`bg-white rounded-[32px] p-6 shadow-sm border ${style.border}`}>
+                                            {event.tag && <div className={`inline-flex items-center gap-1.5 mb-2.5 px-2 py-0.5 rounded-full ${style.bg} ${style.text}`}><Icon name={style.icon} size={12} strokeWidth={3} /><span className="text-[10px] font-black uppercase tracking-widest">{event.tag}</span></div>}
+                                            <div className="flex justify-between items-start gap-3">
+                                                <h3 className="font-black text-slate-800 text-lg leading-tight flex-1">{event.title}</h3>
+                                                {event.location && <button onClick={() => openMap(event.location)} className={`w-10 h-10 rounded-2xl flex items-center justify-center ${style.btn}`}><Icon name="navigation" size={18} fill="currentColor" /></button>}
+                                            </div>
+                                            {event.flightInfo ? (
+                                                <div className="mt-4 bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                                                    <div className="flex items-center justify-between mb-2">
+                                                        <div className="text-center flex-1"><p className="text-xl font-black">{event.flightInfo.depTime}</p><p className="text-[11px] font-bold text-slate-500">{event.flightInfo.from}</p></div>
+                                                        <div className="flex-1 px-2 relative h-px bg-slate-200"><Icon name="plane" size={12} className="absolute left-1/2 -translate-x-1/2 -top-1.5 text-teal-500" /></div>
+                                                        <div className="text-center flex-1"><p className="text-xl font-black">{event.flightInfo.arrTime}</p><p className="text-[11px] font-bold text-slate-500">{event.flightInfo.to}</p></div>
+                                                    </div>
+                                                </div>
+                                            ) : (event.desc && <p className="text-[13px] text-slate-500 font-medium leading-relaxed mt-2">{event.desc}</p>)}
+                                            {event.isList && (
+                                                <div className="grid gap-2 mt-4">
+                                                    {event.options.map((opt, oIdx) => (
+                                                        <button key={oIdx} onClick={() => opt.url && openMap(opt.url)} className="flex items-center justify-between bg-slate-50 px-4 py-3 rounded-2xl border border-slate-100">
+                                                            <span className="text-xs font-black text-slate-700">{opt.name}</span>
+                                                            {opt.url && <Icon name="arrow-right" size={12} className="text-slate-300" />}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TripApp />);
+    </script>
+</body>
+</html>
