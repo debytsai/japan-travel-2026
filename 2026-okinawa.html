@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>沖繩家族旅行 2026</title>
     
-    <!-- 更新後的主畫面圖示設定 (J425Sv.png) -->
+    <!-- 主畫面圖示設定 (J425Sv.png) -->
     <link rel="apple-touch-icon" href="https://duk.tw/J425Sv.png">
     <link rel="icon" type="image/png" href="https://duk.tw/J425Sv.png">
     
@@ -48,7 +48,7 @@
         };
 
         const TripApp = () => {
-            const [activeDay, setActiveDay] = useState(0); 
+            const [activeDay, setActiveDay] = useState(6); // Default to D7
             const headerImageUrl = "https://image.urlaubspiraten.de/1280/image/upload/v1628090550/mediavault_images/AdobeStock_195151713_t6vob3.jpg";
 
             const openMap = (url) => { 
@@ -81,9 +81,10 @@
                     weather: { high: "20°C", low: "15°C", desc: "多雲時晴", rain: "10%" },
                     events: [
                         { type: "flight", time: "13:15", title: "JX302 星宇航空", flightInfo: { from: "RMQ 台中", to: "OKA 那霸", depTime: "13:15", arrTime: "15:45", terminal: "Terminal 2" }, emoji: "✈️" },
-                        { type: "transport", tag: "Transport", time: "16:30", title: "租車自駕前往北部", desc: "車程約 90 分鐘。途中停靠名護大型超市採買。", isList: true, options: [{ name: "MaxValu Nago", url: "https://www.google.com/maps/search/?api=1&query=MaxValu+Nago" }, { name: "AEON 名護店", url: "https://www.google.com/maps/search/?api=1&query=AEON+Nago" }], emoji: "🚗" },
+                        { type: "transport", tag: "Transport", time: "17:00", title: "TOYOTA 租車取車", desc: "トヨタレンタカー那霸空港店，11A 出口有接駁巴士。", location: "https://maps.app.goo.gl/trvNLsjNM3CmK4Lv5", emoji: "🚗" },
+                        { type: "shopping", tag: "Shopping", title: "名護大型超市採買", desc: "前往北部途中停靠補充物資。", isList: true, options: [{ name: "MaxValu Nago", url: "https://www.google.com/maps/search/?api=1&query=MaxValu+Nago" }, { name: "AEON 名護店", url: "https://www.google.com/maps/search/?api=1&query=AEON+Nago" }], emoji: "🛒" },
                         { type: "hotel", tag: "Accommodation", title: "YAWN YARD", desc: "本島北部小離島海岸 Villa。", location: "https://www.google.com/maps/search/?api=1&query=YAWN+YARD+Okinawa", emoji: "🏡" },
-                        { type: "food", tag: "Dinner", title: "あぐー豚と sushi", desc: "島居酒屋 まーさっさー。", location: "https://www.google.com/maps/search/?api=1&query=島居酒屋+まーさっさー", emoji: "🍣" }
+                        { type: "food", tag: "Dinner", title: "あぐー豚と sushi", desc: "島居居酒屋 まーさっさー。", location: "https://www.google.com/maps/search/?api=1&query=島居酒屋+まーさっさー", emoji: "🍣" }
                     ]
                 },
                 {
@@ -94,7 +95,7 @@
                         { type: "sightseeing", tag: "Sightseeing", title: "古宇利島", desc: "心形岩、古宇利大橋開車散策。", location: "https://www.google.com/maps/search/?api=1&query=Kouri+Island", emoji: "🌊" },
                         { type: "food", tag: "Lunch", title: "KOURI SHRIMP", desc: "經典古宇利蝦蝦飯。", location: "https://www.google.com/maps/search/?api=1&query=KOURI+SHRIMP", emoji: "🍤" },
                         { type: "sightseeing", tag: "Sightseeing", title: "沖縄美ら海水族館", location: "https://www.google.com/maps/search/?api=1&query=Okinawa+Churaumi+Aquarium", emoji: "🐬" },
-                        { type: "sightseeing", tag: "Sightseeing", title: "備瀨福木林道", desc: "水族館旁寧靜的林道散策，可租借自行車。", location: "https://www.google.com/maps/search/?api=1&query=Bise+Fukugi+Tree+Road", emoji: "🌳" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "備瀨福木林道", desc: "適合拍美照的美麗林道。", location: "https://www.google.com/maps/search/?api=1&query=Bise+Fukugi+Tree+Road", emoji: "🌳" },
                         { type: "dinner-options", tag: "Dinner", title: "晚餐餐廳建議", isCategory: true, categories: [
                             { label: "本部區域", items: [{ name: "海邦丸", url: "https://www.google.com/maps/search/?api=1&query=Kaibonmaru" }] },
                             { label: "名護區域", items: [
@@ -117,6 +118,7 @@
                     weather: { high: "19°C", low: "15°C", desc: "局部多雲", rain: "20%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
+                        { type: "transport", tag: "Transport", time: "11:00", title: "辦理退房", desc: "11:00 Check out，準備離開北部飯店。", emoji: "🔑" },
                         { type: "food", tag: "Coffee", title: "PĀRAMITĀ·波羅蜜", location: "https://www.google.com/maps/search/?api=1&query=PARAMITA+Okinawa", emoji: "☕" },
                         { type: "food", tag: "Lunch", title: "岸本食堂", location: "https://www.google.com/maps/search/?api=1&query=Kishimoto+Shokudo", emoji: "🍜" },
                         { type: "food", tag: "Dessert", title: "Hawaiian Pancakes House Paanilani", desc: "人氣夏威夷鬆餅店。", location: "https://www.google.com/maps/search/?api=1&query=Paanilani", emoji: "🥞" },
@@ -128,7 +130,8 @@
                             { name: "宮平料理店", url: "https://www.google.com/maps/search/?api=1&query=Miyahira+Ryousinten" },
                             { name: "oru.", url: "https://www.google.com/maps/search/?api=1&query=oru.+okinawa" },
                             { name: "PUB LOUNGE EMERALD", url: "https://www.google.com/maps/search/?api=1&query=PUB+LOUNGE+EMERALD" }
-                        ], emoji: "🍲" }
+                        ], emoji: "🍲" },
+                        { type: "activity", tag: "Live", title: "回飯店小酌", desc: "享用飯店三個酒吧的免費美酒。", emoji: "🍸" }
                     ]
                 },
                 {
@@ -136,16 +139,16 @@
                     weather: { high: "22°C", low: "17°C", desc: "晴時多雲", rain: "10%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
-                        { type: "food", tag: "Coffee", title: "BANTA CAFE", location: "https://www.google.com/maps/search/?api=1&query=Hoshino+Resorts+BANTA+CAFE", emoji: "☕" },
+                        { type: "food", tag: "Coffee", title: "BANTA CAFE", desc: "適合拍美照的海景咖啡。", location: "https://www.google.com/maps/search/?api=1&query=Hoshino+Resorts+BANTA+CAFE", emoji: "☕" },
                         { type: "food", tag: "Lunch", title: "午餐選項", isList: true, options: [
                             { name: "King Tacos", url: "https://www.google.com/maps/search/?api=1&query=King+Tacos" },
                             { name: "Mexico", url: "https://www.google.com/maps/search/?api=1&query=Tacos+Mexico+Okinawa" }
                         ], emoji: "🌮" },
-                        { type: "food", tag: "Coffee", title: "豆ポレポレ", location: "https://www.google.com/maps/search/?api=1&query=Mame+Porepore", emoji: "☕" },
+                        { type: "food", tag: "Coffee", title: "豆ポレポレ", desc: "烘豆獲獎的沖繩最有名咖啡。", location: "https://www.google.com/maps/search/?api=1&query=Mame+Porepore", emoji: "☕" },
                         { type: "food", tag: "Dessert", title: "CAFUNÉ", location: "https://www.google.com/maps/search/?api=1&query=CAFUNE+Okinawa", emoji: "🍦" },
                         { type: "shopping", tag: "Shopping", title: "D&DEPARTMENT OKINAWA", desc: "by PLAZA 3 選物店", location: "https://www.google.com/maps/search/?api=1&query=D%26DEPARTMENT+OKINAWA", emoji: "🛍️" },
-                        { type: "shopping", tag: "Shopping", title: "AEON MALL Okinawa Rycom", location: "https://www.google.com/maps/search/?api=1&query=AEON+MALL+Okinawa+Rycom", emoji: "🛍️" },
-                        { type: "activity", tag: "Live", title: "YOGEE NEW WAVES <HAKKA TOUR 2026>", desc: "我和小蔡看表演，看完回 AEON MALL 會合。", location: "https://www.google.com/maps/search/?api=1&query=Music+Town+Otoichiba", emoji: "🎸" },
+                        { type: "shopping", tag: "Shopping", title: "AEON MALL Okinawa Rycom", desc: "沖繩最大級 Shopping mall 之一。", location: "https://www.google.com/maps/search/?api=1&query=AEON+MALL+Okinawa+Rycom", emoji: "🛍️" },
+                        { type: "activity", tag: "Live", time: "18:00", title: "YOGEE NEW WAVES <HAKKA TOUR 2026>", desc: "我和小蔡看表演，看完回 AEON MALL 會合。", location: "https://www.google.com/maps/search/?api=1&query=Music+Town+Otoichiba", emoji: "🎸" },
                         { type: "hotel", tag: "Accommodation", title: "GLAMDAY STYLE HOTEL ＆ RESORT OKINAWA YOMITAN", desc: "續住第二晚", location: "https://www.google.com/maps/search/?api=1&query=GLAMDAY+STYLE+HOTEL+YOMITAN", emoji: "🏨" }
                     ]
                 },
@@ -154,6 +157,7 @@
                     weather: { high: "20°C", low: "16°C", desc: "短暫陣雨", rain: "40%" },
                     events: [
                         { type: "food", tag: "Morning", title: "早餐：飯店提供", emoji: "🍳" },
+                        { type: "transport", tag: "Transport", time: "10:00", title: "辦理退房", desc: "10:00 Check out，準備往那霸移動。", emoji: "🔑" },
                         { type: "food", tag: "Lunch", title: "雞そば屋いしぐふー", location: "https://www.google.com/maps/search/?api=1&query=Torisobaya+Ishigufu", emoji: "🍜" },
                         { type: "sightseeing", tag: "Sightseeing", title: "港川外人住宅區", isList: true, options: [
                             { name: "宗像堂", url: "https://www.google.com/maps/search/?api=1&query=Munakatado" }
@@ -162,20 +166,23 @@
                             { name: "COFFEE SENTI", url: "https://www.google.com/maps/search/?api=1&query=COFFEE+SENTI" },
                             { name: "COFFEE STAND Ecke", url: "https://www.google.com/maps/search/?api=1&query=COFFEE+STAND+Ecke" }
                         ], emoji: "☕" },
-                        { type: "shopping", tag: "Shopping", title: "Parco City", location: "https://www.google.com/maps/search/?api=1&query=SAN-A+URASOE+WEST+COAST+PARCO+CITY", emoji: "🏬" },
+                        { type: "shopping", tag: "Shopping", title: "Parco City", desc: "沖繩最大級 Shopping mall 之一。", location: "https://www.google.com/maps/search/?api=1&query=SAN-A+URASOE+WEST+COAST+PARCO+CITY", emoji: "🏬" },
                         { type: "shopping", tag: "Shopping", title: "COSTCO 好市多 沖繩店", location: "https://www.google.com/maps/search/?api=1&query=Costco+Wholesale+Nanjo", emoji: "🛒" },
-                        { type: "transport", tag: "Transport", title: "還車自駕結束", desc: "返回那霸市區前將車輛歸還。", emoji: "🔑" },
+                        { type: "transport", tag: "Transport", title: "TOYOTA 租車還車", desc: "トヨタレンタカーおもろまち駅前ＤＦＳ沖縄那覇店，返回那霸市區前將車輛歸還。", location: "https://maps.app.goo.gl/1sAAPEGSQTdbgLTb6", emoji: "🔑" },
                         { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", location: "https://www.google.com/maps/search/?api=1&query=The+Royal+Park+Hotel+Iconic+Naha", emoji: "🏨" },
-                        { type: "food", tag: "Dinner", title: "PASTAIONE OKINAWA", location: "https://www.google.com/maps/search/?api=1&query=PASTAIONE+OKINAWA", emoji: "🍝" }
+                        { type: "food", tag: "Dinner", time: "19:30", title: "PASTAIONE OKINAWA", desc: "沖繩✕義大利料理的融合。", location: "https://www.google.com/maps/search/?api=1&query=PASTAIONE+OKINAWA", emoji: "🍝" },
+                        { type: "activity", tag: "Live", title: "亞洲百大酒吧 El Lequio", desc: "SG Club 系列知名酒吧，在那霸市區享受精緻調酒。", location: "https://maps.app.goo.gl/w4C7fooG5kdWsF436", emoji: "🍸" }
                     ]
                 },
                 {
                     day: 6, dateLabel: "2026.2.16 Mon", navDate: "2.16", title: "除夕：那霸市區", location: "那霸市",
                     weather: { high: "18°C", low: "14°C", desc: "陰天", rain: "20%" },
                     events: [
-                        { type: "food", tag: "Lunch", title: "INDIGO 烏龍麵", location: "https://www.google.com/maps/search/?api=1&query=Indigo+Udon+Naha", emoji: "🍜" },
-                        { type: "shopping", tag: "Shopping", title: "San-A 那霸 Main Place", desc: "爸媽行程推薦。可坐計程車或單軌前往おもろまち駅。", location: "https://www.google.com/maps/search/?api=1&query=San-A+Naha+Main+Place", emoji: "🏬" },
-                        { type: "food", tag: "Coffee", title: "YOGOL COFFEE ROASTERS", location: "https://www.google.com/maps/search/?api=1&query=YOGOL+COFFEE+ROASTERS", emoji: "☕" },
+                        { type: "food", tag: "Morning", title: "INDIGO 烏龍麵", desc: "飯店附近的人氣烏龍麵。", location: "https://www.google.com/maps/search/?api=1&query=Indigo+Udon+Naha", emoji: "🍜" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "泊港漁市場", desc: "當地人的漁市場，推薦鮪魚。計程車離市區約10分鐘。", location: "https://maps.app.goo.gl/8UHkTzdLhZv43Tkd6", emoji: "🐟" },
+                        { type: "shopping", tag: "Shopping", title: "DFS NAHA OKINAWA", desc: "爸媽行程推薦，可坐單軌前往おもろまち駅。", location: "https://maps.app.goo.gl/wNrJ1y2Pq1M6idcL7", emoji: "🛍️" },
+                        { type: "shopping", tag: "Shopping", title: "San-A 那霸 Main Place", desc: "DFS NAHA OKINAWA旁的大型Shopping mall，可一起逛逛。", location: "https://www.google.com/maps/search/?api=1&query=San-A+Naha+Main+Place", emoji: "🏬" },
+                        { type: "food", tag: "Coffee", title: "YOGOL COFFEE ROASTERS", desc: "我想去喝的咖啡廳。", location: "https://www.google.com/maps/search/?api=1&query=YOGOL+COFFEE+ROASTERS", emoji: "☕" },
                         { type: "shopping", tag: "Shopping", title: "我的私房逛街景點", isList: true, options: [
                             { name: "酒 LIQUID THE STORE", url: "https://www.google.com/maps/search/?api=1&query=LIQUID+THE+STORE" },
                             { name: "選物 nan*ne", url: "https://www.google.com/maps/search/?api=1&query=nan*ne+Okinawa" },
@@ -185,7 +192,7 @@
                             { name: "器皿 陶・よかりよ", url: "https://www.google.com/maps/search/?api=1&query=Yokariyo" },
                             { name: "雜貨 松尾芭商", url: "https://www.google.com/maps/search/?api=1&query=Matsuo+Basho+Naha" }
                         ], emoji: "🏺" },
-                        { type: "food", tag: "Dinner", title: "SHIKAKU", desc: "阿古豬涮涮鍋圍爐過年。", location: "https://www.google.com/maps/search/?api=1&query=SHIKAKU+Naha", emoji: "🍲" },
+                        { type: "food", tag: "Dinner", time: "19:00", title: "SHIKAKU", desc: "阿古豬涮涮鍋圍爐過年。", location: "https://www.google.com/maps/search/?api=1&query=SHIKAKU+Naha", emoji: "🍲" },
                         { type: "hotel", tag: "Accommodation", title: "The Royal Park Hotel Iconic", desc: "續住第二晚", location: "https://www.google.com/maps/search/?api=1&query=The+Royal+Park+Hotel+Iconic+Naha", emoji: "🏨" }
                     ]
                 },
@@ -193,9 +200,31 @@
                     day: 7, dateLabel: "2026.2.17 Tue", navDate: "2.17", title: "初一：市區自由活動", location: "那霸/機場",
                     weather: { high: "21°C", low: "15°C", desc: "多雲時晴", rain: "10%" },
                     events: [
-                        { type: "food", tag: "Lunch", title: "LITOR 早午餐", location: "https://www.google.com/maps/search/?api=1&query=LITOR+Naha", emoji: "🍔" },
-                        { type: "shopping", tag: "Shopping", title: "RYUBO 百貨", location: "https://www.google.com/maps/search/?api=1&query=RYUBO+Department+Store", emoji: "🛍️" },
+                        { type: "food", tag: "Morning", title: "風林火山", desc: "附近的日式定食早餐，推薦給爸。", location: "https://maps.app.goo.gl/aLnGijQvW9nEM8T2A", emoji: "🍱" },
+                        { type: "transport", tag: "Transport", time: "11:00", title: "辦理退房", desc: "11:00 Check out，行李寄放在飯店。", emoji: "🔑" },
+                        { type: "food", tag: "Lunch", title: "LITOR", desc: "我要去吃吃早午餐，招牌為水果漢堡。", location: "https://www.google.com/maps/search/?api=1&query=LITOR+Naha", emoji: "🍔" },
+                        { type: "food", tag: "Lunch", title: "牧志公設市場", desc: "爸媽可在此午餐，建議買海鮮代客料理較推。", location: "https://maps.app.goo.gl/bTJpKSgEFxuWaCTM6", emoji: "🐟" },
+                        { type: "food", tag: "Coffee", title: "HUU'S COFFEE", desc: "部落客推薦咖啡。", location: "https://maps.app.goo.gl/uWunYnZMA1HwNkb57", emoji: "☕" },
+                        { type: "shopping", tag: "Shopping", title: "國際通逛街", desc: "最後購物補貨，一路逛回飯店。", isList: true, options: [
+                            { name: "唐吉訶德", url: "https://maps.app.goo.gl/P4xWFdx9t3s7dZHp7" },
+                            { name: "札幌藥妝", url: "https://maps.app.goo.gl/FwKBViobmdUeXerS8" },
+                            { name: "大國藥妝 那霸國際通店", url: "https://maps.app.goo.gl/2iDGeNJ2JEZpniDe6" },
+                            { name: "RYUBO 百貨", url: "https://maps.app.goo.gl/GMmC4oEiAgyUDg5q9" }
+                        ], emoji: "🛍️" },
+                        { type: "transport", tag: "Transport", time: "17:30", title: "回飯店取行李", desc: "回 The Royal Park Hotel Iconic 領取寄放行李。", emoji: "🏨" },
                         { type: "transport", tag: "Transport", time: "18:00", title: "計程車前往機場", desc: "預計車程約 20 分鐘。準備進行預辦登機。", emoji: "🚕" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "機場登機攻略", isCategory: true, categories: [
+                            { label: "出關前可吃", items: [
+                                { name: "豬肉蛋飯糰", url: "" },
+                                { name: "A&W 漢堡", url: "" },
+                                { name: "お酒の美術館 (日威一杯￥500~)", url: "" }
+                            ]},
+                            { label: "出關後可吃", items: [
+                                { name: "豬肉蛋飯糰", url: "" },
+                                { name: "花丸烏龍麵", url: "" },
+                                { name: "吉野家", url: "" }
+                            ]}
+                        ], desc: "⚠️ 提醒：出關後只會有餐廳，若要買伴手禮/藥妝請務必先在下面買好。", emoji: "🛫" },
                         { type: "flight", time: "20:30", title: "JX313 星宇航空", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:30", arrTime: "21:15", terminal: "Terminal 1" }, emoji: "✈️" }
                     ]
                 }
@@ -262,16 +291,29 @@
                             <div className="absolute top-8 bottom-0 left-[21px] w-[1.5px] bg-slate-200" />
                             {currentDayData.events.map((event, idx) => {
                                 const style = getTagStyle(event.tag);
+                                // Highlight logic for reservations or performance times
+                                const isSpecialTime = 
+                                    (event.tag === 'Dinner' && (event.time === '19:30' || event.time === '19:00')) || 
+                                    (event.tag === 'Live' && event.time === '18:00');
+                                
+                                const highlightColor = (event.tag === 'Dinner') ? 'bg-rose-600 ring-rose-100' : 'bg-violet-600 ring-violet-100';
+                                
                                 return (
                                     <div key={`${activeDay}-${idx}`} className="relative pl-12 animate-slide-up" style={{ animationDelay: `${idx * 50}ms` }}>
                                         <div className="absolute left-0 top-0 flex flex-col items-center">
                                             <div className="w-11 h-11 rounded-2xl bg-white border-2 border-slate-100 shadow-sm flex items-center justify-center text-2xl z-10">{event.emoji}</div>
-                                            {event.time && <div className="mt-1.5 px-1.5 py-0.5 bg-slate-900 rounded-md text-white font-black text-[8px]">{event.time}</div>}
+                                            {event.time && (
+                                                <div className={`mt-1.5 px-1.5 py-0.5 rounded-md text-white font-black text-[8px] tracking-tight ${isSpecialTime ? `${highlightColor.split(' ')[0]} ring-2 ${highlightColor.split(' ')[1]}` : 'bg-slate-900'}`}>
+                                                    {event.time}
+                                                </div>
+                                            )}
                                         </div>
-                                        <div className={`bg-white rounded-2xl p-4 shadow-sm border ${style.border}`}>
+                                        <div className={`bg-white rounded-2xl p-4 shadow-sm border ${style.border} ${isSpecialTime ? 'ring-1 ring-slate-100 shadow-md' : ''}`}>
                                             {event.tag && <div className={`inline-flex items-center gap-1 mb-1.5 px-2 py-0.5 rounded-full ${style.bg} ${style.text}`}><Icon name={style.icon} size={10} strokeWidth={3} /><span className="text-[9px] font-black uppercase tracking-wider">{event.tag}</span></div>}
                                             <div className="flex justify-between items-start gap-2">
-                                                <h3 className="font-black text-slate-800 text-base leading-tight flex-1">{event.title}</h3>
+                                                <h3 className="font-black text-slate-800 text-base leading-tight flex-1">
+                                                    {event.title}
+                                                </h3>
                                                 {event.location && <button onClick={() => openMap(event.location)} className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></button>}
                                             </div>
 
@@ -282,14 +324,15 @@
                                                             <p className="text-[9px] font-black text-slate-400 mb-1.5 uppercase tracking-wider">{cat.label}</p>
                                                             <div className="grid gap-1.5">
                                                                 {cat.items.map((item, iIdx) => (
-                                                                    <button key={iIdx} onClick={() => item.url && openMap(item.url)} className="flex items-center justify-between bg-slate-50 px-3 py-2 rounded-xl border border-slate-100 active:bg-slate-100 transition-colors">
+                                                                    <button key={iIdx} onClick={() => item.url && openMap(item.url)} className={`flex items-center justify-between bg-slate-50 px-3 py-2 rounded-xl border border-slate-100 active:bg-slate-100 transition-colors ${!item.url ? 'cursor-default' : ''}`}>
                                                                         <span className="text-[11px] font-black text-slate-700">{item.name}</span>
-                                                                        <Icon name="arrow-right" size={10} className="text-slate-300" />
+                                                                        {item.url && <Icon name="arrow-right" size={10} className="text-slate-300" />}
                                                                     </button>
                                                                 ))}
                                                             </div>
                                                         </div>
                                                     ))}
+                                                    {event.desc && <p className="text-[10px] text-rose-500 font-bold leading-normal mt-2 px-1">{event.desc}</p>}
                                                 </div>
                                             ) : event.flightInfo ? (
                                                 <div className="mt-3 bg-slate-50 rounded-xl p-3 border border-slate-100">
