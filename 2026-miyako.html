@@ -151,8 +151,8 @@
                         { type: "food", tag: "Morning", time: "11:00", title: "早餐未定 & 沖繩組退房", desc: "準備往北方出發探險！", emoji: "🚗" },
                         { type: "sightseeing", tag: "Sightseeing", title: "宮古島海中公園", desc: "輕鬆觀賞海底世界", location: "https://maps.app.goo.gl/TdzovtvnpUgvp6kb8", emoji: "🐠" },
                         { type: "food", tag: "Lunch", title: "HARRY'S Shrimp Truck 蝦蝦飯", desc: "人氣必吃餐車美食", location: "https://maps.app.goo.gl/WT9MSBJQnwEmC9a9A", emoji: "🍤" },
-                        { type: "dessert", tag: "Dessert", title: "吃冰：Gelato Cafe Ninufa", desc: "網路的好評漂亮冰店", location: "https://maps.app.goo.gl/9Nc6yxVKN31geaTv9", emoji: "🍨" },
-                        { type: "food", tag: "Coffee", title: "喝咖：ensemble coffee miyakoisland", desc: "網路的好評漂亮水咖", location: "https://maps.app.goo.gl/qhnwZajwPjASCLwg9", emoji: "☕" },
+                        { type: "dessert", tag: "Dessert", title: "吃冰：Gelato Cafe Ninufa", desc: "網路好評的漂亮冰店", location: "https://maps.app.goo.gl/9Nc6yxVKN31geaTv9", emoji: "🍨" },
+                        { type: "food", tag: "Coffee", title: "喝咖：ensemble coffee miyakoisland", desc: "網路好評的漂亮水咖", location: "https://maps.app.goo.gl/qhnwZajwPjASCLwg9", emoji: "☕" },
                         { type: "activity", tag: "Activity", time: "14:15", title: "Likkle more ユニの浜 遊艇登島", desc: "集合地點：久松漁港\n參加成員：8大2小全員（小孩免費）\n費用：￥6,500×8＝￥52,000（當日付現）\n建議攜帶：飲品、毛巾、帽子、防曬外套、涼鞋（膝蓋以下可能浸濕）", location: "https://maps.app.goo.gl/nWtgJteWPTsNTBya6", emoji: "⛵" },
                         { type: "hotel", tag: "Accommodation", time: "16:00", title: "the rescape check in", desc: "D&J 兩人一晚 Comfort Cottage 共 ¥ 61,425（含早餐）", location: "https://maps.app.goo.gl/b9wZnVV2afAjEbXW9", emoji: "🏡" },
                         { type: "food", tag: "Dinner", time: "18:30", title: "晚餐：ツマンデ呑める みやこパーラー ハイサイ！", desc: "沖繩風居酒屋（hotpepper 已預約 8大1小）", location: "https://maps.app.goo.gl/vGtNYMA8ioQH4w3j7", emoji: "🍻" }
@@ -217,6 +217,10 @@
 
             const [activeDay, setActiveDay] = useState(getInitialDay);
             const currentDayData = schedule[activeDay] || schedule[0]; 
+
+            useEffect(() => {
+                window.scrollTo(0, 0);
+            }, [activeDay]);
 
             return (
                 <div className="min-h-screen bg-slate-200 sm:py-8">
