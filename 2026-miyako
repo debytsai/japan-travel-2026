@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 秋宮古島與沖繩家族旅行</title>
+    
+    <!-- PWA & Mobile Icons -->
+    <link rel="apple-touch-icon" href="https://duk.tw/A0OU0i.png">
+    <link rel="icon" type="image/png" href="https://duk.tw/A0OU0i.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%E5%AE%AE%E5%8F%A4%E5%B3%B6%E6%97%85%E8%A1%8C%22%2C%22short_name%22%3A%22%E5%AE%AE%E5%8F%A4%E5%B3%B62026%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fduk.tw%2FA0OU0i.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fduk.tw%2FA0OU0i.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22theme_color%22%3A%22%230284c7%22%7D">
+
+    <!-- Mobile Optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0284c7">
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; background-color: #f0f9ff; }
+        .font-bubble { font-family: 'Baloo 2', 'Noto Sans TC', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-slide-up { animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-800">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const Icon = ({ name, size = 18, className = "", fill = "none", strokeWidth = 2 }) => {
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, [name]);
+            return <i data-lucide={name} style={{ width: size, height: size }} className={className} strokeWidth={strokeWidth} fill={fill}></i>;
+        };
+
+        const TripApp = () => {
+            const headerImageUrl = "https://images.unsplash.com/photo-1618270707842-748e8faafa3c?fm=jpg&q=80&w=1600&auto=format&fit=crop";
+
+            const openMap = (url) => { 
+                if (url) {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } 
+            };
+
+            const parseOptionName = (name) => {
+                const match = name.match(/^(.*?)[\s]*[（(](.+)[）)]\s*$/);
+                if (match) {
+                    return { title: match[1].trim(), note: match[2].trim() };
+                }
+                return { title: name, note: null };
+            };
+
+            const getTagStyle = (tag) => {
+                const styles = {
+                    'Accommodation': { bg: 'bg-indigo-50', text: 'text-indigo-600', border: 'border-indigo-100', dot: 'bg-indigo-500', btn: 'bg-indigo-50 text-indigo-600 active:bg-indigo-600 active:text-white', icon: 'home' },
+                    'Coffee': { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-100', dot: 'bg-amber-600', btn: 'bg-amber-50 text-amber-700 active:bg-amber-700 active:text-white', icon: 'coffee' },
+                    'Dessert': { bg: 'bg-fuchsia-50', text: 'text-fuchsia-600', border: 'border-fuchsia-100', dot: 'bg-fuchsia-500', btn: 'bg-fuchsia-50 text-fuchsia-600 active:bg-fuchsia-600 active:text-white', icon: 'ice-cream' },
+                    'Activity': { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100', dot: 'bg-purple-500', btn: 'bg-purple-50 text-purple-600 active:bg-purple-600 active:text-white', icon: 'sparkles' },
+                    'Lunch': { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-100', dot: 'bg-emerald-500', btn: 'bg-emerald-50 text-emerald-600 active:bg-emerald-600 active:text-white', icon: 'utensils' },
+                    'Dinner': { bg: 'bg-rose-50', text: 'text-rose-600', border: 'border-rose-100', dot: 'bg-rose-500', btn: 'bg-rose-50 text-rose-600 active:bg-rose-600 active:text-white', icon: 'utensils' },
+                    'Sightseeing': { bg: 'bg-sky-50', text: 'text-sky-600', border: 'border-sky-100', dot: 'bg-sky-500', btn: 'bg-sky-50 text-sky-600 active:bg-sky-600 active:text-white', icon: 'camera' },
+                    'Shopping': { bg: 'bg-pink-50', text: 'text-pink-600', border: 'border-pink-100', dot: 'bg-pink-500', btn: 'bg-pink-50 text-pink-600 active:bg-pink-600 active:text-white', icon: 'shopping-bag' },
+                    'Transport': { bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-200', dot: 'bg-slate-500', btn: 'bg-slate-100 text-slate-600 active:bg-slate-600 active:text-white', icon: 'car' },
+                    'Morning': { bg: 'bg-orange-50', text: 'text-orange-600', border: 'border-orange-100', dot: 'bg-orange-500', btn: 'bg-orange-50 text-orange-600 active:bg-orange-600 active:text-white', icon: 'sun' },
+                    'Notice': { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', dot: 'bg-blue-600', btn: 'bg-blue-50 text-blue-700 active:bg-blue-600 active:text-white', icon: 'info' },
+                    'Default': { bg: 'bg-sky-50', text: 'text-sky-600', border: 'border-sky-100', dot: 'bg-sky-500', btn: 'bg-sky-50 text-sky-600 active:bg-sky-600 active:text-white', icon: 'map-pin' }
+                };
+                return styles[tag] || styles['Default'];
+            };
+
+            const schedule = [
+                {
+                    day: 0, dateLabel: "行前注意事項 & 採買", navDate: "Notice", title: "行前須知與採買指南", location: "宮古島 / 沖繩",
+                    weather: { high: "27°C", low: "23°C", desc: "秋季舒適", rain: "10%" },
+                    events: [
+                        { type: "notice", tag: "Notice", title: "必帶物品提醒", desc: "• 有浮潛＆泳池，請記得攜帶泳裝\n• 可以開車的人記得攜帶駕照譯本＆駕照正本", emoji: "🎒" },
+                        { type: "notice", tag: "Notice", title: "宮古島採買推薦地點", desc: "血拼與補給好去處：", isList: true, options: [
+                            { name: "San-A Miyakojima City (內有松本清、阿卡醬、無印良品)", url: "https://maps.app.goo.gl/fEUScbuxtUZZuykv9" },
+                            { name: "永旺城宮古南購物中心 (內有 Village Vanguard、西松屋、大創、家電行)", url: "https://maps.app.goo.gl/wFpckmEraFzBQiWY6" },
+                            { name: "唐吉訶德 宮古島店", url: "https://maps.app.goo.gl/bnjWaykK6omdUgwg7" }
+                        ], emoji: "🛒" },
+                        { type: "notice", tag: "Notice", title: "Google Map 景點清單", desc: "我建了一個宮古島 google map 清單《宮古島聽說很blue》，歡迎大家自由時間自由前往！", location: "https://maps.app.goo.gl/NkjATjVr1n38P5G66", emoji: "🗺️" }
+                    ]
+                },
+                {
+                    day: 1, dateLabel: "2026.10.04 Sun", navDate: "10/4", weekday: "Sun", title: "抵達宮古島與會合", location: "宮古島",
+                    weather: { high: "28°C", low: "24°C", desc: "晴時多雲", rain: "10%" },
+                    events: [
+                        { type: "flight", time: "07:20", title: "台中組 JX308 起飛", flightInfo: { from: "RMQ 台中", to: "SHI 下地島", depTime: "07:20", arrTime: "09:35", terminal: "Terminal 2" }, emoji: "✈️" },
+                        { type: "transport", tag: "Transport", time: "10:00", title: "台中組租車取車", desc: "pine 下地島空港店取車，三天共 ¥ 48,200。", emoji: "🚗" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "國仲商店", desc: "下地島稍作休息。", location: "https://maps.app.goo.gl/9NEBUoKAQ1aDK17DA", emoji: "☕" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "17 END Beach", desc: "下地島漂亮海灘先玩玩水。", location: "https://maps.app.goo.gl/9tHkkAmfbX1eZwzw5", emoji: "🏖️" },
+                        { type: "food", tag: "Lunch", title: "午餐選項", isList: true, options: [
+                            { name: "漢堡 川滿商店", url: "https://maps.app.goo.gl/3r1jPigGandEEJdC9" },
+                            { name: "夏威夷料理 lot.", url: "https://maps.app.goo.gl/PPuopnY1R2sGFxd88" },
+                            { name: "Slowtime Van", url: "https://maps.app.goo.gl/FgXe5tAL3oPBEikc8" },
+                            { name: "Café Uesuya", url: "https://maps.app.goo.gl/Hj1dQUbAgKtqobtJA" }
+                        ], emoji: "🍔" },
+                        { type: "flight", time: "10:40", title: "林董夫妻 JX890 起飛", flightInfo: { from: "TPE 台北", to: "SHI 下地島", depTime: "10:40", arrTime: "13:00", terminal: "Terminal 1" }, emoji: "✈️" },
+                        { type: "transport", tag: "Transport", time: "13:30", title: "林董夫妻租車取車", desc: "pine 下地島空港店取車，三天共 ¥ 44,620。午後林董夫妻會合！", emoji: "🚗" },
+                        { type: "food", tag: "Coffee", title: "PALI GALLERY / SR COFFEE MIYAKO", desc: "宮古島最期待的時髦咖啡廳！", location: "https://maps.app.goo.gl/xJ1sr6ZM29f5Ckeq7", emoji: "☕" },
+                        { type: "hotel", tag: "Accommodation", time: "15:00", title: "HOTEL LOCUS check in", desc: "D&J：兩晚 CORNER VIEW TWIN 共 ¥ 66,240（不含餐）。", location: "https://maps.app.goo.gl/HaUx1YjvVDkppDzj9", emoji: "🏨" },
+                        { type: "dessert", tag: "Dessert", title: "RICCO gelato 冰淇淋", desc: "宮古島最高分手工義大利冰淇淋。", location: "https://maps.app.goo.gl/75FwU5RrV8euhzZY7", emoji: "🍨" },
+                        { type: "shopping", tag: "Shopping", title: "Yard miyakojima", desc: "逛逛希爾頓旁的最新商空。", location: "https://yardmiyakojima.com/", emoji: "🛍️" },
+                        { type: "food", tag: "Dinner", title: "晚餐", isList: true, options: [
+                            { name: "西班牙菜 BLANQUITA", url: "https://maps.app.goo.gl/L9qSUXm1obQDY1VNA" },
+                            { name: "義大利麵 Pasta House Niwa", url: "https://maps.app.goo.gl/THyiUZ59xoy3puG76" },
+                            { name: "西式料理 The Gozero Grill", url: "https://maps.app.goo.gl/zW5PDoPzF2vPiiDa6" }
+                        ], emoji: "🍽️" },
+                        { type: "food", tag: "Dinner", title: "宵夜：イツモノトコ。", desc: "如果想吃宵夜或小酌的話⋯⋯", location: "https://maps.app.goo.gl/PHoLA69gnpFFK6a28", emoji: "🌙" }
+                    ]
+                },
+                {
+                    day: 2, dateLabel: "2026.10.05 Mon", navDate: "10/5", weekday: "Mon", title: "浮潛體驗與海灘戲水", location: "宮古島",
+                    weather: { high: "29°C", low: "24°C", desc: "晴朗", rain: "0%" },
+                    events: [
+                        { type: "food", tag: "Morning", title: "早餐：くじら食堂 沖繩飯糰", desc: "早上 7:30 開門（週二公休）。", location: "https://maps.app.goo.gl/khpcbiuhSYv9VJM49", emoji: "🍙" },
+                        { type: "activity", tag: "Activity", time: "10:30", title: "SUGAR3 浮潛", desc: "集合地點：前一天聯絡\n參加成員：吱、莊、巧、比＋禾，共4大1小\n費用：￥6,000×5＝￥30,000（當日付現）", location: "https://miyakosugar3.com/", emoji: "🤿" },
+                        { type: "food", tag: "Lunch", title: "午餐", isList: true, options: [
+                            { name: "食菜かま田 蕎麥麵", url: "https://maps.app.goo.gl/4F1hnTmG9Y7jvXgC7" },
+                            { name: "得獎漢堡 BRISKSTAND MIYAKOJIMA", url: "https://maps.app.goo.gl/FLYqeeMb3Er6J4pm8" }
+                        ], footnote: "也可從前一天清單挑，\n或就近解決。", emoji: "🍜" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "神秘公園：カママ嶺公園", desc: "有獅薩溜滑梯的景觀公園！", location: "https://maps.app.goo.gl/LfvnS4F2x9PBuwpY9", emoji: "🌳" },
+                        { type: "dessert", tag: "Dessert", title: "Burwood Donuts 甜甜圈", desc: "人氣午茶甜點（週二三公休）。", location: "https://maps.app.goo.gl/6d5xPoZLiP3k5FwP7", emoji: "🍩" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "與那霸前濱海灘", desc: "號稱東亞最美的白色沙灘！", location: "https://maps.app.goo.gl/KrtFoxHSbJNBHZab8", emoji: "🏖️" },
+                        { type: "food", tag: "Dinner", time: "已預約", highlightTime: true, title: "晚餐：MIPAMA ES SU CASA", desc: "在可以看見海、日落和星空的海之家烤肉", location: "https://mipama.jp/", emoji: "🥩" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "來間大橋觀星", desc: "若在與那霸前濱海灘沒觀到星，繼續轉往其他景點。", location: "https://maps.app.goo.gl/9TofYCGLT7KNJD3P9", emoji: "🌌" },
+                        { type: "hotel", tag: "Accommodation", title: "夜宿：HOTEL LOCUS", desc: "續住第二晚。", location: "https://www.uds-hotels.com/hotel-locus/", emoji: "🏨" },
+                        { type: "food", tag: "Dinner", title: "宵夜：島おでん トナリノ", desc: "好像有點厲害的時髦關東煮店～", location: "https://maps.app.goo.gl/uBBJ8eJM69yXRd9G9", emoji: "🍢" }
+                    ]
+                },
+                {
+                    day: 3, dateLabel: "2026.10.06 Tue", navDate: "10/6", weekday: "Tue", title: "ユニの浜遊艇登島與奢華度假", location: "宮古島北部",
+                    weather: { high: "28°C", low: "24°C", desc: "多雲時晴", rain: "10%" },
+                    events: [
+                        { type: "food", tag: "Morning", time: "11:00", title: "早餐未定 & 沖繩組退房", desc: "準備往北方出發探險！", emoji: "🚗" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "宮古島海中公園", desc: "輕鬆觀賞海底世界。", location: "https://maps.app.goo.gl/TdzovtvnpUgvp6kb8", emoji: "🐠" },
+                        { type: "food", tag: "Lunch", title: "HARRY'S Shrimp Truck 蝦蝦飯", desc: "人氣必吃餐車美食。", location: "https://maps.app.goo.gl/WT9MSBJQnwEmC9a9A", emoji: "🍤" },
+                        { type: "dessert", tag: "Dessert", title: "Gelato Cafe Ninufa 冰淇淋 & 咖啡", desc: "ensemble coffee miyakoisland 品嚐咖啡。", location: "https://maps.app.goo.gl/9Nc6yxVKN31geaTv9", emoji: "🍨" },
+                        { type: "activity", tag: "Activity", time: "14:15", title: "Likkle more ユニの浜 遊艇登島", desc: "集合地點：久松漁港\n參加成員：8大2小全員（小孩免費）\n費用：￥6,500×8＝￥52,000（當日付現）\n建議攜帶：飲品、毛巾、帽子、防曬外套、涼鞋（膝蓋以下可能浸濕）", location: "https://maps.app.goo.gl/nWtgJteWPTsNTBya6", emoji: "⛵" },
+                        { type: "hotel", tag: "Accommodation", time: "16:00", title: "the rescape check in", desc: "D&J 兩人一晚 Comfort Cottage 共 ¥ 61,425（含早餐）。", location: "https://www.uds-hotels.com/the-rescape/", emoji: "🏡" },
+                        { type: "food", tag: "Dinner", time: "18:30", title: "★ 晚餐：ツマンデ呑める みやこパーラー ハイサイ！", desc: "沖繩風居酒屋（hotpepper 已預約 8大1小）。", location: "https://maps.app.goo.gl/vGtNYMA8ioQH4w3j7", emoji: "🍻" }
+                    ]
+                },
+                {
+                    day: 4, dateLabel: "2026.10.07 Wed", navDate: "10/7", weekday: "Wed", title: "宮古島返台 / 沖繩本島觀光", location: "宮古島 → 那霸",
+                    weather: { high: "29°C", low: "25°C", desc: "晴時多雲", rain: "10%" },
+                    events: [
+                        { type: "flight", title: "宮古島組返台", desc: "下地島機場還車。", flightInfo: { from: "SHI 下地島", to: "RMQ 台中", depTime: "10:40", arrTime: "11:00", toTerminal: "Terminal 2", flightNo: "JX309" }, emoji: "🛫" },
+                        { type: "flight", time: "10:00", title: "沖繩組退房與轉往那霸", desc: "10:00 check out，宮古機場還車，繼續轉往那霸。", flightInfo: { from: "MMY 宮古", to: "OKA 那霸", depTime: "12:10", arrTime: "13:00", flightNo: "JTA558" }, emoji: "✈️" },
+                        { type: "transport", tag: "Transport", time: "14:00", title: "美麗島租車國際通店取車", desc: "一天＋3 小時共 ¥ 14,880，開始本島觀光。", location: "https://maps.app.goo.gl/y7iNVAjVkpTNYbfd9", emoji: "🚗" },
+                        { type: "food", tag: "Lunch", title: "午餐", isList: true, options: [
+                            { name: "塔可 King Tacos", url: "https://maps.app.goo.gl/GgGPo53wmeNRPicn7" },
+                            { name: "A&W", url: "https://maps.app.goo.gl/iQpsNTACWobnbnov5" }
+                        ], emoji: "🌮" },
+                        { type: "dessert", tag: "Dessert", title: "吃冰", isList: true, options: [
+                            { name: "神元商店", url: "https://www.instagram.com/kamimoto_shouten" }
+                        ], emoji: "🍧" },
+                        { type: "food", tag: "Coffee", title: "喝咖", isList: true, options: [
+                            { name: "豆ポレポレ", url: "https://www.instagram.com/mamepolepole/" },
+                            { name: "COFFEE SENTI コーヒーセンティ 浦添店", url: "https://maps.app.goo.gl/mSqeoynmR1vfTe8a6" }
+                        ], emoji: "☕" },
+                        { type: "shopping", tag: "Shopping", title: "★ 快樂採購：PARCO CITY", desc: "盡情購物採買。", location: "https://www.parcocity.jp/", emoji: "🏬" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "建築探訪", isList: true, options: [
+                            { name: "名護市役所", url: "https://maps.app.goo.gl/yMbJavVdbqo3VUfx8" },
+                            { name: "市民會館", url: "https://maps.app.goo.gl/RY9QyH2wRpQkHDd89" }
+                        ], emoji: "🏛️" },
+                        { type: "hotel", tag: "Accommodation", title: "HOTEL STRATA NAHA", desc: "D&J 訂 Tatami Twin ¥ 20,880。", location: "https://maps.app.goo.gl/AUxdsGFob63vfTkU8", emoji: "🏨" },
+                        { type: "food", tag: "Dinner", title: "義大利菜 BACAR OKINAWA（需預約）", location: "https://tabelog.com/okinawa/A4701/A470101/47003553/", emoji: "🍽️" },
+                        { type: "food", tag: "Dinner", title: "El Lequio", desc: "亞洲百大酒吧小酌一下。", location: "https://www.instagram.com/el_lequio_okinawa/", emoji: "🍸" }
+                    ]
+                },
+                {
+                    day: 5, dateLabel: "2026.10.08 Thu", navDate: "10/8", weekday: "Thu", title: "沖繩本島觀光與歸途", location: "那霸市 → 台灣",
+                    weather: { high: "29°C", low: "24°C", desc: "晴朗", rain: "0%" },
+                    events: [
+                        { type: "sightseeing", tag: "Sightseeing", title: "建築探訪", isList: true, options: [
+                            { name: "沖繩縣立博物館・美術館", url: "https://maps.app.goo.gl/NQ2xvBmES4mbqppw6" }
+                        ], emoji: "🏛️" },
+                        { type: "food", tag: "Lunch", title: "午餐", isList: true, options: [
+                            { name: "時髦沖繩麵 EIBUN", url: "https://sobaeibun.okinawa/" },
+                            { name: "咖啡輕食 HUU'S COFFEE", url: "https://www.instagram.com/huus_coffee/" },
+                            { name: "水果漢堡 LITOR", url: "https://www.instagram.com/litor_okinawa/" }
+                        ], emoji: "🍜" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "沖繩本島最後漫遊", desc: "國際通最後採買伴手禮。", emoji: "🛍️" },
+                        { type: "transport", tag: "Transport", time: "17:00", title: "還車", desc: "回飯店拿行李。", emoji: "🚗" },
+                        { type: "transport", tag: "Transport", time: "17:30", title: "前往機場", desc: "搭乘輕軌或計程車前往那霸機場（約15分鐘）。", emoji: "🚕" },
+                        { type: "flight", title: "搭機返台", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:10", arrTime: "20:50", toTerminal: "Terminal 2", flightNo: "JX313" }, emoji: "✈️" },
+                        { type: "flight", title: "林董夫妻搭機返台", flightInfo: { from: "OKA 那霸", to: "TPE 台北", depTime: "20:20", arrTime: "20:55", toTerminal: "Terminal 2", flightNo: "BR185" }, emoji: "✈️" }
+                    ]
+                }
+            ];
+
+            const getInitialDay = () => {
+                const tripDates = ["2026-10-04", "2026-10-05", "2026-10-06", "2026-10-07", "2026-10-08"];
+                const today = new Date();
+                const todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+                const matchIndex = tripDates.indexOf(todayStr);
+                if (matchIndex !== -1) return matchIndex + 1;
+                if (todayStr > tripDates[tripDates.length - 1]) return tripDates.length;
+                return 0;
+            };
+
+            const [activeDay, setActiveDay] = useState(getInitialDay);
+            const currentDayData = schedule[activeDay] || schedule[0]; 
+
+            return (
+                <div className="min-h-screen bg-slate-200 sm:py-8">
+                <div className="max-w-md mx-auto min-h-screen sm:min-h-0 pb-12 text-left bg-gradient-to-b from-sky-100/50 via-sky-50 to-white sm:rounded-3xl sm:shadow-2xl sm:overflow-hidden">
+                    {}
+                    <div className="relative h-[220px] w-full overflow-hidden shadow-md">
+                        <img src={headerImageUrl} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-sky-950/80 via-sky-900/30 to-transparent" />
+                        <div className="absolute inset-x-0 bottom-0 p-6">
+                            <div>
+                                <p className="text-white/90 text-xs font-bold tracking-widest mb-1 drop-shadow-sm">2026・秋 宮古島 & 沖繩</p>
+                                <h1 className="font-bubble font-extrabold text-4xl text-white tracking-wide drop-shadow-md">Let's go to MIYAKO</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    {}
+                    <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+                        <div className="overflow-x-auto no-scrollbar py-3 px-4 flex gap-2.5">
+                            {schedule.map((day, index) => (
+                                <button key={index} onClick={() => setActiveDay(index)} className={`flex flex-col items-center justify-center min-w-[62px] px-2 h-16 rounded-2xl transition-all shadow-sm ${activeDay === index ? 'bg-sky-500 text-white shadow-sky-300 scale-105' : 'bg-white text-slate-500 border border-sky-100 hover:bg-sky-50'}`}>
+                                    <span className="text-[9px] font-black uppercase tracking-wider">{day.navDate === 'Notice' ? '須知' : `D${day.day}`}</span>
+                                    <span className="text-xs font-black mt-0.5 whitespace-nowrap">{day.navDate === 'Notice' ? '📌' : day.navDate}</span>
+                                    {day.weekday && <span className={`text-[9px] font-bold mt-0.5 ${activeDay === index ? 'text-white/80' : 'text-slate-400'}`}>{day.weekday}</span>}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {}
+                    <main className="px-5 mt-6">
+                        <div className="mb-6 animate-fade-in">
+                            <div className="flex items-center gap-2 mb-1">
+                                <div className="h-1.5 w-6 bg-sky-500 rounded-full" />
+                                <span className="text-sky-600 font-black text-xs uppercase tracking-widest">{currentDayData.location}</span>
+                            </div>
+                            <h2 className="text-2xl font-black text-slate-900 tracking-tight leading-snug">{currentDayData.title}</h2>
+                            <p className="text-sky-700 font-bold text-xs mt-1">{currentDayData.dateLabel}</p>
+                        </div>
+
+                        {}
+                        <div className="mb-6 animate-fade-in">
+                            <div className="bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl p-4 shadow-sm">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-sky-500 rounded-xl text-white shadow-sm"><Icon name="cloud-sun" size={18} /></div>
+                                        <div>
+                                            <h4 className="text-xs font-black text-slate-800 uppercase tracking-wider">{currentDayData.weather.desc}</h4>
+                                            <p className="text-[10px] font-bold text-slate-400">降雨機率 {currentDayData.weather.rain}</p>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="text-xl font-black text-amber-500 tracking-tighter">{currentDayData.weather.high}</span>
+                                            <span className="text-slate-300 font-black mx-0.5">/</span>
+                                            <span className="text-base font-bold text-sky-600 tracking-tighter">{currentDayData.weather.low}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {}
+                        <div className="space-y-4 relative">
+                            <div className="absolute top-8 bottom-0 left-[21px] w-[2px] bg-sky-200" />
+                            {currentDayData.events.map((event, idx) => {
+                                const style = getTagStyle(event.tag);
+                                const isSpecialTime = event.title.includes('★') || event.highlightTime;
+                                
+                                return (
+                                    <div key={`${activeDay}-${idx}`} className="relative pl-12 animate-slide-up" style={{ animationDelay: `${idx * 40}ms` }}>
+                                        <div className="absolute left-0 top-0 flex flex-col items-center">
+                                            <div className="w-11 h-11 rounded-2xl bg-white border-2 border-sky-100 shadow-sm flex items-center justify-center text-xl z-10">{event.emoji}</div>
+                                            {event.time && (
+                                                <div className={`mt-1.5 px-1.5 py-0.5 rounded-md text-white font-black text-[9px] tracking-tight ${isSpecialTime ? 'bg-rose-500 shadow-sm' : 'bg-slate-800'}`}>
+                                                    {event.time}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className={`bg-white rounded-2xl p-4 shadow-sm border ${style.border} ${isSpecialTime ? 'ring-2 ring-rose-200 shadow-md' : ''}`}>
+                                            {event.tag && <div className={`inline-flex items-center gap-1 mb-1.5 px-2 py-0.5 rounded-full ${style.bg} ${style.text}`}><Icon name={style.icon} size={10} strokeWidth={3} /><span className="text-[9px] font-black uppercase tracking-wider">{event.tag}</span></div>}
+                                            <div className="flex justify-between items-start gap-2">
+                                                <h3 className="font-black text-slate-800 text-base leading-tight flex-1">
+                                                    {event.title}
+                                                </h3>
+                                                {event.location && <button onClick={() => openMap(event.location)} className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></button>}
+                                            </div>
+
+                                            {event.desc && <p className="text-slate-600 text-xs mt-2 font-medium leading-relaxed whitespace-pre-line">{event.desc}</p>}
+
+                                            {event.type === 'flight' && event.flightInfo && (
+                                                <div className="mt-3 bg-sky-50/50 rounded-xl p-3 border border-sky-100">
+                                                    <div className="flex justify-between items-center mb-2">
+                                                        <div className="text-center">
+                                                            <div className="text-base font-black text-slate-800 tracking-tighter">{event.flightInfo.from.split(' ')[1]}</div>
+                                                            <div className="text-[10px] font-bold text-slate-400">{event.flightInfo.from.split(' ')[0]}</div>
+                                                            {event.flightInfo.fromTerminal && <div className="text-[9px] font-bold text-sky-500 mt-0.5">{event.flightInfo.fromTerminal}</div>}
+                                                        </div>
+                                                        <div className="flex flex-col items-center grow px-4">
+                                                            <div className="text-[10px] font-black text-sky-600 mb-1">{event.flightInfo.flightNo || '航班資訊'}</div>
+                                                            <div className="w-full h-[1.5px] bg-sky-200 relative">
+                                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-sky-50 px-2">
+                                                                    <Icon name="plane" size={12} className="text-sky-400 rotate-90" fill="currentColor" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="text-center">
+                                                            <div className="text-base font-black text-slate-800 tracking-tighter">{event.flightInfo.to.split(' ')[1]}</div>
+                                                            <div className="text-[10px] font-bold text-slate-400">{event.flightInfo.to.split(' ')[0]}</div>
+                                                            {event.flightInfo.toTerminal && <div className="text-[9px] font-bold text-sky-500 mt-0.5">{event.flightInfo.toTerminal}</div>}
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex justify-between pt-2 border-t border-sky-100 text-[10px] font-bold text-slate-500">
+                                                        <span>起飛 {event.flightInfo.depTime}</span>
+                                                        <span>抵達 {event.flightInfo.arrTime}</span>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {event.isList && event.options && (
+                                                <div className="mt-3 flex flex-col gap-2">
+                                                    {event.options.map((opt, i) => {
+                                                        const parsed = parseOptionName(opt.name);
+                                                        const note = opt.desc || parsed.note;
+                                                        return (
+                                                            <button key={i} onClick={() => openMap(opt.url)} className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${style.bg} ${style.border} active:scale-[0.98]`}>
+                                                                <div className="min-w-0 flex-1">
+                                                                    <div className={`text-xs font-bold leading-snug ${style.text}`}>{parsed.title}</div>
+                                                                    {note && <div className="text-[10px] font-medium text-slate-500 leading-snug mt-0.5">{note}</div>}
+                                                                </div>
+                                                                <Icon name="chevron-right" size={14} className={`shrink-0 ${style.text} opacity-60`} />
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
+
+                                            {event.footnote && (
+                                                <p className="text-[10px] font-medium text-slate-400 leading-relaxed mt-2 whitespace-pre-line">{event.footnote}</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </main>
+                </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TripApp />);
+    </script>
+</body>
+</html>
