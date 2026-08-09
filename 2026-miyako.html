@@ -50,16 +50,7 @@
 
         const TripApp = () => {
             const headerImageUrl = "https://images.unsplash.com/photo-1618270707842-748e8faafa3c?fm=jpg&q=80&w=1600&auto=format&fit=crop";
-
-            const openMap = (url) => { 
-                if (!url) return;
-                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                if (isMobile) {
-                    window.location.href = url;
-                } else {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                }
-            };
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
             const parseOptionName = (name) => {
                 const match = name.match(/^(.*?)[\s]*[（(](.+)[）)]\s*$/);
@@ -312,7 +303,7 @@
                                                 <h3 className="font-black text-slate-800 text-base leading-tight flex-1">
                                                     {event.title}
                                                 </h3>
-                                                {event.location && <button onClick={() => openMap(event.location)} className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></button>}
+                                                {event.location && <a href={event.location} target={isMobile ? '_self' : '_blank'} rel="noopener noreferrer" className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></a>}
                                             </div>
 
                                             {event.desc && <p className="text-slate-600 text-xs mt-2 font-medium leading-relaxed whitespace-pre-line">{event.desc}</p>}
@@ -372,13 +363,13 @@
                                                         const parsed = parseOptionName(opt.name);
                                                         const note = opt.desc || parsed.note;
                                                         return (
-                                                            <button key={i} onClick={() => openMap(opt.url)} className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${style.bg} ${style.border} active:scale-[0.98]`}>
+                                                            <a key={i} href={opt.url} target={isMobile ? '_self' : '_blank'} rel="noopener noreferrer" className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${style.bg} ${style.border} active:scale-[0.98]`}>
                                                                 <div className="min-w-0 flex-1">
                                                                     <div className={`text-xs font-bold leading-snug ${style.text}`}>{parsed.title}</div>
                                                                     {note && <div className="text-[10px] font-medium text-slate-500 leading-snug mt-0.5">{note}</div>}
                                                                 </div>
                                                                 <Icon name="chevron-right" size={14} className={`shrink-0 ${style.text} opacity-60`} />
-                                                            </button>
+                                                            </a>
                                                         );
                                                     })}
                                                 </div>
