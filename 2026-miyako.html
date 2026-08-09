@@ -52,9 +52,13 @@
             const headerImageUrl = "https://images.unsplash.com/photo-1618270707842-748e8faafa3c?fm=jpg&q=80&w=1600&auto=format&fit=crop";
 
             const openMap = (url) => { 
-                if (url) {
+                if (!url) return;
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                if (isMobile) {
+                    window.location.href = url;
+                } else {
                     window.open(url, '_blank', 'noopener,noreferrer');
-                } 
+                }
             };
 
             const parseOptionName = (name) => {
