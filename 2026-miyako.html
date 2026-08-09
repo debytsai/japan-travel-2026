@@ -96,17 +96,17 @@
                     day: 1, dateLabel: "2026.10.04 Sun", navDate: "10/4", weekday: "Sun", title: "抵達宮古島與會合", location: "宮古島",
                     weather: { high: "28°C", low: "24°C", desc: "晴時多雲", rain: "10%" },
                     events: [
-                        { type: "flight", time: "07:20", title: "台中組 JX308 起飛", flightInfo: { from: "RMQ 台中", to: "SHI 下地島", depTime: "07:20", arrTime: "09:35", terminal: "Terminal 2" }, emoji: "✈️" },
+                        { type: "flight", time: "07:20", title: "台中組起飛", flightInfo: { from: "RMQ 台中", to: "SHI 下地島", depTime: "07:20", arrTime: "09:35", fromTerminal: "Terminal 2", flightNo: "JX308" }, emoji: "✈️" },
                         { type: "transport", tag: "Transport", time: "10:00", title: "台中組租車取車", desc: "pine 下地島空港店取車，三天共 ¥ 48,200", emoji: "🚗" },
                         { type: "sightseeing", tag: "Sightseeing", title: "國仲商店", desc: "下地島稍作休息", location: "https://maps.app.goo.gl/9NEBUoKAQ1aDK17DA", emoji: "☕" },
                         { type: "sightseeing", tag: "Sightseeing", title: "17 END Beach", desc: "下地島漂亮海灘先玩玩水", location: "https://maps.app.goo.gl/9tHkkAmfbX1eZwzw5", emoji: "🏖️" },
                         { type: "food", tag: "Lunch", title: "午餐選項", isList: true, options: [
-                            { name: "漢堡 川滿商店", url: "https://maps.app.goo.gl/2kvD6jfFUju7yr278" },
+                            { name: "漢堡 川滿商店", url: "https://maps.app.goo.gl/3r1jPigGandEEJdC9" },
                             { name: "夏威夷料理 lot.", url: "https://maps.app.goo.gl/PPuopnY1R2sGFxd88" },
                             { name: "Slowtime Van", url: "https://maps.app.goo.gl/FgXe5tAL3oPBEikc8" },
                             { name: "Café Uesuya", url: "https://maps.app.goo.gl/Hj1dQUbAgKtqobtJA" }
                         ], emoji: "🍔" },
-                        { type: "flight", time: "10:40", title: "林董夫妻 JX890 起飛", flightInfo: { from: "TPE 台北", to: "SHI 下地島", depTime: "10:40", arrTime: "13:00", terminal: "Terminal 1" }, emoji: "✈️" },
+                        { type: "flight", time: "10:40", title: "台北組起飛", flightInfo: { from: "TPE 台北", to: "SHI 下地島", depTime: "10:40", arrTime: "13:00", fromTerminal: "Terminal 1", flightNo: "JX890" }, emoji: "✈️" },
                         { type: "transport", tag: "Transport", time: "13:30", title: "林董夫妻租車取車", desc: "pine 下地島空港店取車，三天共 ¥ 44,620，午後林董夫妻會合！", emoji: "🚗" },
                         { type: "food", tag: "Coffee", title: "PALI GALLERY / SR COFFEE MIYAKO", desc: "宮古島最期待的時髦咖啡廳！", location: "https://maps.app.goo.gl/xJ1sr6ZM29f5Ckeq7", emoji: "☕" },
                         { type: "hotel", tag: "Accommodation", time: "15:00", title: "HOTEL LOCUS check in", desc: "D&J：兩晚 CORNER VIEW TWIN 共 ¥ 66,240（不含餐）", location: "https://maps.app.goo.gl/HaUx1YjvVDkppDzj9", emoji: "🏨" },
@@ -135,7 +135,7 @@
                         { type: "sightseeing", tag: "Sightseeing", title: "與那霸前濱海灘", desc: "號稱東亞最美的白色沙灘！", location: "https://maps.app.goo.gl/KrtFoxHSbJNBHZab8", emoji: "🏖️" },
                         { type: "food", tag: "Dinner", time: "17:00", title: "晚餐：MIPAMA ES SU CASA", desc: "在可以看見海、日落和星空的海之家烤肉", location: "https://maps.app.goo.gl/FRkGf8rNeZhMD1Be6", emoji: "🥩" },
                         { type: "sightseeing", tag: "Sightseeing", title: "來間大橋觀星", desc: "若在與那霸前濱海灘沒觀到星，繼續轉往其他景點", location: "https://maps.app.goo.gl/9TofYCGLT7KNJD3P9", emoji: "🌌" },
-                        { type: "hotel", tag: "Accommodation", title: "夜宿：HOTEL LOCUS", desc: "續住第二晚", location: "https://www.uds-hotels.com/hotel-locus/", emoji: "🏨" },
+                        { type: "hotel", tag: "Accommodation", title: "夜宿：HOTEL LOCUS", desc: "續住第二晚", location: "https://maps.app.goo.gl/7UwxKiPwACXQQyZA6", emoji: "🏨" },
                         { type: "food", tag: "Dinner", title: "宵夜：島おでん トナリノ", desc: "好像有點厲害的時髦關東煮店～", location: "https://maps.app.goo.gl/uBBJ8eJM69yXRd9G9", emoji: "🍢" }
                     ]
                 },
@@ -157,8 +157,8 @@
                     day: 4, dateLabel: "2026.10.07 Wed", navDate: "10/7", weekday: "Wed", title: "宮古島返台 / 沖繩本島觀光", location: "宮古島 → 那霸",
                     weather: { high: "29°C", low: "25°C", desc: "晴時多雲", rain: "10%" },
                     events: [
-                        { type: "flight", title: "宮古島組返台", desc: "下地島機場還車", flightInfo: { from: "SHI 下地島", to: "RMQ 台中", depTime: "10:40", arrTime: "11:00", toTerminal: "Terminal 2", flightNo: "JX309" }, emoji: "🛫" },
-                        { type: "flight", time: "10:00", title: "沖繩組退房與轉往那霸", desc: "10:00 check out，宮古機場還車，繼續轉往那霸", flightInfo: { from: "MMY 宮古", to: "OKA 那霸", depTime: "12:10", arrTime: "13:00", flightNo: "JTA558" }, emoji: "✈️" },
+                        { type: "flight", title: "宮古島組返台", desc: "下地島機場還車", location: "https://maps.app.goo.gl/JWSu3qiSN9imzRz49", flightInfo: { from: "SHI 下地島", to: "RMQ 台中", depTime: "10:40", arrTime: "11:00", toTerminal: "Terminal 2", flightNo: "JX309" }, emoji: "🛫" },
+                        { type: "flight", time: "10:00", title: "沖繩組退房與轉往那霸", desc: "10:00 check out，宮古機場還車，繼續轉往那霸", location: "https://maps.app.goo.gl/J2XWf2G5K3ojchCW9", flightInfo: { from: "MMY 宮古", to: "OKA 那霸", depTime: "12:10", arrTime: "13:00", flightNo: "JTA558" }, emoji: "✈️" },
                         { type: "transport", tag: "Transport", title: "前往飯店", desc: "搭乘輕軌（ゆいレール）", transitInfo: { from: "那覇空港駅", to: "美栄橋駅" }, emoji: "🚈" },
                         { type: "hotel", tag: "Accommodation", title: "HOTEL STRATA NAHA", desc: "D&J 訂 Tatami Twin ¥ 20,880，先寄放行李", location: "https://maps.app.goo.gl/AUxdsGFob63vfTkU8", emoji: "🏨" },
                         { type: "transport", tag: "Transport", time: "14:00", title: "美麗島租車國際通店取車", desc: "一天＋3 小時共 ¥ 14,880，開始本島觀光", location: "https://maps.app.goo.gl/y7iNVAjVkpTNYbfd9", emoji: "🚗" },
@@ -166,14 +166,14 @@
                             { name: "塔可 King Tacos", url: "https://maps.app.goo.gl/GgGPo53wmeNRPicn7" },
                             { name: "A&W", url: "https://maps.app.goo.gl/iQpsNTACWobnbnov5" }
                         ], emoji: "🌮" },
-                        { type: "dessert", tag: "Dessert", title: "吃冰：神元商店", desc: "營業時間有限的漂亮日式刨冰店", location: "https://www.instagram.com/kamimoto_shouten", emoji: "🍧" },
+                        { type: "dessert", tag: "Dessert", title: "吃冰：神元商店", desc: "營業時間有限的漂亮日式刨冰店", location: "https://maps.app.goo.gl/3sEUpNBWmJKwcyAh6", emoji: "🍧" },
                         { type: "food", tag: "Coffee", title: "喝咖", isList: true, options: [
-                            { name: "豆ポレポレ", url: "https://www.instagram.com/mamepolepole/" },
+                            { name: "豆ポレポレ", url: "https://maps.app.goo.gl/JTy2UVKAiAePsSjr7" },
                             { name: "COFFEE SENTI コーヒーセンティ 浦添店", url: "https://maps.app.goo.gl/mSqeoynmR1vfTe8a6" }
                         ], emoji: "☕" },
-                        { type: "shopping", tag: "Shopping", title: "快樂採購：PARCO CITY", desc: "沖繩購物重點行程！買起來！", location: "https://www.parcocity.jp/", emoji: "🏬" },
+                        { type: "shopping", tag: "Shopping", title: "快樂採購：PARCO CITY", desc: "沖繩購物重點行程！買起來！", location: "https://maps.app.goo.gl/V2eQFz9JBoSdPeyR8", emoji: "🏬" },
                         { type: "food", tag: "Dinner", time: "19:30", title: "義大利菜 BACAR OKINAWA", desc: "沖繩最高分餐廳，義大利菜套餐", location: "https://maps.app.goo.gl/2326s2anzcKZUVbt7", emoji: "🍽️" },
-                        { type: "food", tag: "Dinner", title: "El Lequio", desc: "亞洲百大酒吧小酌一下", location: "https://www.instagram.com/el_lequio_okinawa/", emoji: "🍸" }
+                        { type: "food", tag: "Dinner", title: "酒吧：El Lequio", desc: "亞洲百大酒吧小酌一下", location: "https://maps.app.goo.gl/Gge9GRTS46NFiaUf7", emoji: "🍸" }
                     ]
                 },
                 {
@@ -181,9 +181,9 @@
                     weather: { high: "29°C", low: "24°C", desc: "晴朗", rain: "0%" },
                     events: [
                         { type: "food", tag: "Lunch", title: "早午餐", isList: true, options: [
-                            { name: "時髦沖繩麵 EIBUN", url: "https://sobaeibun.okinawa/" },
-                            { name: "咖啡輕食 HUU'S COFFEE", url: "https://www.instagram.com/huus_coffee/" },
-                            { name: "水果漢堡 LITOR", url: "https://www.instagram.com/litor_okinawa/" }
+                            { name: "時髦沖繩麵 EIBUN Tsuboya", url: "https://maps.app.goo.gl/JDVhxhBNzjsSqjDs7" },
+                            { name: "咖啡輕食 HUU'S COFFEE", url: "https://maps.app.goo.gl/86pdddBNPpH6tHn27" },
+                            { name: "水果漢堡 LITOR", url: "https://maps.app.goo.gl/urYGdCi4YLmoVaJ86" }
                         ], emoji: "🍜" },
                         { type: "sightseeing", tag: "Sightseeing", title: "建築探訪", isList: true, options: [
                             { name: "名護市役所", url: "https://maps.app.goo.gl/yMbJavVdbqo3VUfx8" },
@@ -192,7 +192,7 @@
                             { name: "那覇市役所", url: "https://maps.app.goo.gl/AoGkDVSjms1hfQM56" }
                         ], emoji: "🏛️" },
                         { type: "sightseeing", tag: "Sightseeing", title: "沖繩本島最後漫遊", desc: "國際通最後採買伴手禮", emoji: "🛍️" },
-                        { type: "transport", tag: "Transport", time: "17:00", title: "還車", desc: "回飯店拿行李", emoji: "🚗" },
+                        { type: "transport", tag: "Transport", time: "17:00", title: "還車", desc: "回飯店拿行李", location: "https://maps.app.goo.gl/y7iNVAjVkpTNYbfd9", emoji: "🚗" },
                         { type: "transport", tag: "Transport", time: "17:30", title: "前往機場", desc: "搭乘輕軌或計程車前往那霸機場（約15分鐘）", emoji: "🚕" },
                         { type: "flight", title: "搭機返台", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:10", arrTime: "20:50", toTerminal: "Terminal 2", flightNo: "JX313" }, emoji: "✈️" },
                         { type: "flight", title: "林董夫妻搭機返台", flightInfo: { from: "OKA 那霸", to: "TPE 台北", depTime: "20:20", arrTime: "20:55", toTerminal: "Terminal 2", flightNo: "BR185" }, emoji: "✈️" }
