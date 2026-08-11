@@ -57,7 +57,7 @@
 <body>
     <div id="splash" style="position:fixed;inset:0;background:#EDE6D3;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.35s ease;">
         <div style="text-align:center;">
-            <div style="width:56px;height:56px;border-radius:50%;background:#E3A72E;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:22px;">🌊</div>
+            <div style="width:56px;height:56px;border-radius:50%;background:#E3A72E;margin:0 auto 14px;"></div>
             <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.15em;color:#232323;opacity:0.45;font-weight:700;">LOADING</div>
         </div>
     </div>
@@ -185,7 +185,8 @@
                     weather: { high: "29°C", low: "25°C", desc: "晴時多雲", rain: "10%" },
                     events: [
                         { type: "flight", title: "宮古島組返台", desc: "下地島機場還車", location: "https://maps.app.goo.gl/JWSu3qiSN9imzRz49", flightInfo: { from: "SHI 下地島", to: "RMQ 台中", depTime: "10:40", arrTime: "11:00", toTerminal: "Terminal 2", flightNo: "JX309" }, emoji: "🛫" },
-                        { type: "flight", time: "10:00", title: "沖繩組退房與轉往那霸", desc: "10:00 check out，宮古機場還車，繼續轉往那霸", location: "https://maps.app.goo.gl/J2XWf2G5K3ojchCW9", flightInfo: { from: "MMY 宮古", to: "OKA 那霸", depTime: "12:10", arrTime: "13:00", flightNo: "JTA558" }, emoji: "✈️" },
+                        { type: "hotel", tag: "Accommodation", time: "10:00", title: "the rescape check out", desc: "享受飯店早餐和悠閒時光後出發機場", location: "https://maps.app.goo.gl/b9wZnVV2afAjEbXW9", emoji: "🏡" },
+                        { type: "flight", title: "沖繩組轉往那霸", desc: "宮古機場還車，繼續轉往那霸", location: "https://maps.app.goo.gl/J2XWf2G5K3ojchCW9", flightInfo: { from: "MMY 宮古", to: "OKA 那霸", depTime: "12:10", arrTime: "13:00", flightNo: "JTA558" }, emoji: "✈️" },
                         { type: "transport", tag: "Transport", title: "前往飯店", desc: "搭乘輕軌（ゆいレール）", transitInfo: { from: "那覇空港駅", to: "美栄橋駅" }, emoji: "🚈" },
                         { type: "hotel", tag: "Accommodation", title: "HOTEL STRATA NAHA", desc: "D&J 訂 Tatami Twin ¥ 20,880，先寄放行李", location: "https://maps.app.goo.gl/AUxdsGFob63vfTkU8", emoji: "🏨" },
                         { type: "transport", tag: "Transport", time: "14:00", title: "美麗島租車國際通店取車", desc: "一天＋3 小時共 ¥ 14,880，開始本島觀光", location: "https://maps.app.goo.gl/y7iNVAjVkpTNYbfd9", emoji: "🚗" },
@@ -207,6 +208,7 @@
                     day: 5, dateLabel: "2026.10.08 Thu", navDate: "10/8", weekday: "Thu", title: "沖繩本島觀光與歸途", location: "那霸市 → 台灣",
                     weather: { high: "29°C", low: "24°C", desc: "晴朗", rain: "0%" },
                     events: [
+                        { type: "hotel", tag: "Accommodation", time: "11:00", title: "HOTEL STRATA NAHA check out", desc: "寄放行李後出發！", location: "https://maps.app.goo.gl/AUxdsGFob63vfTkU8", emoji: "🏨" },
                         { type: "food", tag: "Lunch", title: "早午餐", isList: true, options: [
                             { name: "時髦沖繩麵 EIBUN Tsuboya", url: "https://maps.app.goo.gl/JDVhxhBNzjsSqjDs7" },
                             { name: "咖啡輕食 HUU'S COFFEE", url: "https://maps.app.goo.gl/86pdddBNPpH6tHn27" },
@@ -238,11 +240,47 @@
             };
 
             const [activeDay, setActiveDay] = useState(getInitialDay);
-            const currentDayData = schedule[activeDay] || schedule[0]; 
+            const currentDayData = schedule[activeDay] || schedule[0];
+
+            // 各天對應座標（宮古島 or 那霸）
+            const weatherCoords = {
+                1: { lat: 24.80, lon: 125.28 }, // 宮古島
+                2: { lat: 24.80, lon: 125.28 },
+                3: { lat: 24.80, lon: 125.28 },
+                4: { lat: 26.21, lon: 127.68 }, // 那霸
+                5: { lat: 26.21, lon: 127.68 },
+            };
+            const tripDates = { 1: "2026-10-04", 2: "2026-10-05", 3: "2026-10-06", 4: "2026-10-07", 5: "2026-10-08" };
+
+            const [liveWeather, setLiveWeather] = useState({});
 
             useEffect(() => {
                 window.scrollTo(0, 0);
+                const day = currentDayData.day;
+                if (!day || liveWeather[day]) return;
+                const coords = weatherCoords[day];
+                const date = tripDates[day];
+                if (!coords || !date) return;
+                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&start_date=${date}&end_date=${date}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        const d = data.daily;
+                        if (!d) return;
+                        setLiveWeather(prev => ({
+                            ...prev,
+                            [day]: {
+                                high: Math.round(d.temperature_2m_max[0]) + "°C",
+                                low: Math.round(d.temperature_2m_min[0]) + "°C",
+                                rain: (d.precipitation_probability_max[0] ?? 0) + "%",
+                            }
+                        }));
+                    })
+                    .catch(() => {});
             }, [activeDay]);
+
+            const weather = (currentDayData.day && liveWeather[currentDayData.day])
+                ? { ...currentDayData.weather, ...liveWeather[currentDayData.day] }
+                : currentDayData.weather;
 
             return (
                 <div className="min-h-screen bg-[#DCD3BA] sm:py-8">
@@ -302,15 +340,15 @@
                                     <div className="flex items-center gap-3">
                                         <div className="relative p-2 bg-[#3D7A70] text-white" style={{ borderRadius: '62% 38% 45% 55% / 40% 55% 45% 60%' }}><Icon name="cloud-sun" size={18} /></div>
                                         <div>
-                                            <h4 className="font-kicker text-xs font-bold text-[#232323] uppercase">{currentDayData.weather.desc}</h4>
-                                            <p className="text-[10px] font-bold text-[#232323]/50">降雨機率 {currentDayData.weather.rain}</p>
+                                            <h4 className="font-kicker text-xs font-bold text-[#232323] uppercase">{weather.desc}</h4>
+                                            <p className="text-[10px] font-bold text-[#232323]/50">降雨機率 {weather.rain}</p>
                                         </div>
                                     </div>
                                     <div className="text-right">
                                         <div className="flex items-baseline gap-1">
-                                            <span className="font-kicker text-xl font-bold text-[#D3441F] tracking-tighter">{currentDayData.weather.high}</span>
+                                            <span className="font-kicker text-xl font-bold text-[#D3441F] tracking-tighter">{weather.high}</span>
                                             <span className="text-[#232323]/25 font-black mx-0.5">/</span>
-                                            <span className="font-kicker text-base font-bold text-[#3D7A70] tracking-tighter">{currentDayData.weather.low}</span>
+                                            <span className="font-kicker text-base font-bold text-[#3D7A70] tracking-tighter">{weather.low}</span>
                                         </div>
                                     </div>
                                 </div>
