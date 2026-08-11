@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 秋宮古島與沖繩旅行</title>
+    <title>2026 秋 宮古島&amp;沖繩旅遊手冊</title>
 
     <!-- Open Graph / Link Preview -->
-    <meta property="og:title" content="2026 秋宮古島與沖繩旅行">
-    <meta property="og:description" content="宮古島 & 沖繩家族旅行行程手冊">
+    <meta property="og:title" content="2026 秋 宮古島&amp;沖繩旅遊手冊">
+    <meta property="og:description" content="Let's go to MIYAKO!">
     <meta property="og:image" content="https://duk.tw/LVDxeK.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2026 秋宮古島與沖繩旅行">
+    <meta name="twitter:title" content="2026 秋 宮古島&amp;沖繩旅遊手冊">
     <meta name="twitter:image" content="https://duk.tw/LVDxeK.png">
     
     <!-- PWA & Mobile Icons -->
@@ -55,6 +55,12 @@
     </style>
 </head>
 <body>
+    <div id="splash" style="position:fixed;inset:0;background:#EDE6D3;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.35s ease;">
+        <div style="text-align:center;">
+            <div style="width:56px;height:56px;border-radius:50%;background:#E3A72E;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:22px;">🌊</div>
+            <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.15em;color:#232323;opacity:0.45;font-weight:700;">LOADING</div>
+        </div>
+    </div>
     <div id="root"></div>
 
     <script type="text/babel">
@@ -215,8 +221,8 @@
                         { type: "sightseeing", tag: "Sightseeing", title: "沖繩本島最後漫遊", desc: "國際通最後採買伴手禮", emoji: "🛍️" },
                         { type: "transport", tag: "Transport", time: "17:00", title: "還車", desc: "回飯店拿行李", location: "https://maps.app.goo.gl/y7iNVAjVkpTNYbfd9", emoji: "🚗" },
                         { type: "transport", tag: "Transport", time: "17:30", title: "前往機場", desc: "搭乘輕軌或計程車前往那霸機場（約15分鐘）", emoji: "🚕" },
-                        { type: "flight", title: "二花搭機返台", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:10", arrTime: "20:50", toTerminal: "Terminal 2", flightNo: "JX313" }, emoji: "✈️" },
-                        { type: "flight", title: "台北組搭機返台", flightInfo: { from: "OKA 那霸", to: "TPE 台北", depTime: "20:20", arrTime: "20:55", toTerminal: "Terminal 2", flightNo: "BR185" }, emoji: "✈️" }
+                        { type: "flight", title: "搭機返台", flightInfo: { from: "OKA 那霸", to: "RMQ 台中", depTime: "20:10", arrTime: "20:50", toTerminal: "Terminal 2", flightNo: "JX313" }, emoji: "✈️" },
+                        { type: "flight", title: "林董夫妻搭機返台", flightInfo: { from: "OKA 那霸", to: "TPE 台北", depTime: "20:20", arrTime: "20:55", toTerminal: "Terminal 2", flightNo: "BR185" }, emoji: "✈️" }
                     ]
                 }
             ];
@@ -423,6 +429,14 @@
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<TripApp />);
+
+        const splash = document.getElementById('splash');
+        if (splash) {
+            requestAnimationFrame(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 350);
+            });
+        }
     </script>
 </body>
 </html>
