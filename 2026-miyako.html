@@ -110,12 +110,13 @@
                     day: 0, dateLabel: "行前注意事項 & 採買", navDate: "Notice", title: "行前須知與採買指南", location: "宮古島 / 沖繩",
                     weather: { high: "27°C", low: "23°C", desc: "秋季舒適", rain: "10%" },
                     events: [
-                        { type: "notice", tag: "Notice", title: "必帶物品提醒", desc: "• 有浮潛＆泳池，請記得攜帶泳裝\n• 可以開車的人記得攜帶駕照譯本＆駕照正本", emoji: "🎒" },
+                        { type: "notice", tag: "Notice", title: "必帶物品提醒", desc: "• 有浮潛＆泳池，請記得攜帶泳裝\n• 可以開車的人記得攜帶駕照譯本＆駕照正本\n• 可能會有些地方不能使用 Apple Pay，記得攜帶信用卡本卡，或多帶一點現金", emoji: "🎒" },
                         { type: "notice", tag: "Notice", title: "宮古島採買推薦地點", desc: "血拼與補給好去處：", isList: true, options: [
                             { name: "San-A Miyakojima City (內有松本清、阿卡醬、無印良品)", url: "https://maps.app.goo.gl/fEUScbuxtUZZuykv9" },
                             { name: "永旺城宮古南購物中心 (內有 Village Vanguard、西松屋、大創、家電行)", url: "https://maps.app.goo.gl/wFpckmEraFzBQiWY6" },
                             { name: "唐吉訶德 宮古島店", url: "https://maps.app.goo.gl/bnjWaykK6omdUgwg7" }
                         ], emoji: "🛒" },
+                        { type: "notice", tag: "Notice", title: "分帳與記帳", desc: "旅途中的花費都在這裡記錄", link: "https://slice.fusion-labs.cc/join/VGcuMPweD5", emoji: "🧾" },
                         { type: "notice", tag: "Notice", title: "Google Map 景點清單", desc: "我建了一個宮古島 google map 清單《宮古島聽說很blue》，歡迎大家自由時間自由前往！", location: "https://maps.app.goo.gl/NkjATjVr1n38P5G66", emoji: "🗺️" }
                     ]
                 },
@@ -380,6 +381,7 @@
                                                     {event.title}
                                                 </h3>
                                                 {event.location && <a href={event.location} target={isMobile ? '_self' : '_blank'} rel="noopener noreferrer" className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></a>}
+                                                {event.link && <a href={event.link} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 bg-[#232323]/8 text-[#232323] active:bg-[#232323] active:text-[#F5F0E4]"><Icon name="external-link" size={15} strokeWidth={2} /></a>}
                                             </div>
 
                                             {event.desc && <p className="text-[#232323]/70 text-xs mt-2 font-medium leading-relaxed whitespace-pre-line">{event.desc}</p>}
