@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 秋 東京・富士山旅遊手冊</title>
+
+    <!-- Open Graph / Link Preview -->
+    <meta property="og:title" content="2026 秋 東京・富士山旅遊手冊">
+    <meta property="og:description" content="Let's go to FUJI!">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1761442663623-ac83c6e911d3?fm=jpg&q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2026 秋 東京・富士山旅遊手冊">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1761442663623-ac83c6e911d3?fm=jpg&q=80&w=1200&auto=format&fit=crop">
+
+    <!-- PWA & Mobile Icons -->
+    <link rel="apple-touch-icon" href="https://duk.tw/3oq9gw.png">
+    <link rel="icon" type="image/png" href="https://duk.tw/3oq9gw.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%222026%20%E6%9D%B1%E4%BA%AC%E3%83%BB%E5%AF%8C%E5%A3%AB%E5%B1%B1%E6%97%85%E9%81%8A%22%2C%22short_name%22%3A%22%E5%AF%8C%E5%A3%AB%E5%B1%B12026%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fduk.tw%2F3oq9gw.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fduk.tw%2F3oq9gw.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22theme_color%22%3A%22%231F4E68%22%2C%22background_color%22%3A%22%23FFFFFF%22%7D">
+
+    <!-- Mobile Optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#1F4E68">
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #FFFFFF;
+            --paper-dim: #EAF2F1;
+            --ink: #1E2D3B;
+            --blue: #2E6F93;
+            --blue-deep: #1F4E68;
+            --green: #3A7A5A;
+            --red: #C0392B;
+            --line: #DCE4E6;
+        }
+        body { font-family: 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; background-color: var(--paper-dim); color: var(--ink); }
+        .font-bubble { font-family: 'Baloo 2', 'Noto Sans TC', sans-serif; font-weight: 800; }
+        .font-kicker { font-family: 'Oswald', sans-serif; letter-spacing: 0.06em; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-slide-up { animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
+</head>
+<body>
+    <div id="splash" style="position:fixed;inset:0;background:#FFFFFF;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.35s ease;">
+        <div style="text-align:center;">
+            <div style="width:56px;height:56px;border-radius:50%;background:#2E6F93;margin:0 auto 14px;"></div>
+            <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.15em;color:#1E2D3B;opacity:0.4;font-weight:700;">LOADING</div>
+        </div>
+    </div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const Icon = ({ name, size = 18, className = "", fill = "none", strokeWidth = 2 }) => {
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, [name]);
+            return <i data-lucide={name} style={{ width: size, height: size }} className={className} strokeWidth={strokeWidth} fill={fill}></i>;
+        };
+
+        const TripApp = () => {
+            const headerImageUrl = "https://images.unsplash.com/photo-1761442663623-ac83c6e911d3?fm=jpg&q=80&w=1600&auto=format&fit=crop";
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            const parseOptionName = (name) => {
+                const match = name.match(/^(.*?)[\s]*[（(](.+)[）)]\s*$/);
+                if (match) {
+                    return { title: match[1].trim(), note: match[2].trim() };
+                }
+                return { title: name, note: null };
+            };
+
+            const getTagStyle = (tag) => {
+                const styles = {
+                    'Accommodation': { accent: '#1F4E68', bg: 'bg-[#1F4E68]/[0.07]', border: 'border-[#1F4E68]/25', text: 'text-[#1F4E68]', chip: 'bg-[#1F4E68] text-white', btn: 'bg-[#1F4E68]/10 text-[#1F4E68] active:bg-[#1F4E68] active:text-white', icon: 'home' },
+                    'Onsen': { accent: '#2F8A7A', bg: 'bg-[#2F8A7A]/[0.08]', border: 'border-[#2F8A7A]/25', text: 'text-[#2F8A7A]', chip: 'bg-[#2F8A7A] text-white', btn: 'bg-[#2F8A7A]/10 text-[#2F8A7A] active:bg-[#2F8A7A] active:text-white', icon: 'droplet' },
+                    'Coffee': { accent: '#5F7A4E', bg: 'bg-[#5F7A4E]/[0.08]', border: 'border-[#5F7A4E]/25', text: 'text-[#5F7A4E]', chip: 'bg-[#5F7A4E] text-white', btn: 'bg-[#5F7A4E]/10 text-[#5F7A4E] active:bg-[#5F7A4E] active:text-white', icon: 'coffee' },
+                    'Dessert': { accent: '#4E8A63', bg: 'bg-[#4E8A63]/[0.08]', border: 'border-[#4E8A63]/25', text: 'text-[#4E8A63]', chip: 'bg-[#4E8A63] text-white', btn: 'bg-[#4E8A63]/10 text-[#4E8A63] active:bg-[#4E8A63] active:text-white', icon: 'ice-cream' },
+                    'Activity': { accent: '#2F7A6E', bg: 'bg-[#2F7A6E]/[0.08]', border: 'border-[#2F7A6E]/25', text: 'text-[#2F7A6E]', chip: 'bg-[#2F7A6E] text-white', btn: 'bg-[#2F7A6E]/10 text-[#2F7A6E] active:bg-[#2F7A6E] active:text-white', icon: 'sparkles' },
+                    'Lunch': { accent: '#3A7A5A', bg: 'bg-[#3A7A5A]/[0.08]', border: 'border-[#3A7A5A]/25', text: 'text-[#3A7A5A]', chip: 'bg-[#3A7A5A] text-white', btn: 'bg-[#3A7A5A]/10 text-[#3A7A5A] active:bg-[#3A7A5A] active:text-white', icon: 'utensils' },
+                    'Dinner': { accent: '#C0392B', bg: 'bg-[#C0392B]/[0.07]', border: 'border-[#C0392B]/25', text: 'text-[#C0392B]', chip: 'bg-[#C0392B] text-white', btn: 'bg-[#C0392B]/10 text-[#C0392B] active:bg-[#C0392B] active:text-white', icon: 'utensils' },
+                    'Sightseeing': { accent: '#2E6F93', bg: 'bg-[#2E6F93]/[0.08]', border: 'border-[#2E6F93]/25', text: 'text-[#2E6F93]', chip: 'bg-[#2E6F93] text-white', btn: 'bg-[#2E6F93]/10 text-[#2E6F93] active:bg-[#2E6F93] active:text-white', icon: 'camera' },
+                    'Shopping': { accent: '#4C7A63', bg: 'bg-[#4C7A63]/[0.08]', border: 'border-[#4C7A63]/25', text: 'text-[#4C7A63]', chip: 'bg-[#4C7A63] text-white', btn: 'bg-[#4C7A63]/10 text-[#4C7A63] active:bg-[#4C7A63] active:text-white', icon: 'shopping-bag' },
+                    'Transport': { accent: '#52829C', bg: 'bg-[#52829C]/[0.08]', border: 'border-[#52829C]/25', text: 'text-[#52829C]', chip: 'bg-[#52829C] text-white', btn: 'bg-[#52829C]/10 text-[#52829C] active:bg-[#52829C] active:text-white', icon: 'car' },
+                    'Morning': { accent: '#4E8A63', bg: 'bg-[#4E8A63]/[0.10]', border: 'border-[#4E8A63]/30', text: 'text-[#3A6B4D]', chip: 'bg-[#4E8A63] text-white', btn: 'bg-[#4E8A63]/15 text-[#3A6B4D] active:bg-[#4E8A63] active:text-white', icon: 'sun' },
+                    'Notice': { accent: '#1E2D3B', bg: 'bg-[#1E2D3B]/[0.05]', border: 'border-[#1E2D3B]/20', text: 'text-[#1E2D3B]', chip: 'bg-[#1E2D3B] text-white', btn: 'bg-[#1E2D3B]/8 text-[#1E2D3B] active:bg-[#1E2D3B] active:text-white', icon: 'info' },
+                    'Default': { accent: '#2E6F93', bg: 'bg-[#2E6F93]/[0.08]', border: 'border-[#2E6F93]/25', text: 'text-[#2E6F93]', chip: 'bg-[#2E6F93] text-white', btn: 'bg-[#2E6F93]/10 text-[#2E6F93] active:bg-[#2E6F93] active:text-white', icon: 'map-pin' }
+                };
+                return styles[tag] || styles['Default'];
+            };
+
+            const schedule = [
+                {
+                    day: 1, dateLabel: "2026.11.12 Thu", navDate: "11/12", weekday: "Thu", title: "飛抵東京，日本橋入住", location: "台北 → 東京",
+                    weather: { high: "18°C", low: "11°C", desc: "晴朗涼爽", rain: "10%" },
+                    events: [
+                        { type: "flight", time: "13:30", title: "松山→羽田", flightInfo: { from: "TSA 台北松山", to: "HND 東京羽田", depTime: "13:30", arrTime: "17:30", duration: "4小時", fromTerminal: "Terminal 1", toTerminal: "Terminal 2", flightNo: "NH852" }, emoji: "✈️" },
+                        { type: "hotel", tag: "Accommodation", title: "MIMARU SUITES 東京日本橋 check in", desc: "1泊4名税込 92,643円（官網訂）", location: "https://maps.app.goo.gl/AsjeKG3tK4zkvGBAA", emoji: "🏨" },
+                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定，選項：", isList: true, options: [
+                            { name: "俺の割烹 銀座本店？", url: "https://maps.app.goo.gl/MDQqhPoqECszUt1X6" }
+                        ], emoji: "🍽️" }
+                    ]
+                },
+                {
+                    day: 2, dateLabel: "2026.11.13 Fri", navDate: "11/13", weekday: "Fri", title: "河口湖賞楓，入住富士溫泉旅館", location: "三島 → 河口湖",
+                    weather: { high: "15°C", low: "5°C", desc: "山區早晚溫差大", rain: "20%" },
+                    events: [
+                        { type: "hotel", tag: "Accommodation", time: "10:00", title: "MIMARU SUITES 東京日本橋 check out", emoji: "🧳" },
+                        { type: "transport", tag: "Transport", title: "計程車前往東京車站", emoji: "🚕" },
+                        { type: "transport", tag: "Transport", title: "新幹線前往三島", transitInfo: { train: "ひかり709号", from: "東京", to: "三島", dep: "11:03", arr: "11:45", duration: "42分鐘" }, emoji: "🚄" },
+                        { type: "transport", tag: "Transport", title: "三島租車", desc: "前往河口湖附近經典景點逛逛拍照", emoji: "🚗" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "富士吉田 レトロ商店街", location: "https://maps.app.goo.gl/5Y5PmHbTDzAv9p4s8", emoji: "🏮" },
+                        { type: "food", tag: "Lunch", title: "午餐", isList: true, options: [
+                            { name: "FabCafe Fuji？", url: "https://maps.app.goo.gl/smxhAidjEWBJ44iX7" },
+                            { name: "toe？", url: "https://maps.app.goo.gl/UFWj38rUk8HcPYM1A" }
+                        ], emoji: "🍽️" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "新倉富士淺間神社", location: "https://maps.app.goo.gl/28TiQ6qWE4tkvBYB7", emoji: "⛩️" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "大石公園", location: "https://maps.app.goo.gl/ys3M4Bwyitgz6Xkd8", emoji: "🌼" },
+                        { type: "transport", tag: "Transport", time: "15:00", title: "啟程前往飯店", desc: "路程約30分鐘", emoji: "🚗" },
+                        { type: "hotel", tag: "Onsen", title: "強羅花壇富士 check in", desc: "夕朝食付1泊4名税込 367,260円（一休已訂）", location: "https://maps.app.goo.gl/uuU1W6ks4rx7K7cx6", link: "https://www.gorakadan.com/fuji", emoji: "♨️" }
+                    ]
+                },
+                {
+                    day: 3, dateLabel: "2026.11.14 Sat", navDate: "11/14", weekday: "Sat", title: "山中湖・御殿場，轉往熱海溫泉", location: "山中湖 → 熱海",
+                    weather: { high: "17°C", low: "9°C", desc: "沿海溫和", rain: "10%" },
+                    events: [
+                        { type: "hotel", tag: "Onsen", time: "11:00", title: "強羅花壇富士 check out", emoji: "♨️" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "山中湖看天鵝", location: "https://maps.app.goo.gl/3gzeggzLJwfiBj2P8", emoji: "🦢" },
+                        { type: "shopping", tag: "Shopping", title: "御殿場 Outlet", desc: "看大家有沒有想逛", location: "https://maps.app.goo.gl/n5qALuHDDNgHZt8Z6", emoji: "🛍️" },
+                        { type: "transport", tag: "Transport", title: "三島還車", emoji: "🚗" },
+                        { type: "food", tag: "Lunch", title: "午餐", isList: true, options: [
+                            { name: "うなぎの坂東？", url: "https://maps.app.goo.gl/6166si16NnwFpkJX7" },
+                            { name: "Otro？", url: "https://maps.app.goo.gl/etNXwGs2qDVyPaMP8" }
+                        ], emoji: "🍽️" },
+                        { type: "food", tag: "Coffee", title: "喝個咖", isList: true, options: [
+                            { name: "awatenvou？（也有午餐，可電話預約）", url: "https://maps.app.goo.gl/pEFr84m6Wt8p5E3H8" },
+                            { name: "loska？", url: "https://maps.app.goo.gl/6rtzLx6cmN6WMZuC6" }
+                        ], emoji: "☕" },
+                        { type: "transport", tag: "Transport", title: "新幹線前往熱海", transitInfo: { train: "こだま826号", from: "三島", to: "熱海", dep: "15:24", arr: "15:31", duration: "7分鐘" }, footnote: "開車要40分鐘且聽說是山路路況不好\n也可搭東海道本線 15:19–15:33（14分鐘）", emoji: "🚄" },
+                        { type: "transport", tag: "Transport", time: "15:45", title: "預約免費接送", emoji: "🚐" },
+                        { type: "hotel", tag: "Onsen", title: "熱海 SHIJIMA ATAMI check in", desc: "夕朝食付2泊4名税込 430,635円（一休已訂，出發前記得變更為線上付款）", location: "https://maps.app.goo.gl/wPyZCUT9P42iFB889", link: "https://shijima-atami.com/", emoji: "♨️" }
+                    ]
+                },
+                {
+                    day: 4, dateLabel: "2026.11.15 Sun", navDate: "11/15", weekday: "Sun", title: "香草玫瑰園與熱海美術館", location: "熱海",
+                    weather: { high: "17°C", low: "9°C", desc: "晴時多雲", rain: "10%" },
+                    events: [
+                        { type: "sightseeing", tag: "Sightseeing", title: "赤尾香草玫瑰園（ACAO）", location: "https://maps.app.goo.gl/gCWNJaLE8yxBV6426", link: "https://acao.jp/en", emoji: "🌹" },
+                        { type: "food", tag: "Lunch", title: "CODA ROSSA", desc: "香草玫瑰園區內", location: "https://maps.app.goo.gl/u4QsHgMhdWd9a1eWA", emoji: "🍝" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "MOA熱海美術館", location: "https://maps.app.goo.gl/3wamnPgipr7G5sV98", link: "https://www.moaart.or.jp/", emoji: "🖼️" },
+                        { type: "hotel", tag: "Onsen", title: "夜宿：熱海 SHIJIMA ATAMI", desc: "續住第二晚", location: "https://maps.app.goo.gl/wPyZCUT9P42iFB889", link: "https://shijima-atami.com/", emoji: "♨️" }
+                    ]
+                },
+                {
+                    day: 5, dateLabel: "2026.11.16 Mon", navDate: "11/16", weekday: "Mon", title: "江之浦測候所，返回東京", location: "熱海 → 東京",
+                    weather: { high: "18°C", low: "10°C", desc: "秋高氣爽", rain: "10%" },
+                    events: [
+                        { type: "hotel", tag: "Onsen", time: "11:00", title: "熱海 SHIJIMA ATAMI check out", emoji: "♨️" },
+                        { type: "transport", tag: "Transport", title: "東海道本線前往根府川", transitInfo: { train: "東海道本線", from: "熱海", to: "根府川", dep: "11:04", arr: "11:18", duration: "14分鐘" }, emoji: "🚃" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "江之浦測候所", desc: "我去過了但覺得很漂亮，可以再去看看", location: "https://maps.app.goo.gl/mcw8W3qAeqyw54Yw9", link: "https://www.odawara-af.com/zh-hant/enoura/", emoji: "🌊" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "回熱海拿行李，車站附近吃飯晃晃", desc: "平和通り名店街、仲見世通り商店街", location: "https://maps.app.goo.gl/Y2VurVK8qKUrvhgP7", emoji: "🚶" },
+                        { type: "food", tag: "Lunch", title: "午餐", desc: "或其他，就近解決", isList: true, options: [
+                            { name: "囲炉茶屋", url: "https://maps.app.goo.gl/xr5QuD1g7qstnJV28" },
+                            { name: "米と魚熱海店", url: "https://maps.app.goo.gl/ZTqjSWywxjVbz9Dx5" }
+                        ], emoji: "🍽️" },
+                        { type: "transport", tag: "Transport", title: "新幹線返回東京", transitInfo: { train: "こだま828号", from: "熱海", to: "東京", dep: "16:02", arr: "16:48", duration: "46分鐘" }, emoji: "🚄" },
+                        { type: "hotel", tag: "Accommodation", title: "MIMARU SUITES 東京日本橋 check in", desc: "3泊4名税込 284,919円（官網訂）", location: "https://maps.app.goo.gl/AsjeKG3tK4zkvGBAA", emoji: "🏨" },
+                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定", emoji: "🍽️" }
+                    ]
+                },
+                {
+                    day: 6, dateLabel: "2026.11.17 Tue", navDate: "11/17", weekday: "Tue", title: "東京自由活動日", location: "東京",
+                    weather: { high: "18°C", low: "10°C", desc: "晴朗", rain: "0%" },
+                    events: [
+                        { type: "notice", tag: "Notice", title: "自由活動日", desc: "各自安排，晚餐前東京市區集合", emoji: "🌤️" },
+                        { type: "activity", tag: "Activity", time: "10:00", title: "Deby：做玻璃", desc: "10:00〜12:30", emoji: "🔥" },
+                        { type: "activity", tag: "Activity", title: "各自待辦事項", isList: true, options: [
+                            { name: "Tony：KAIT(カイト)広場", url: "https://www.kait.jp/about/equipment/kaithiroba/" },
+                            { name: "Deby：剪頭髮" },
+                            { name: "Deby：OZEKI Tokyo Gallery", url: "https://maps.app.goo.gl/K36YNVusF45Mm6ND6" },
+                            { name: "媽：海渡" },
+                            { name: "爸：回し寿司活", url: "https://maps.app.goo.gl/tKDmsykXHsmfUnBf8" }
+                        ], emoji: "📝" },
+                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定", emoji: "🍽️" }
+                    ]
+                },
+                {
+                    day: 7, dateLabel: "2026.11.18 Wed", navDate: "11/18", weekday: "Wed", title: "東京自由活動日", location: "東京",
+                    weather: { high: "17°C", low: "10°C", desc: "多雲", rain: "20%" },
+                    events: [
+                        { type: "notice", tag: "Notice", title: "自由活動日", emoji: "🍃" },
+                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定", emoji: "🍽️" }
+                    ]
+                },
+                {
+                    day: 8, dateLabel: "2026.11.19 Thu", navDate: "11/19", weekday: "Thu", title: "東京返台", location: "東京 → 台北",
+                    weather: { high: "17°C", low: "10°C", desc: "晴時多雲", rain: "10%" },
+                    events: [
+                        { type: "flight", time: "12:40", title: "羽田→松山", flightInfo: { from: "HND 東京羽田", to: "TSA 台北松山", depTime: "12:40", arrTime: "15:50", duration: "3小時10分", fromTerminal: "Terminal 2", toTerminal: "Terminal 1", flightNo: "NH853" }, emoji: "🛫" }
+                    ]
+                }
+            ];
+
+            const getInitialDay = () => {
+                const tripDates = ["2026-11-12", "2026-11-13", "2026-11-14", "2026-11-15", "2026-11-16", "2026-11-17", "2026-11-18", "2026-11-19"];
+                const today = new Date();
+                const todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+                const matchIndex = tripDates.indexOf(todayStr);
+                if (matchIndex !== -1) return matchIndex;
+                if (todayStr > tripDates[tripDates.length - 1]) return tripDates.length - 1;
+                return 0;
+            };
+
+            const [activeDay, setActiveDay] = useState(getInitialDay);
+            const currentDayData = schedule[activeDay] || schedule[0];
+
+            // 各天對應座標（東京 / 河口湖・富士 / 熱海）
+            const weatherCoords = {
+                1: { lat: 35.6812, lon: 139.7671 }, // 東京
+                2: { lat: 35.3061, lon: 138.9330 }, // 河口湖・御殿場周邊
+                3: { lat: 35.0954, lon: 139.0739 }, // 熱海
+                4: { lat: 35.0954, lon: 139.0739 }, // 熱海
+                5: { lat: 35.6812, lon: 139.7671 }, // 東京
+                6: { lat: 35.6812, lon: 139.7671 }, // 東京
+                7: { lat: 35.6812, lon: 139.7671 }, // 東京
+                8: { lat: 35.6812, lon: 139.7671 }, // 東京
+            };
+            const tripDates = { 1: "2026-11-12", 2: "2026-11-13", 3: "2026-11-14", 4: "2026-11-15", 5: "2026-11-16", 6: "2026-11-17", 7: "2026-11-18", 8: "2026-11-19" };
+
+            const [liveWeather, setLiveWeather] = useState({});
+
+            useEffect(() => {
+                window.scrollTo(0, 0);
+                const day = currentDayData.day;
+                if (!day || liveWeather[day]) return;
+                const coords = weatherCoords[day];
+                const date = tripDates[day];
+                if (!coords || !date) return;
+                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&start_date=${date}&end_date=${date}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        const d = data.daily;
+                        if (!d) return;
+                        setLiveWeather(prev => ({
+                            ...prev,
+                            [day]: {
+                                high: Math.round(d.temperature_2m_max[0]) + "°C",
+                                low: Math.round(d.temperature_2m_min[0]) + "°C",
+                                rain: (d.precipitation_probability_max[0] ?? 0) + "%",
+                            }
+                        }));
+                    })
+                    .catch(() => {});
+            }, [activeDay]);
+
+            const weather = (currentDayData.day && liveWeather[currentDayData.day])
+                ? { ...currentDayData.weather, ...liveWeather[currentDayData.day] }
+                : currentDayData.weather;
+
+            return (
+                <div className="min-h-screen bg-[#EAF2F1] sm:py-8">
+                <div className="max-w-md mx-auto min-h-screen sm:min-h-0 pb-12 text-left bg-white sm:shadow-2xl sm:overflow-hidden">
+                    {}
+                    <div className="relative h-[240px] w-full overflow-hidden">
+                        <img src={headerImageUrl} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#1E2D3B]/65 via-[#1E2D3B]/5 to-transparent" />
+                        <div className="absolute top-4 right-4 text-center" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.35)' }}>
+                            <p className="font-kicker text-[9px] font-bold uppercase leading-none text-white">Issue</p>
+                            <p className="font-bubble text-xl leading-none mt-1 text-white">2026</p>
+                            <p className="font-kicker text-[9px] font-bold uppercase leading-none mt-1 text-white">Autumn</p>
+                        </div>
+                        <div className="absolute inset-x-0 bottom-0 p-6">
+                            <h1 className="font-bubble text-4xl text-white tracking-wide" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.35)' }}>Let's go to FUJI</h1>
+                            <svg viewBox="0 0 220 14" className="w-[220px] h-[14px] mt-2">
+                                <path d="M3 12 L20 4 L35 10 L55 3 L75 11 L95 4 L115 10.5 L135 3.5 L155 11 L175 4 L195 10 L212 5 L217 8" fill="none" stroke="#4E8A63" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {}
+                    <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b-2 border-[#1E2D3B]">
+                        <div className="overflow-x-auto no-scrollbar py-3 px-4 flex gap-2">
+                            {schedule.map((day, index) => {
+                                const active = activeDay === index;
+                                return (
+                                <button key={index} onClick={() => setActiveDay(index)} className={`flex flex-col items-center justify-center min-w-[58px] px-2 h-16 rounded-2xl border-2 transition-all ${active ? 'bg-[#C0392B] border-[#C0392B] text-white scale-105 shadow-md' : 'bg-white border-[#1E2D3B]/20 text-[#1E2D3B] hover:border-[#1E2D3B]/50'}`}>
+                                    <span className="font-kicker text-[9px] font-bold uppercase">{`DAY ${day.day}`}</span>
+                                    <span className="font-bubble text-sm font-bold mt-0.5 whitespace-nowrap">{day.navDate}</span>
+                                    {day.weekday && <span className={`font-kicker text-[9px] font-bold mt-0.5 ${active ? 'text-white/80' : 'text-[#1E2D3B]/40'}`}>{day.weekday}</span>}
+                                </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {}
+                    <main className="px-5 mt-6">
+                        <div className="mb-6 animate-fade-in">
+                            <div className="flex items-center gap-2 mb-1.5">
+                                <svg viewBox="0 0 34 10" className="w-[34px] h-[10px]">
+                                    <path d="M2 8 L8 3 L12 6.5 L16 2 L20 6.5 L24 3 L28 6.5 L32 4" fill="none" stroke="#2E6F93" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span className="font-kicker text-[#2E6F93] text-xs font-bold uppercase">{currentDayData.location}</span>
+                            </div>
+                            <h2 className="text-2xl font-black text-[#1E2D3B] leading-snug">{currentDayData.title}</h2>
+                            <p className="font-kicker text-[#1E2D3B]/50 font-bold text-xs mt-1 uppercase">{currentDayData.dateLabel}</p>
+                        </div>
+
+                        {}
+                        <div className="mb-6 animate-fade-in">
+                            <div className="bg-[#EAF2F1] rounded-2xl p-4 border border-[#2E6F93]/15">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="relative p-2 bg-[#2E6F93] text-white" style={{ borderRadius: '62% 38% 45% 55% / 40% 55% 45% 60%' }}><Icon name="mountain-snow" size={18} /></div>
+                                        <div>
+                                            <h4 className="font-kicker text-xs font-bold text-[#1E2D3B] uppercase">{weather.desc}</h4>
+                                            <p className="text-[11px] font-bold text-[#1E2D3B]/50">降雨機率 {weather.rain}</p>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="font-kicker text-xl font-bold text-[#1F4E68] tracking-tighter">{weather.high}</span>
+                                            <span className="text-[#1E2D3B]/25 font-black mx-0.5">/</span>
+                                            <span className="font-kicker text-base font-bold text-[#3A7A5A] tracking-tighter">{weather.low}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {}
+                        <div className="space-y-4 relative">
+                            <div className="absolute top-8 bottom-0 left-[21px] w-0 border-l-2 border-dashed border-[#DCE4E6]" />
+                            {currentDayData.events.map((event, idx) => {
+                                const style = getTagStyle(event.tag);
+                                const isSpecialTime = event.title.includes('★') || event.highlightTime;
+
+                                return (
+                                    <div key={`${activeDay}-${idx}`} className="relative pl-12 animate-slide-up" style={{ animationDelay: `${idx * 40}ms` }}>
+                                        <div className="absolute left-0 top-0 flex flex-col items-center">
+                                            <div className="w-11 h-11 rounded-full bg-white border-2 border-[#1E2D3B]/15 flex items-center justify-center text-xl z-10">{event.emoji}</div>
+                                            {event.time && (
+                                                <div className={`mt-1.5 px-1.5 py-0.5 rounded-md font-kicker text-white text-[10px] font-bold ${isSpecialTime ? 'bg-[#C0392B]' : 'bg-[#1E2D3B]'}`}>
+                                                    {event.time}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className={`bg-white rounded-2xl p-4 border ${style.border} ${isSpecialTime ? 'ring-1 ring-[#C0392B]/40' : ''}`}>
+                                            {event.tag && <div className={`inline-flex items-center gap-1 mb-2 px-2 py-0.5 rounded-md ${style.chip}`}><Icon name={style.icon} size={10} strokeWidth={3} /><span className="font-kicker text-[10px] font-bold uppercase">{event.tag}</span></div>}
+                                            <div className="flex justify-between items-start gap-2">
+                                                <h3 className="font-black text-[#1E2D3B] text-base leading-tight flex-1">
+                                                    {event.title}
+                                                </h3>
+                                                {event.location && <a href={event.location} target={isMobile ? '_self' : '_blank'} rel="noopener noreferrer" className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></a>}
+                                                {event.link && <a href={event.link} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 bg-[#1E2D3B]/8 text-[#1E2D3B] active:bg-[#1E2D3B] active:text-white"><Icon name="external-link" size={15} strokeWidth={2} /></a>}
+                                            </div>
+
+                                            {event.desc && <p className="text-[#1E2D3B]/70 text-sm mt-2 font-medium leading-relaxed whitespace-pre-line">{event.desc}</p>}
+
+                                            {event.type === 'flight' && event.flightInfo && (
+                                                <div className="mt-3 bg-[#EAF2F1] rounded-xl p-3 border border-[#2E6F93]/15">
+                                                    <div className="text-center font-kicker text-[11px] font-bold text-[#2E6F93] mb-2 uppercase">{event.flightInfo.flightNo || '航班資訊'}</div>
+                                                    <div className="flex items-center justify-between gap-1">
+                                                        <div className="text-center">
+                                                            <div className="font-kicker text-2xl font-bold text-[#1E2D3B] tracking-tight leading-none">{event.flightInfo.depTime}</div>
+                                                            <div className="text-xs font-bold text-[#1E2D3B]/60 mt-1">{event.flightInfo.from.split(' ')[1]}</div>
+                                                            {event.flightInfo.fromTerminal && <div className="text-[10px] font-bold text-[#C0392B] mt-0.5">{event.flightInfo.fromTerminal}</div>}
+                                                        </div>
+                                                        <div className="flex flex-col items-center grow px-2">
+                                                            {event.flightInfo.duration && <div className="text-[10px] font-bold text-[#3A7A5A] mb-1 whitespace-nowrap">{event.flightInfo.duration}</div>}
+                                                            <div className="w-full h-[2px] bg-[#2E6F93]/30 relative">
+                                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#EAF2F1] px-1.5">
+                                                                    <Icon name="plane" size={14} className="text-[#2E6F93] rotate-90" fill="currentColor" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="text-center">
+                                                            <div className="font-kicker text-2xl font-bold text-[#1E2D3B] tracking-tight leading-none">{event.flightInfo.arrTime}</div>
+                                                            <div className="text-xs font-bold text-[#1E2D3B]/60 mt-1">{event.flightInfo.to.split(' ')[1]}</div>
+                                                            {event.flightInfo.toTerminal && <div className="text-[10px] font-bold text-[#C0392B] mt-0.5">{event.flightInfo.toTerminal}</div>}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {event.transitInfo && (
+                                                <div className="mt-3 bg-[#EAF2F1] rounded-xl p-3 border border-[#2E6F93]/15">
+                                                    {event.transitInfo.train && <div className="text-center font-kicker text-[11px] font-bold text-[#2E6F93] mb-2 uppercase">{event.transitInfo.train}</div>}
+                                                    <div className="flex items-center justify-between gap-1">
+                                                        <div className="text-center">
+                                                            <div className="font-kicker text-2xl font-bold text-[#1E2D3B] tracking-tight leading-none">{event.transitInfo.dep}</div>
+                                                            <div className="text-xs font-bold text-[#1E2D3B]/60 mt-1">{event.transitInfo.from}</div>
+                                                        </div>
+                                                        <div className="flex flex-col items-center grow px-2">
+                                                            <div className="text-[10px] font-bold text-[#3A7A5A] mb-1 whitespace-nowrap">{event.transitInfo.duration}</div>
+                                                            <div className="w-full h-[2px] bg-[#2E6F93]/30 relative">
+                                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#EAF2F1] px-1.5">
+                                                                    <Icon name="train-front" size={14} className="text-[#2E6F93]" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="text-center">
+                                                            <div className="font-kicker text-2xl font-bold text-[#1E2D3B] tracking-tight leading-none">{event.transitInfo.arr}</div>
+                                                            <div className="text-xs font-bold text-[#1E2D3B]/60 mt-1">{event.transitInfo.to}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {event.isList && event.options && (
+                                                <div className="mt-3 flex flex-col gap-2">
+                                                    {event.options.map((opt, i) => {
+                                                        const parsed = parseOptionName(opt.name);
+                                                        const note = opt.desc || parsed.note;
+                                                        return (
+                                                            <a key={i} href={opt.url} target={isMobile ? '_self' : '_blank'} rel="noopener noreferrer" className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${style.bg} ${style.border} active:scale-[0.98]`}>
+                                                                <div className="min-w-0 flex-1">
+                                                                    <div className={`text-sm font-bold leading-snug ${style.text}`}>{parsed.title}</div>
+                                                                    {note && <div className="text-xs font-medium text-[#1E2D3B]/50 leading-snug mt-0.5">{note}</div>}
+                                                                </div>
+                                                                {opt.url && <Icon name="chevron-right" size={14} className={`shrink-0 ${style.text} opacity-60`} />}
+                                                            </a>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
+
+                                            {event.footnote && (
+                                                <p className="text-xs font-medium text-[#1E2D3B]/45 leading-relaxed mt-2 whitespace-pre-line">{event.footnote}</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </main>
+                </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TripApp />);
+
+        const splash = document.getElementById('splash');
+        if (splash) {
+            requestAnimationFrame(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 350);
+            });
+        }
+    </script>
+</body>
+</html>
