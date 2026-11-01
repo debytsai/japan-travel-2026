@@ -110,11 +110,9 @@
                     day: 1, dateLabel: "2026.11.12 Thu", navDate: "11/12", weekday: "Thu", title: "飛抵東京，日本橋入住", location: "台北 → 東京",
                     weather: { high: "18°C", low: "11°C", desc: "晴朗涼爽", rain: "10%" },
                     events: [
-                        { type: "flight", time: "13:30", title: "松山→羽田", flightInfo: { from: "TSA 台北松山", to: "HND 東京羽田", depTime: "13:30", arrTime: "17:30", duration: "4小時", fromTerminal: "Terminal 1", toTerminal: "Terminal 2", flightNo: "NH852" }, emoji: "✈️" },
+                        { type: "flight", time: "13:30", title: "松山→羽田", flightInfo: { from: "TSA 台北松山", to: "HND 東京羽田", depTime: "13:30", arrTime: "17:25", duration: "2小時55分", fromTerminal: "Terminal 1", toTerminal: "Terminal 2", flightNo: "NH852" }, emoji: "✈️" },
                         { type: "hotel", tag: "Accommodation", title: "MIMARU SUITES 東京日本橋 check in", desc: "1泊4名税込 92,643円（官網訂）", location: "https://maps.app.goo.gl/AsjeKG3tK4zkvGBAA", emoji: "🏨" },
-                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定，選項：", isList: true, options: [
-                            { name: "俺の割烹 銀座本店？", url: "https://maps.app.goo.gl/MDQqhPoqECszUt1X6" }
-                        ], emoji: "🍽️" }
+                        { type: "food", tag: "Dinner", time: "20:00", title: "俺の割烹 銀座本店", desc: "已預約 20:00", location: "https://maps.app.goo.gl/MDQqhPoqECszUt1X6", link: "https://tabelog.com/tokyo/A1301/A130101/13286881/", emoji: "🍽️" }
                     ]
                 },
                 {
@@ -123,8 +121,8 @@
                     events: [
                         { type: "hotel", tag: "Accommodation", time: "10:00", title: "MIMARU SUITES 東京日本橋 check out", emoji: "🧳" },
                         { type: "transport", tag: "Transport", title: "計程車前往東京車站", emoji: "🚕" },
-                        { type: "transport", tag: "Transport", title: "新幹線前往三島", transitInfo: { train: "ひかり709号", from: "東京", to: "三島", dep: "11:03", arr: "11:45", duration: "42分鐘" }, emoji: "🚄" },
-                        { type: "transport", tag: "Transport", title: "三島租車", desc: "前往河口湖附近經典景點逛逛拍照", emoji: "🚗" },
+                        { type: "transport", tag: "Transport", title: "新幹線前往三島", transitInfo: { train: "ひかり709号", from: "東京", to: "三島", dep: "11:03", arr: "11:45", duration: "42分鐘", seat: "Car.14 Seat.20-ABCD" }, emoji: "🚄" },
+                        { type: "transport", tag: "Transport", time: "12:00", title: "三島租車（TOYOTA租車）", desc: "已預約 12:00\n前往河口湖附近經典景點逛逛拍照", emoji: "🚗" },
                         { type: "sightseeing", tag: "Sightseeing", title: "富士吉田 レトロ商店街", location: "https://maps.app.goo.gl/5Y5PmHbTDzAv9p4s8", emoji: "🏮" },
                         { type: "food", tag: "Lunch", title: "午餐", isList: true, options: [
                             { name: "FabCafe Fuji？", url: "https://maps.app.goo.gl/smxhAidjEWBJ44iX7" },
@@ -152,7 +150,7 @@
                             { name: "awatenvou？（也有午餐，可電話預約）", url: "https://maps.app.goo.gl/pEFr84m6Wt8p5E3H8" },
                             { name: "loska？", url: "https://maps.app.goo.gl/6rtzLx6cmN6WMZuC6" }
                         ], emoji: "☕" },
-                        { type: "transport", tag: "Transport", title: "新幹線前往熱海", transitInfo: { train: "こだま826号", from: "三島", to: "熱海", dep: "15:24", arr: "15:31", duration: "7分鐘" }, footnote: "開車要40分鐘且聽說是山路路況不好\n也可搭東海道本線 15:19–15:33（14分鐘）", emoji: "🚄" },
+                        { type: "transport", tag: "Transport", title: "電車前往熱海", transitInfo: { train: "東海道本線", from: "三島", to: "熱海", dep: "15:19", arr: "15:33", duration: "14分鐘" }, footnote: "開車要40分鐘且聽說是山路路況不好", emoji: "🚃" },
                         { type: "transport", tag: "Transport", time: "15:45", title: "預約免費接送", emoji: "🚐" },
                         { type: "hotel", tag: "Onsen", title: "熱海 SHIJIMA ATAMI check in", desc: "夕朝食付2泊4名税込 430,635円（一休已訂，出發前記得變更為線上付款）", location: "https://maps.app.goo.gl/wPyZCUT9P42iFB889", link: "https://shijima-atami.com/", emoji: "♨️" }
                     ]
@@ -171,33 +169,31 @@
                     day: 5, dateLabel: "2026.11.16 Mon", navDate: "11/16", weekday: "Mon", title: "江之浦測候所，返回東京", location: "熱海 → 東京",
                     weather: { high: "18°C", low: "10°C", desc: "秋高氣爽", rain: "10%" },
                     events: [
-                        { type: "hotel", tag: "Onsen", time: "11:00", title: "熱海 SHIJIMA ATAMI check out", emoji: "♨️" },
-                        { type: "transport", tag: "Transport", title: "東海道本線前往根府川", transitInfo: { train: "東海道本線", from: "熱海", to: "根府川", dep: "11:04", arr: "11:18", duration: "14分鐘" }, emoji: "🚃" },
-                        { type: "sightseeing", tag: "Sightseeing", title: "江之浦測候所", desc: "我去過了但覺得很漂亮，可以再去看看", location: "https://maps.app.goo.gl/mcw8W3qAeqyw54Yw9", link: "https://www.odawara-af.com/zh-hant/enoura/", emoji: "🌊" },
+                        { type: "hotel", tag: "Onsen", time: "09:15", title: "熱海 SHIJIMA ATAMI check out", emoji: "♨️" },
+                        { type: "transport", tag: "Transport", title: "搭乘免費接駁至熱海站寄放行李", location: "https://maps.app.goo.gl/kMwmQNWWCkPuEFSz5", emoji: "🚐" },
+                        { type: "transport", tag: "Transport", title: "東海道本線前往根府川", transitInfo: { train: "東海道本線", from: "熱海", to: "根府川", dep: "10:01", arr: "10:15", duration: "14分鐘" }, emoji: "🚃" },
+                        { type: "transport", tag: "Transport", time: "10:35", title: "根府川乘坐接駁車", desc: "已預約 10:35", emoji: "🚐" },
+                        { type: "sightseeing", tag: "Sightseeing", title: "江之浦測候所", desc: "我去過了但覺得很漂亮，可以再去看看\n可搭 11:30 或 12:00 的接駁巴士離開", location: "https://maps.app.goo.gl/uuo4ahp1gi1ahqfc8", link: "https://www.odawara-af.com/zh-hant/enoura/", emoji: "🌊" },
                         { type: "sightseeing", tag: "Sightseeing", title: "回熱海拿行李，車站附近吃飯晃晃", desc: "平和通り名店街、仲見世通り商店街", location: "https://maps.app.goo.gl/Y2VurVK8qKUrvhgP7", emoji: "🚶" },
                         { type: "food", tag: "Lunch", title: "午餐", desc: "或其他，就近解決", isList: true, options: [
                             { name: "囲炉茶屋", url: "https://maps.app.goo.gl/xr5QuD1g7qstnJV28" },
                             { name: "米と魚熱海店", url: "https://maps.app.goo.gl/ZTqjSWywxjVbz9Dx5" }
                         ], emoji: "🍽️" },
-                        { type: "transport", tag: "Transport", title: "新幹線返回東京", transitInfo: { train: "こだま828号", from: "熱海", to: "東京", dep: "16:02", arr: "16:48", duration: "46分鐘" }, emoji: "🚄" },
+                        { type: "transport", tag: "Transport", title: "新幹線返回東京", transitInfo: { train: "こだま830号", from: "熱海", to: "東京", dep: "16:32", arr: "17:18", duration: "46分鐘", seat: "Car.8 Seat.1-ABCD" }, emoji: "🚄" },
                         { type: "hotel", tag: "Accommodation", title: "MIMARU SUITES 東京日本橋 check in", desc: "3泊4名税込 284,919円（官網訂）", location: "https://maps.app.goo.gl/AsjeKG3tK4zkvGBAA", emoji: "🏨" },
-                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定", emoji: "🍽️" }
+                        { type: "food", tag: "Dinner", title: "つるとんたん UDON NOODLE Brasserie 六本木", desc: "可以順便去看看聖誕燈飾", emoji: "🍜" }
                     ]
                 },
                 {
                     day: 6, dateLabel: "2026.11.17 Tue", navDate: "11/17", weekday: "Tue", title: "東京自由活動日", location: "東京",
                     weather: { high: "18°C", low: "10°C", desc: "晴朗", rain: "0%" },
                     events: [
-                        { type: "notice", tag: "Notice", title: "自由活動日", desc: "各自安排，晚餐前東京市區集合", emoji: "🌤️" },
+                        { type: "notice", tag: "Notice", title: "自由活動日", emoji: "🌤️" },
                         { type: "activity", tag: "Activity", time: "10:00", title: "Deby：做玻璃", desc: "10:00〜12:30", emoji: "🔥" },
-                        { type: "activity", tag: "Activity", title: "各自待辦事項", isList: true, options: [
-                            { name: "Tony：KAIT(カイト)広場", url: "https://www.kait.jp/about/equipment/kaithiroba/" },
-                            { name: "Deby：剪頭髮" },
-                            { name: "Deby：OZEKI Tokyo Gallery", url: "https://maps.app.goo.gl/K36YNVusF45Mm6ND6" },
-                            { name: "媽：海渡" },
-                            { name: "爸：回し寿司活", url: "https://maps.app.goo.gl/tKDmsykXHsmfUnBf8" }
-                        ], emoji: "📝" },
-                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定", emoji: "🍽️" }
+                        { type: "activity", tag: "Activity", time: "14:00", title: "Deby：剪頭髮", emoji: "✂️" },
+                        { type: "activity", tag: "Activity", title: "晚上跟朋友有約", emoji: "🥂" },
+                        { type: "shopping", tag: "Shopping", title: "爸媽：前往海渡", emoji: "🛍️" },
+                        { type: "food", tag: "Dinner", title: "回し寿司活 目黒店？", location: "https://maps.app.goo.gl/MM1pmJHVdA68wsuM6", emoji: "🍣" }
                     ]
                 },
                 {
@@ -212,7 +208,7 @@
                     day: 8, dateLabel: "2026.11.19 Thu", navDate: "11/19", weekday: "Thu", title: "東京返台", location: "東京 → 台北",
                     weather: { high: "17°C", low: "10°C", desc: "晴時多雲", rain: "10%" },
                     events: [
-                        { type: "flight", time: "12:40", title: "羽田→松山", flightInfo: { from: "HND 東京羽田", to: "TSA 台北松山", depTime: "12:40", arrTime: "15:50", duration: "3小時10分", fromTerminal: "Terminal 2", toTerminal: "Terminal 1", flightNo: "NH853" }, emoji: "🛫" }
+                        { type: "flight", time: "12:45", title: "羽田→松山", flightInfo: { from: "HND 東京羽田", to: "TSA 台北松山", depTime: "12:45", arrTime: "15:50", duration: "4小時5分", fromTerminal: "Terminal 2", toTerminal: "Terminal 1", flightNo: "NH853" }, emoji: "🛫" }
                     ]
                 }
             ];
@@ -396,6 +392,7 @@
                                                             {event.flightInfo.toTerminal && <div className="text-[10px] font-bold text-[#C0392B] mt-0.5">{event.flightInfo.toTerminal}</div>}
                                                         </div>
                                                     </div>
+                                                    {event.flightInfo.seat && <div className="mt-3 pt-2 border-t border-[#2E6F93]/15 text-center font-kicker text-sm font-bold text-[#1E2D3B]">{event.flightInfo.seat}</div>}
                                                 </div>
                                             )}
 
@@ -420,6 +417,7 @@
                                                             <div className="text-xs font-bold text-[#1E2D3B]/60 mt-1">{event.transitInfo.to}</div>
                                                         </div>
                                                     </div>
+                                                    {event.transitInfo.seat && <div className="mt-3 pt-2 border-t border-[#2E6F93]/15 text-center font-kicker text-sm font-bold text-[#1E2D3B]">{event.transitInfo.seat}</div>}
                                                 </div>
                                             )}
 
