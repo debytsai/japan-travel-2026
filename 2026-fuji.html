@@ -112,7 +112,7 @@
                     events: [
                         { type: "flight", time: "13:30", title: "松山→羽田", flightInfo: { from: "TSA 台北松山", to: "HND 東京羽田", depTime: "13:30", arrTime: "17:25", duration: "2小時55分", fromTerminal: "Terminal 1", toTerminal: "Terminal 2", flightNo: "NH852" }, emoji: "✈️" },
                         { type: "hotel", tag: "Accommodation", title: "MIMARU SUITES 東京日本橋 check in", desc: "1泊4名税込 92,643円（官網訂）", location: "https://maps.app.goo.gl/AsjeKG3tK4zkvGBAA", emoji: "🏨" },
-                        { type: "food", tag: "Dinner", time: "20:00", title: "俺の割烹 銀座本店", desc: "已預約 20:00", location: "https://maps.app.goo.gl/MDQqhPoqECszUt1X6", link: "https://tabelog.com/tokyo/A1301/A130101/13286881/", emoji: "🍽️" }
+                        { type: "food", tag: "Dinner", time: "20:00", title: "俺の割烹 銀座本店", desc: "食べログ已訂", location: "https://maps.app.goo.gl/MDQqhPoqECszUt1X6", link: "https://tabelog.com/tokyo/A1301/A130101/13286881/", emoji: "🍽️" }
                     ]
                 },
                 {
@@ -122,7 +122,7 @@
                         { type: "hotel", tag: "Accommodation", time: "10:00", title: "MIMARU SUITES 東京日本橋 check out", emoji: "🧳" },
                         { type: "transport", tag: "Transport", title: "計程車前往東京車站", emoji: "🚕" },
                         { type: "transport", tag: "Transport", title: "新幹線前往三島", transitInfo: { train: "ひかり709号", from: "東京", to: "三島", dep: "11:03", arr: "11:45", duration: "42分鐘", seat: "Car.14 Seat.20-ABCD" }, emoji: "🚄" },
-                        { type: "transport", tag: "Transport", time: "12:00", title: "三島租車（TOYOTA租車）", desc: "已預約 12:00\n前往河口湖附近經典景點逛逛拍照", emoji: "🚗" },
+                        { type: "transport", tag: "Transport", time: "12:00", title: "三島租車（TOYOTA租車）", desc: "已預約\n前往河口湖附近經典景點逛逛拍照", emoji: "🚗" },
                         { type: "sightseeing", tag: "Sightseeing", title: "富士吉田 レトロ商店街", location: "https://maps.app.goo.gl/5Y5PmHbTDzAv9p4s8", emoji: "🏮" },
                         { type: "food", tag: "Lunch", title: "午餐", isList: true, options: [
                             { name: "FabCafe Fuji？", url: "https://maps.app.goo.gl/smxhAidjEWBJ44iX7" },
@@ -172,7 +172,7 @@
                         { type: "hotel", tag: "Onsen", time: "09:15", title: "熱海 SHIJIMA ATAMI check out", emoji: "♨️" },
                         { type: "transport", tag: "Transport", title: "搭乘免費接駁至熱海站寄放行李", location: "https://maps.app.goo.gl/kMwmQNWWCkPuEFSz5", emoji: "🚐" },
                         { type: "transport", tag: "Transport", title: "東海道本線前往根府川", transitInfo: { train: "東海道本線", from: "熱海", to: "根府川", dep: "10:01", arr: "10:15", duration: "14分鐘" }, emoji: "🚃" },
-                        { type: "transport", tag: "Transport", time: "10:35", title: "根府川乘坐接駁車", desc: "已預約 10:35", emoji: "🚐" },
+                        { type: "transport", tag: "Transport", time: "10:35", title: "根府川乘坐接駁車", desc: "已預約", emoji: "🚐" },
                         { type: "sightseeing", tag: "Sightseeing", title: "江之浦測候所", desc: "我去過了但覺得很漂亮，可以再去看看\n可搭 11:30 或 12:00 的接駁巴士離開", location: "https://maps.app.goo.gl/uuo4ahp1gi1ahqfc8", link: "https://www.odawara-af.com/zh-hant/enoura/", emoji: "🌊" },
                         { type: "sightseeing", tag: "Sightseeing", title: "回熱海拿行李，車站附近吃飯晃晃", desc: "平和通り名店街、仲見世通り商店街", location: "https://maps.app.goo.gl/Y2VurVK8qKUrvhgP7", emoji: "🚶" },
                         { type: "food", tag: "Lunch", title: "午餐", desc: "或其他，就近解決", isList: true, options: [
@@ -201,7 +201,7 @@
                     weather: { high: "17°C", low: "10°C", desc: "多雲", rain: "20%" },
                     events: [
                         { type: "notice", tag: "Notice", title: "自由活動日", emoji: "🍃" },
-                        { type: "food", tag: "Dinner", title: "晚餐", desc: "未定", emoji: "🍽️" }
+                        { type: "food", tag: "Dinner", time: "19:30", title: "青山おとと", desc: "TableCheck 已訂", location: "https://maps.app.goo.gl/6sQrxAzfYSwF7yNZ8", link: "https://aoyama-ototo.jp/", emoji: "🍣" }
                     ]
                 },
                 {
@@ -363,8 +363,8 @@
                                                 <h3 className="font-black text-[#1E2D3B] text-base leading-tight flex-1">
                                                     {event.title}
                                                 </h3>
-                                                {event.location && <a href={event.location} target={isMobile ? '_self' : '_blank'} rel="noopener noreferrer" className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></a>}
                                                 {event.link && <a href={event.link} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 bg-[#1E2D3B]/8 text-[#1E2D3B] active:bg-[#1E2D3B] active:text-white"><Icon name="external-link" size={15} strokeWidth={2} /></a>}
+                                                {event.location && <a href={event.location} target={isMobile ? '_self' : '_blank'} rel="noopener noreferrer" className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${style.btn}`}><Icon name="navigation" size={16} fill="currentColor" /></a>}
                                             </div>
 
                                             {event.desc && <p className="text-[#1E2D3B]/70 text-sm mt-2 font-medium leading-relaxed whitespace-pre-line">{event.desc}</p>}
